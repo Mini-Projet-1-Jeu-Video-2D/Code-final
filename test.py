@@ -2453,8 +2453,6 @@ while running :
                 screen.blit(titre_bt_catégorie_frôlements_img, titre_bt_catégorie_frôlements_pos)
                 screen.blit(bt_catégorie_collectibles, bt_catégorie_collectibles_pos)
                 screen.blit(titre_bt_catégorie_collectibles_img, titre_bt_catégorie_collectibles_pos)
-                screen.blit(bt_retour, bt_retour_pos)
-                screen.blit(titre_bt_retour_img, titre_bt_retour_pos)
                 screen.blit(succès_temps_1_player_img, succès_temps_1_player_pos)
                 screen.blit(statut_succès_temps_1_player_img, statut_succès_temps_1_player_pos)
                 screen.blit(succès_temps_2_player_img, succès_temps_2_player_pos)
@@ -2477,8 +2475,6 @@ while running :
                 screen.blit(titre_bt_catégorie_frôlements_img, titre_bt_catégorie_frôlements_pos)
                 screen.blit(bt_catégorie_collectibles, bt_catégorie_collectibles_pos)
                 screen.blit(titre_bt_catégorie_collectibles_img, titre_bt_catégorie_collectibles_pos)
-                screen.blit(bt_retour, bt_retour_pos)
-                screen.blit(titre_bt_retour_img, titre_bt_retour_pos)
                 screen.blit(succès_score_1_player_img, succès_score_1_player_pos)
                 screen.blit(statut_succès_score_1_player_img, statut_succès_score_1_player_pos)
                 screen.blit(succès_score_2_player_img, succès_score_2_player_pos)
@@ -2501,8 +2497,6 @@ while running :
                 screen.blit(titre_bt_catégorie_frôlements_img, titre_bt_catégorie_frôlements_pos)
                 screen.blit(bt_catégorie_collectibles, bt_catégorie_collectibles_pos)
                 screen.blit(titre_bt_catégorie_collectibles_img, titre_bt_catégorie_collectibles_pos)
-                screen.blit(bt_retour, bt_retour_pos)
-                screen.blit(titre_bt_retour_img, titre_bt_retour_pos)
                 screen.blit(succès_frôlements_1_player_img, succès_frôlements_1_player_pos)
                 screen.blit(statut_succès_frôlements_1_player_img, statut_succès_frôlements_1_player_pos)
                 screen.blit(succès_frôlements_2_player_img, succès_frôlements_2_player_pos)
@@ -2525,8 +2519,6 @@ while running :
                 screen.blit(titre_bt_catégorie_frôlements_img, titre_bt_catégorie_frôlements_pos)
                 screen.blit(bt_catégorie_collectibles, bt_catégorie_collectibles_pos)
                 screen.blit(titre_bt_catégorie_collectibles_img, titre_bt_catégorie_collectibles_pos)
-                screen.blit(bt_retour, bt_retour_pos)
-                screen.blit(titre_bt_retour_img, titre_bt_retour_pos)
                 screen.blit(succès_collectibles_1_player_img, succès_collectibles_1_player_pos)
                 screen.blit(statut_succès_collectibles_1_player_img, statut_succès_collectibles_1_player_pos)
                 screen.blit(succès_collectibles_2_player_img, succès_collectibles_2_player_pos)
@@ -2639,6 +2631,921 @@ while running :
                     screen.blit(statut_succès_collectibles_caché_player2_img, statut_succès_collectibles_caché_player2_pos)
                 screen.blit(bt_retour, bt_retour_pos)
                 screen.blit(titre_bt_retour_img, titre_bt_retour_pos)
+
+
+
+    if mode_actuel == MODE_I_MEMES :
+        #---------------------------------------------------------------------------TITRE---------------------------------------------------------------------------
+
+        font_titre_menu_i_memes = pygame.font.Font(Technos, 75)
+        titre_menu_i_memes_img = font_titre_menu_i_memes.render("Menu des I-Memes", True, (255, 255, 255))
+        titre_menu_i_memes_dimensions = titre_menu_i_memes_img.get_size()
+        titre_menu_i_memes_pos = [screen_size[0] / 2 - titre_menu_i_memes_dimensions[0] / 2, 50]
+
+        #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+        #---------------------------------------------------------------------------Joueur 1------------------------------------------------------------------------
+        #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        bt_joueur_1 = pygame.Surface((550, 200))
+        bt_joueur_1.fill("#999999")
+        bt_joueur_1_size = [550, 200]
+        bt_joueur_1_pos = [screen_size[0] / 4 - bt_joueur_1_size[0] / 2, screen_size[1] / 2 - bt_joueur_1_size[1] / 2]
+ 
+        font_titre_bt_joueur_1 = pygame.font.Font(Technos, 60)
+        titre_bt_joueur_1_img = font_titre_bt_joueur_1.render("Joueur 1", True, (255, 255, 255))
+        titre_bt_joueur_1_dimensions = titre_bt_joueur_1_img.get_size()
+        titre_bt_joueur_1_pos = [bt_joueur_1_pos[0] + bt_joueur_1_size[0] / 2 - titre_bt_joueur_1_dimensions[0] / 2, bt_joueur_1_pos[1] + bt_joueur_1_size[1] / 2 - titre_bt_joueur_1_dimensions[1] / 2]
+
+        #--------------------------------------------------------------------------RARE----------------------------------------------------------------------------
+
+        font__titre_bt_joueur_1 = pygame.font.Font(Technos, 45)
+        _titre_bt_joueur_1_img = font__titre_bt_joueur_1.render("Joueur 1", True, (255, 255, 255))
+        _titre_bt_joueur_1_dimensions = _titre_bt_joueur_1_img.get_size()
+        _titre_bt_joueur_1_pos = [screen_size[0] / 2 - _titre_bt_joueur_1_dimensions[0] / 2, titre_menu_i_memes_pos[1] + titre_menu_i_memes_dimensions[1] + 10]
+
+
+        bt_rareté_rare = pygame.Surface((300, 50))
+        bt_rareté_rare.fill("#999999")
+        bt_rareté_rare_size = [300, 50]
+        bt_rareté_rare_pos = [screen_size[0] / 2 - 470, titre_menu_i_memes_pos[1] + titre_menu_i_memes_dimensions[1] + 75]
+  
+        font_titre_bt_rareté_rare = pygame.font.Font(Technos, 25)
+        titre_bt_rareté_rare_img = font_titre_bt_rareté_rare.render("Rare", True, (255, 255, 255))
+        titre_bt_rareté_rare_dimensions = titre_bt_rareté_rare_img.get_size()
+        titre_bt_rareté_rare_pos = [bt_rareté_rare_pos[0] + bt_rareté_rare_size[0] / 2 - titre_bt_rareté_rare_dimensions[0] / 2, bt_rareté_rare_pos[1] + bt_rareté_rare_size[1] / 2 - titre_bt_rareté_rare_dimensions[1] / 2]
+
+
+        font_red_bull_player = pygame.font.Font(Arcade, 35)
+        red_bull_player_img = font_red_bull_player.render("Red Bull : Confere une acceleration temporaire de 5 secondes", True, (255, 255, 255))
+        red_bull_player_dimensions = red_bull_player_img.get_size()
+        red_bull_player_pos = [20, bt_rareté_rare_pos[1] + bt_rareté_rare_size[1] + 35]
+
+        statut_red_bull_player = pygame.Surface((150, 50))
+        statut_red_bull_player.fill("#999999")
+        statut_red_bull_player_size = [150, 50]
+        statut_red_bull_player_pos = [20, red_bull_player_pos[1] + red_bull_player_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player == 1 :
+            titre_Statut_red_bull_player = "Statut : Equipe"
+        elif succès_temps_1_player :
+            titre_Statut_red_bull_player = "Statut : Possédé ; Equiper ?"
+        else :
+            titre_Statut_red_bull_player = "Statut : Non possede"
+        font_titre_statut_red_bull_player = pygame.font.Font(Arcade, 15)
+        titre_statut_red_bull_player_img = font_titre_statut_red_bull_player.render(titre_Statut_red_bull_player, True, (255, 255, 255))
+        titre_statut_red_bull_player_dimensions = titre_statut_red_bull_player_img.get_size()
+        titre_statut_red_bull_player_pos = [statut_red_bull_player_pos[0] + 10, statut_red_bull_player_pos[1] + statut_red_bull_player_size[1] / 2 - titre_statut_red_bull_player_dimensions[1] / 2]
+
+        font_disparition_player = pygame.font.Font(Arcade, 35)
+        disparition_player_img = font_disparition_player.render("Disparition : Rend invisible et intangible pendant 5 secondes", True, (255, 255, 255))
+        disparition_player_dimensions = disparition_player_img.get_size()
+        disparition_player_pos = [20, statut_red_bull_player_pos[1] + statut_red_bull_player_size[1] + 35]
+
+        statut_disparition_player = pygame.Surface((150, 50))
+        statut_disparition_player.fill("#999999")
+        statut_disparition_player_size = [150, 50]
+        statut_disparition_player_pos = [20, disparition_player_pos[1] + disparition_player_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player == 2 :
+            titre_Statut_disparition_player = "Statut : Equipe"
+        elif succès_score_1_player :
+            titre_Statut_disparition_player = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_disparition_player = "Statut : Non possede"
+        font_titre_statut_disparition_player = pygame.font.Font(Arcade, 15)
+        titre_statut_disparition_player_img = font_titre_statut_disparition_player.render(titre_Statut_disparition_player, True, (255, 255, 255))
+        titre_statut_disparition_player_dimensions = titre_statut_disparition_player_img.get_size()
+        titre_statut_disparition_player_pos = [statut_disparition_player_pos[0] + 10, statut_disparition_player_pos[1] + statut_disparition_player_size[1] / 2 - titre_statut_disparition_player_dimensions[1] / 2]
+
+        font_jackpot_player = pygame.font.Font(Arcade, 35)
+        jackpot_player_img = font_jackpot_player.render("Jackpot (Passif) : Double votre score final en fin de partie", True, (255, 255, 255))
+        jackpot_player_dimensions = jackpot_player_img.get_size()
+        jackpot_player_pos = [20, statut_disparition_player_pos[1] + statut_disparition_player_size[1] + 35]
+
+        statut_jackpot_player = pygame.Surface((150, 50))
+        statut_jackpot_player.fill("#999999")
+        statut_jackpot_player_size = [150, 50]
+        statut_jackpot_player_pos = [20, jackpot_player_pos[1] + jackpot_player_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player == 3 :
+            titre_Statut_jackpot_player = "Statut : Equipe"
+        elif succès_frôlements_1_player :
+            titre_Statut_jackpot_player = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_jackpot_player = "Statut : Non possede"
+        font_titre_statut_jackpot_player = pygame.font.Font(Arcade, 15)
+        titre_statut_jackpot_player_img = font_titre_statut_jackpot_player.render(titre_Statut_jackpot_player, True, (255, 255, 255))
+        titre_statut_jackpot_player_dimensions = titre_statut_jackpot_player_img.get_size()
+        titre_statut_jackpot_player_pos = [statut_jackpot_player_pos[0] + 10, statut_jackpot_player_pos[1] + statut_jackpot_player_size[1] / 2 - titre_statut_jackpot_player_dimensions[1] / 2]
+
+        font_devil_never_cry_player = pygame.font.Font(Arcade, 35)
+        devil_never_cry_player_img = font_devil_never_cry_player.render("Devil Never Cry (Passif) : Ressuscite 1 fois", True, (255, 255, 255))
+        devil_never_cry_player_dimensions = devil_never_cry_player_img.get_size()
+        devil_never_cry_player_pos = [20, statut_jackpot_player_pos[1] + statut_jackpot_player_size[1] + 35]
+
+        statut_devil_never_cry_player = pygame.Surface((150, 50))
+        statut_devil_never_cry_player.fill("#999999")
+        statut_devil_never_cry_player_size = [150, 50]
+        statut_devil_never_cry_player_pos = [20, devil_never_cry_player_pos[1] + devil_never_cry_player_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player == 4 :
+            titre_Statut_devil_never_cry_player = "Statut : Equipe"
+        elif succès_collectibles_1_player :
+            titre_Statut_devil_never_cry_player = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_devil_never_cry_player = "Statut : Non possede"
+        font_titre_statut_devil_never_cry_player = pygame.font.Font(Arcade, 15)
+        titre_statut_devil_never_cry_player_img = font_titre_statut_devil_never_cry_player.render(titre_Statut_devil_never_cry_player, True, (255, 255, 255))
+        titre_statut_devil_never_cry_player_dimensions = titre_statut_devil_never_cry_player_img.get_size()
+        titre_statut_devil_never_cry_player_pos = [statut_devil_never_cry_player_pos[0] + 10, statut_devil_never_cry_player_pos[1] + statut_devil_never_cry_player_size[1] / 2 - titre_statut_devil_never_cry_player_dimensions[1] / 2]
+
+        #-------------------------------------------------------------------------EPIQUE-----------------------------------------------------------------------------
+
+        bt_rareté_épique = pygame.Surface((300, 50))
+        bt_rareté_épique.fill("#999999")
+        bt_rareté_épique_size = [300, 50]
+        bt_rareté_épique_pos = [screen_size[0] / 2 - bt_rareté_épique_size[0] / 2, titre_menu_i_memes_pos[1] + titre_menu_i_memes_dimensions[1] + 75]
+
+        font_titre_bt_rareté_épique = pygame.font.Font(Technos, 25)
+        titre_bt_rareté_épique_img = font_titre_bt_rareté_épique.render("Epique", True, (255, 255, 255))
+        titre_bt_rareté_épique_dimensions = titre_bt_rareté_épique_img.get_size()
+        titre_bt_rareté_épique_pos = [bt_rareté_épique_pos[0] + bt_rareté_épique_size[0] / 2 - titre_bt_rareté_épique_dimensions[0] / 2, bt_rareté_épique_pos[1] + bt_rareté_épique_size[1] / 2 - titre_bt_rareté_épique_dimensions[1] / 2]
+
+
+        font_hyperdrive_player = pygame.font.Font(Arcade, 35)
+        hyperdrive_player_img = font_hyperdrive_player.render("Hyperdrive : Propulse a l'autre bout de la grille dans la direction actuelle", True, (255, 255, 255))
+        hyperdrive_player_dimensions = hyperdrive_player_img.get_size()
+        hyperdrive_player_pos = [20, bt_rareté_épique_pos[1] + bt_rareté_épique_size[1] + 35]
+
+        statut_hyperdrive_player = pygame.Surface((150, 50))
+        statut_hyperdrive_player.fill("#999999")
+        statut_hyperdrive_player_size = [150, 50]
+        statut_hyperdrive_player_pos = [20, hyperdrive_player_pos[1] + hyperdrive_player_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player == 5 :
+            titre_Statut_hyperdrive_player = "Statut : Equipe"
+        elif succès_temps_2_player :
+            titre_Statut_hyperdrive_player = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_hyperdrive_player = "Statut : Non possede"
+        font_titre_statut_hyperdrive_player = pygame.font.Font(Arcade, 15)
+        titre_statut_hyperdrive_player_img = font_titre_statut_hyperdrive_player.render(titre_Statut_hyperdrive_player, True, (255, 255, 255))
+        titre_statut_hyperdrive_player_dimensions = titre_statut_hyperdrive_player_img.get_size()
+        titre_statut_hyperdrive_player_pos = [statut_hyperdrive_player_pos[0] + 10, statut_hyperdrive_player_pos[1] + statut_hyperdrive_player_size[1] / 2 - titre_statut_hyperdrive_player_dimensions[1] / 2]
+
+        font_nope_player = pygame.font.Font(Arcade, 35)
+        nope_player_img = font_nope_player.render("Nope (usage unique) : Contre l'effet nefaste d'un I-Meme adverse", True, (255, 255, 255))
+        nope_player_dimensions = nope_player_img.get_size()
+        nope_player_pos = [20, statut_hyperdrive_player_pos[1] + statut_hyperdrive_player_size[1] + 35]
+
+        statut_nope_player = pygame.Surface((150, 50))
+        statut_nope_player.fill("#999999")
+        statut_nope_player_size = [150, 50]
+        statut_nope_player_pos = [20, nope_player_pos[1] + nope_player_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player == 6 :
+            titre_Statut_nope_player = "Statut : Equipe"
+        elif succès_score_2_player :
+            titre_Statut_nope_player = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_nope_player = "Statut : Non possede"
+        font_titre_statut_nope_player = pygame.font.Font(Arcade, 15)
+        titre_statut_nope_player_img = font_titre_statut_nope_player.render(titre_Statut_nope_player, True, (255, 255, 255))
+        titre_statut_nope_player_dimensions = titre_statut_nope_player_img.get_size()
+        titre_statut_nope_player_pos = [statut_nope_player_pos[0] + 10, statut_nope_player_pos[1] + statut_nope_player_size[1] / 2 - titre_statut_nope_player_dimensions[1] / 2]
+
+        font_gandalf_player = pygame.font.Font(Arcade, 35)
+        gandalf_player_img = font_gandalf_player.render("Gandalf : Erige un mur en face de l'adversaire", True, (255, 255, 255))
+        gandalf_player_dimensions = gandalf_player_img.get_size()
+        gandalf_player_pos = [20, statut_nope_player_pos[1] + statut_nope_player_size[1] + 35]
+
+        statut_gandalf_player = pygame.Surface((150, 50))
+        statut_gandalf_player.fill("#999999")
+        statut_gandalf_player_size = [150, 50]
+        statut_gandalf_player_pos = [20, gandalf_player_pos[1] + gandalf_player_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player == 7 :
+            titre_Statut_gandalf_player = "Statut : Equipe"
+        elif succès_frôlements_2_player :
+            titre_Statut_gandalf_player = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_gandalf_player = "Statut : Non possede"
+        font_titre_statut_gandalf_player = pygame.font.Font(Arcade, 15)
+        titre_statut_gandalf_player_img = font_titre_statut_gandalf_player.render(titre_Statut_gandalf_player, True, (255, 255, 255))
+        titre_statut_gandalf_player_dimensions = titre_statut_gandalf_player_img.get_size()
+        titre_statut_gandalf_player_pos = [statut_gandalf_player_pos[0] + 10, statut_gandalf_player_pos[1] + statut_gandalf_player_size[1] / 2 - titre_statut_gandalf_player_dimensions[1] / 2]
+
+        font_death_star_player = pygame.font.Font(Arcade, 35)
+        death_star_player_img = font_death_star_player.render("Death Star : Tire un rayon laser dans la direction actuelle", True, (255, 255, 255))
+        death_star_player_dimensions = death_star_player_img.get_size()
+        death_star_player_pos = [20, statut_gandalf_player_pos[1] + statut_gandalf_player_size[1] + 35]
+
+        statut_death_star_player = pygame.Surface((150, 50))
+        statut_death_star_player.fill("#999999")
+        statut_death_star_player_size = [150, 50]
+        statut_death_star_player_pos = [20, death_star_player_pos[1] + death_star_player_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player == 8 :
+            titre_Statut_death_star_player = "Statut : Equipe"
+        elif succès_collectibles_2_player :
+            titre_Statut_death_star_player = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_death_star_player = "Statut : Non possede"
+        font_titre_statut_death_star_player = pygame.font.Font(Arcade, 15)
+        titre_statut_death_star_player_img = font_titre_statut_death_star_player.render(titre_Statut_death_star_player, True, (255, 255, 255))
+        titre_statut_death_star_player_dimensions = titre_statut_death_star_player_img.get_size()
+        titre_statut_death_star_player_pos = [statut_death_star_player_pos[0] + 10, statut_death_star_player_pos[1] + statut_death_star_player_size[1] / 2 - titre_statut_death_star_player_dimensions[1] / 2]
+
+        #----------------------------------------------------------------------LEGENDAIRE---------------------------------------------------------------------------
+
+        bt_rareté_légendaire = pygame.Surface((300, 50))
+        bt_rareté_légendaire.fill("#999999")
+        bt_rareté_légendaire_size = [300, 50]
+        bt_rareté_légendaire_pos = [bt_rareté_épique_pos[0] + bt_rareté_épique_size[0] + 20, titre_menu_i_memes_pos[1] + titre_menu_i_memes_dimensions[1] + 75]
+
+        font_titre_bt_rareté_légendaire = pygame.font.Font(Technos, 25)
+        titre_bt_rareté_légendaire_img = font_titre_bt_rareté_légendaire.render("Legendaire", True, (255, 255, 255))
+        titre_bt_rareté_légendaire_dimensions = titre_bt_rareté_légendaire_img.get_size()
+        titre_bt_rareté_légendaire_pos = [bt_rareté_légendaire_pos[0] + bt_rareté_légendaire_size[0] / 2 - titre_bt_rareté_légendaire_dimensions[0] / 2, bt_rareté_légendaire_pos[1] + bt_rareté_légendaire_size[1] / 2 - titre_bt_rareté_légendaire_dimensions[1] / 2]
+
+
+        font_thanos_player = pygame.font.Font(Arcade, 35)
+        thanos_player_img = font_thanos_player.render("Thanos : Fais disparaitre toutes les trainees de la grille", True, (255, 255, 255))
+        thanos_player_dimensions = thanos_player_img.get_size()
+        thanos_player_pos = [20, bt_rareté_légendaire_pos[1] + bt_rareté_légendaire_size[1] + 35]
+
+        statut_thanos_player = pygame.Surface((150, 50))
+        statut_thanos_player.fill("#999999")
+        statut_thanos_player_size = [150, 50]
+        statut_thanos_player_pos = [20, thanos_player_pos[1] + thanos_player_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player == 9 :
+            titre_Statut_thanos_player = "Statut : Equipe"
+        elif succès_temps_caché_player :
+            titre_Statut_thanos_player = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_thanos_player = "Statut : Non possede"
+        font_titre_statut_thanos_player = pygame.font.Font(Arcade, 15)
+        titre_statut_thanos_player_img = font_titre_statut_thanos_player.render(titre_Statut_thanos_player, True, (255, 255, 255))
+        titre_statut_thanos_player_dimensions = titre_statut_thanos_player_img.get_size()
+        titre_statut_thanos_player_pos = [statut_thanos_player_pos[0] + 10, statut_thanos_player_pos[1] + statut_thanos_player_size[1] / 2 - titre_statut_thanos_player_dimensions[1] / 2]
+
+        font_c_est_quoi_ce_monde_player = pygame.font.Font(Arcade, 35)
+        c_est_quoi_ce_monde_player_img = font_c_est_quoi_ce_monde_player.render("C'est quoi ce monde ? : Inverse les touches de l'adversaire pendant 5 secondes", True, (255, 255, 255))
+        c_est_quoi_ce_monde_player_dimensions = c_est_quoi_ce_monde_player_img.get_size()
+        c_est_quoi_ce_monde_player_pos = [20, statut_thanos_player_pos[1] + statut_thanos_player_size[1] + 35]
+
+        statut_c_est_quoi_ce_monde_player = pygame.Surface((150, 50))
+        statut_c_est_quoi_ce_monde_player.fill("#999999")
+        statut_c_est_quoi_ce_monde_player_size = [150, 50]
+        statut_c_est_quoi_ce_monde_player_pos = [20, c_est_quoi_ce_monde_player_pos[1] + c_est_quoi_ce_monde_player_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player == 10 :
+            titre_Statut_c_est_quoi_ce_monde_player = "Statut : Equipe"
+        elif succès_score_caché_player :
+            titre_Statut_c_est_quoi_ce_monde_player = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_c_est_quoi_ce_monde_player = "Statut : Non possede"
+        font_titre_statut_c_est_quoi_ce_monde_player = pygame.font.Font(Arcade, 15)
+        titre_statut_c_est_quoi_ce_monde_player_img = font_titre_statut_c_est_quoi_ce_monde_player.render(titre_Statut_c_est_quoi_ce_monde_player, True, (255, 255, 255))
+        titre_statut_c_est_quoi_ce_monde_player_dimensions = titre_statut_c_est_quoi_ce_monde_player_img.get_size()
+        titre_statut_c_est_quoi_ce_monde_player_pos = [statut_c_est_quoi_ce_monde_player_pos[0] + 10, statut_c_est_quoi_ce_monde_player_pos[1] + statut_c_est_quoi_ce_monde_player_size[1] / 2 - titre_statut_c_est_quoi_ce_monde_player_dimensions[1] / 2]
+
+        font_virtual_insanity_player = pygame.font.Font(Arcade, 35)
+        virtual_insanity_player_img = font_virtual_insanity_player.render("Virtual Insanity : L'adversaire ne peut plus se diriger et est ralentit pendant 5 secondes", True, (255, 255, 255))
+        virtual_insanity_player_dimensions = virtual_insanity_player_img.get_size()
+        virtual_insanity_player_pos = [20, statut_c_est_quoi_ce_monde_player_pos[1] + statut_c_est_quoi_ce_monde_player_size[1] + 35]
+
+        statut_virtual_insanity_player = pygame.Surface((150, 50))
+        statut_virtual_insanity_player.fill("#999999")
+        statut_virtual_insanity_player_size = [150, 50]
+        statut_virtual_insanity_player_pos = [20, virtual_insanity_player_pos[1] + virtual_insanity_player_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player == 11 :
+            titre_Statut_virtual_insanity_player = "Statut : Equipe"
+        elif succès_frôlements_caché_player :
+            titre_Statut_virtual_insanity_player = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_virtual_insanity_player = "Statut : Non possede"
+        font_titre_statut_virtual_insanity_player = pygame.font.Font(Arcade, 15)
+        titre_statut_virtual_insanity_player_img = font_titre_statut_virtual_insanity_player.render(titre_Statut_virtual_insanity_player, True, (255, 255, 255))
+        titre_statut_virtual_insanity_player_dimensions = titre_statut_virtual_insanity_player_img.get_size()
+        titre_statut_virtual_insanity_player_pos = [statut_virtual_insanity_player_pos[0] + 10, statut_virtual_insanity_player_pos[1] + statut_virtual_insanity_player_size[1] / 2 - titre_statut_virtual_insanity_player_dimensions[1] / 2]
+
+        font_la_peace_player = pygame.font.Font(Arcade, 35)
+        la_peace_player_img = font_la_peace_player.render("La Peace : Vous et votre adversaire cessez de vous battre et trouvez La Peace", True, (255, 255, 255))
+        la_peace_player_dimensions = la_peace_player_img.get_size()
+        la_peace_player_pos = [20, statut_virtual_insanity_player_pos[1] + statut_virtual_insanity_player_size[1] + 35]
+
+        statut_la_peace_player = pygame.Surface((150, 50))
+        statut_la_peace_player.fill("#999999")
+        statut_la_peace_player_size = [150, 50]
+        statut_la_peace_player_pos = [20, la_peace_player_pos[1] + la_peace_player_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player == 12 :
+            titre_Statut_la_peace_player = "Statut : Equipe"
+        elif succès_collectibles_caché_player :
+            titre_Statut_la_peace_player = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_la_peace_player = "Statut : Non possede"
+        font_titre_statut_la_peace_player = pygame.font.Font(Arcade, 15)
+        titre_statut_la_peace_player_img = font_titre_statut_la_peace_player.render(titre_Statut_la_peace_player, True, (255, 255, 255))
+        titre_statut_la_peace_player_dimensions = titre_statut_la_peace_player_img.get_size()
+        titre_statut_la_peace_player_pos = [statut_la_peace_player_pos[0] + 10, statut_la_peace_player_pos[1] + statut_la_peace_player_size[1] / 2 - titre_statut_la_peace_player_dimensions[1] / 2]
+
+
+        #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+        #---------------------------------------------------------------------------Joueur 2------------------------------------------------------------------------
+        #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        bt_joueur_2 = pygame.Surface((550, 200))
+        bt_joueur_2.fill("#999999")
+        bt_joueur_2_size = [550, 200]
+        bt_joueur_2_pos = [3 * (screen_size[0] / 4) - bt_joueur_2_size[0] / 2, screen_size[1] / 2 - bt_joueur_2_size[1] / 2]
+
+        font_titre_bt_joueur_2 = pygame.font.Font(Technos, 60)
+        titre_bt_joueur_2_img = font_titre_bt_joueur_2.render("Joueur 2", True, (255, 255, 255))
+        titre_bt_joueur_2_dimensions = titre_bt_joueur_2_img.get_size()
+        titre_bt_joueur_2_pos = [bt_joueur_2_pos[0] + bt_joueur_2_size[0] / 2 - titre_bt_joueur_2_dimensions[0] / 2, bt_joueur_2_pos[1] + bt_joueur_2_size[1] / 2 - titre_bt_joueur_2_dimensions[1] / 2]
+
+        #---------------------------------------------------------------------------RARE----------------------------------------------------------------------------
+
+        font__titre_bt_joueur_2 = pygame.font.Font(Technos, 45)
+        _titre_bt_joueur_2_img = font__titre_bt_joueur_2.render("Joueur 2", True, (255, 255, 255))
+        _titre_bt_joueur_2_dimensions = _titre_bt_joueur_2_img.get_size()
+        _titre_bt_joueur_2_pos = [screen_size[0] / 2 - _titre_bt_joueur_2_dimensions[0] / 2, titre_menu_i_memes_pos[1] + titre_menu_i_memes_dimensions[1] + 10]
+
+
+        bt_rareté_rare2 = pygame.Surface((300, 50))
+        bt_rareté_rare2.fill("#999999")
+        bt_rareté_rare2_size = [300, 50]
+        bt_rareté_rare2_pos = [screen_size[0] / 2 - 470, titre_menu_i_memes_pos[1] + titre_menu_i_memes_dimensions[1] + 75 + bt_rareté_rare_size[1]]
+  
+        font_titre_bt_rareté_rare2 = pygame.font.Font(Technos, 25)
+        titre_bt_rareté_rare2_img = font_titre_bt_rareté_rare.render("Rare", True, (255, 255, 255))
+        titre_bt_rareté_rare2_dimensions = titre_bt_rareté_rare_img.get_size()
+        titre_bt_rareté_rare2_pos = [bt_rareté_rare2_pos[0] + bt_rareté_rare2_size[0] / 2 - titre_bt_rareté_rare2_dimensions[0] / 2, bt_rareté_rare2_pos[1] + bt_rareté_rare2_size[1] / 2 - titre_bt_rareté_rare2_dimensions[1] / 2]
+
+
+        font_red_bull_player2 = pygame.font.Font(Arcade, 35)
+        red_bull_player2_img = font_red_bull_player2.render("Red Bull : Confere une acceleration temporaire de 5 secondes", True, (255, 255, 255))
+        red_bull_player2_dimensions = red_bull_player2_img.get_size()
+        red_bull_player2_pos = [20, bt_rareté_rare2_pos[1] + bt_rareté_rare2_size[1] + 35]
+
+        statut_red_bull_player2 = pygame.Surface((150, 50))
+        statut_red_bull_player2.fill("#999999")
+        statut_red_bull_player2_size = [150, 50]
+        statut_red_bull_player2_pos = [20, red_bull_player2_pos[1] + red_bull_player2_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player_2 == 1 :
+            titre_Statut_red_bull_player2 = "Statut : Equipe"
+        elif succès_temps_1_player_2 :
+            titre_Statut_red_bull_player2 = "Statut : Possédé ; Equiper ?"
+        else :
+            titre_Statut_red_bull_player2 = "Statut : Non possede"
+        font_titre_statut_red_bull_player2 = pygame.font.Font(Arcade, 15)
+        titre_statut_red_bull_player2_img = font_titre_statut_red_bull_player2.render(titre_Statut_red_bull_player2, True, (255, 255, 255))
+        titre_statut_red_bull_player2_dimensions = titre_statut_red_bull_player2_img.get_size()
+        titre_statut_red_bull_player2_pos = [statut_red_bull_player2_pos[0] + 10, statut_red_bull_player2_pos[1] + statut_red_bull_player2_size[1] / 2 - titre_statut_red_bull_player2_dimensions[1] / 2]
+
+        font_disparition_player2 = pygame.font.Font(Arcade, 35)
+        disparition_player2_img = font_disparition_player2.render("Disparition : Rend invisible et intangible pendant 5 secondes", True, (255, 255, 255))
+        disparition_player2_dimensions = disparition_player2_img.get_size()
+        disparition_player2_pos = [20, statut_red_bull_player2_pos[1] + statut_red_bull_player2_size[1] + 35]
+
+        statut_disparition_player2 = pygame.Surface((150, 50))
+        statut_disparition_player2.fill("#999999")
+        statut_disparition_player2_size = [150, 50]
+        statut_disparition_player2_pos = [20, disparition_player2_pos[1] + disparition_player2_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player_2 == 2 :
+            titre_Statut_disparition_player2 = "Statut : Equipe"
+        elif succès_score_1_player_2 :
+            titre_Statut_disparition_player2 = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_disparition_player2 = "Statut : Non possede"
+        font_titre_statut_disparition_player2 = pygame.font.Font(Arcade, 15)
+        titre_statut_disparition_player2_img = font_titre_statut_disparition_player2.render(titre_Statut_disparition_player2, True, (255, 255, 255))
+        titre_statut_disparition_player2_dimensions = titre_statut_disparition_player2_img.get_size()
+        titre_statut_disparition_player2_pos = [statut_disparition_player2_pos[0] + 10, statut_disparition_player2_pos[1] + statut_disparition_player2_size[1] / 2 - titre_statut_disparition_player2_dimensions[1] / 2]
+
+        font_jackpot_player2 = pygame.font.Font(Arcade, 35)
+        jackpot_player2_img = font_jackpot_player2.render("Jackpot (Passif) : Double votre score final en fin de partie", True, (255, 255, 255))
+        jackpot_player2_dimensions = jackpot_player2_img.get_size()
+        jackpot_player2_pos = [20, statut_disparition_player2_pos[1] + statut_disparition_player2_size[1] + 35]
+
+        statut_jackpot_player2 = pygame.Surface((150, 50))
+        statut_jackpot_player2.fill("#999999")
+        statut_jackpot_player2_size = [150, 50]
+        statut_jackpot_player2_pos = [20, jackpot_player2_pos[1] + jackpot_player2_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player_2 == 3 :
+            titre_Statut_jackpot_player2 = "Statut : Equipe"
+        elif succès_frôlements_1_player_2 :
+            titre_Statut_jackpot_player2 = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_jackpot_player2 = "Statut : Non possede"
+        font_titre_statut_jackpot_player2 = pygame.font.Font(Arcade, 15)
+        titre_statut_jackpot_player2_img = font_titre_statut_jackpot_player2.render(titre_Statut_jackpot_player2, True, (255, 255, 255))
+        titre_statut_jackpot_player2_dimensions = titre_statut_jackpot_player2_img.get_size()
+        titre_statut_jackpot_player2_pos = [statut_jackpot_player2_pos[0] + 10, statut_jackpot_player2_pos[1] + statut_jackpot_player2_size[1] / 2 - titre_statut_jackpot_player2_dimensions[1] / 2]
+
+        font_devil_never_cry_player2 = pygame.font.Font(Arcade, 35)
+        devil_never_cry_player2_img = font_devil_never_cry_player2.render("Devil Never Cry (Passif) : Ressuscite 1 fois", True, (255, 255, 255))
+        devil_never_cry_player2_dimensions = devil_never_cry_player2_img.get_size()
+        devil_never_cry_player2_pos = [20, statut_jackpot_player2_pos[1] + statut_jackpot_player2_size[1] + 35]
+
+        statut_devil_never_cry_player2 = pygame.Surface((150, 50))
+        statut_devil_never_cry_player2.fill("#999999")
+        statut_devil_never_cry_player2_size = [150, 50]
+        statut_devil_never_cry_player2_pos = [20, devil_never_cry_player2_pos[1] + devil_never_cry_player2_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player_2 == 4 :
+            titre_Statut_devil_never_cry_player2 = "Statut : Equipe"
+        elif succès_collectibles_1_player_2 :
+            titre_Statut_devil_never_cry_player2 = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_devil_never_cry_player2 = "Statut : Non possede"
+        font_titre_statut_devil_never_cry_player2 = pygame.font.Font(Arcade, 15)
+        titre_statut_devil_never_cry_player2_img = font_titre_statut_devil_never_cry_player2.render(titre_Statut_devil_never_cry_player2, True, (255, 255, 255))
+        titre_statut_devil_never_cry_player2_dimensions = titre_statut_devil_never_cry_player2_img.get_size()
+        titre_statut_devil_never_cry_player2_pos = [statut_devil_never_cry_player2_pos[0] + 10, statut_devil_never_cry_player2_pos[1] + statut_devil_never_cry_player2_size[1] / 2 - titre_statut_devil_never_cry_player2_dimensions[1] / 2]
+
+        #-------------------------------------------------------------------------EPIQUE-----------------------------------------------------------------------------
+
+        bt_rareté_épique2 = pygame.Surface((300, 50))
+        bt_rareté_épique2.fill("#999999")
+        bt_rareté_épique2_size = [300, 50]
+        bt_rareté_épique2_pos = [screen_size[0] / 2 - bt_rareté_épique2_size[0] / 2, titre_menu_i_memes_pos[1] + titre_menu_i_memes_dimensions[1] + 75 + bt_rareté_épique2_size[1]]
+
+        font_titre_bt_rareté_épique2 = pygame.font.Font(Technos, 25)
+        titre_bt_rareté_épique2_img = font_titre_bt_rareté_épique2.render("Epique", True, (255, 255, 255))
+        titre_bt_rareté_épique2_dimensions = titre_bt_rareté_épique2_img.get_size()
+        titre_bt_rareté_épique2_pos = [bt_rareté_épique2_pos[0] + bt_rareté_épique2_size[0] / 2 - titre_bt_rareté_épique2_dimensions[0] / 2, bt_rareté_épique2_pos[1] + bt_rareté_épique2_size[1] / 2 - titre_bt_rareté_épique2_dimensions[1] / 2]
+
+
+        font_hyperdrive_player2 = pygame.font.Font(Arcade, 35)
+        hyperdrive_player2_img = font_hyperdrive_player2.render("Hyperdrive : Propulse a l'autre bout de la grille dans la direction actuelle", True, (255, 255, 255))
+        hyperdrive_player2_dimensions = hyperdrive_player2_img.get_size()
+        hyperdrive_player2_pos = [20, bt_rareté_épique2_pos[1] + bt_rareté_épique2_size[1] + 35]
+
+        statut_hyperdrive_player2 = pygame.Surface((150, 50))
+        statut_hyperdrive_player2.fill("#999999")
+        statut_hyperdrive_player2_size = [150, 50]
+        statut_hyperdrive_player2_pos = [20, hyperdrive_player2_pos[1] + hyperdrive_player2_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player_2 == 5 :
+            titre_Statut_hyperdrive_player2 = "Statut : Equipe"
+        elif succès_temps_2_player_2 :
+            titre_Statut_hyperdrive_player2 = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_hyperdrive_player2 = "Statut : Non possede"
+        font_titre_statut_hyperdrive_player2 = pygame.font.Font(Arcade, 15)
+        titre_statut_hyperdrive_player2_img = font_titre_statut_hyperdrive_player2.render(titre_Statut_hyperdrive_player2, True, (255, 255, 255))
+        titre_statut_hyperdrive_player2_dimensions = titre_statut_hyperdrive_player2_img.get_size()
+        titre_statut_hyperdrive_player2_pos = [statut_hyperdrive_player2_pos[0] + 10, statut_hyperdrive_player2_pos[1] + statut_hyperdrive_player2_size[1] / 2 - titre_statut_hyperdrive_player2_dimensions[1] / 2]
+
+        font_nope_player2 = pygame.font.Font(Arcade, 35)
+        nope_player2_img = font_nope_player2.render("Nope (usage unique) : Contre l'effet nefaste d'un I-Meme adverse", True, (255, 255, 255))
+        nope_player2_dimensions = nope_player2_img.get_size()
+        nope_player2_pos = [20, statut_hyperdrive_player2_pos[1] + statut_hyperdrive_player2_size[1] + 35]
+
+        statut_nope_player2 = pygame.Surface((150, 50))
+        statut_nope_player2.fill("#999999")
+        statut_nope_player2_size = [150, 50]
+        statut_nope_player2_pos = [20, nope_player2_pos[1] + nope_player2_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player_2 == 6 :
+            titre_Statut_nope_player2 = "Statut : Equipe"
+        elif succès_score_2_player_2 :
+            titre_Statut_nope_player2 = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_nope_player2 = "Statut : Non possede"
+        font_titre_statut_nope_player2 = pygame.font.Font(Arcade, 15)
+        titre_statut_nope_player2_img = font_titre_statut_nope_player2.render(titre_Statut_nope_player2, True, (255, 255, 255))
+        titre_statut_nope_player2_dimensions = titre_statut_nope_player2_img.get_size()
+        titre_statut_nope_player2_pos = [statut_nope_player2_pos[0] + 10, statut_nope_player2_pos[1] + statut_nope_player2_size[1] / 2 - titre_statut_nope_player2_dimensions[1] / 2]
+
+        font_gandalf_player2 = pygame.font.Font(Arcade, 35)
+        gandalf_player2_img = font_gandalf_player2.render("Gandalf : Erige un mur en face de l'adversaire", True, (255, 255, 255))
+        gandalf_player2_dimensions = gandalf_player2_img.get_size()
+        gandalf_player2_pos = [20, statut_nope_player2_pos[1] + statut_nope_player2_size[1] + 35]
+
+        statut_gandalf_player2 = pygame.Surface((150, 50))
+        statut_gandalf_player2.fill("#999999")
+        statut_gandalf_player2_size = [150, 50]
+        statut_gandalf_player2_pos = [20, gandalf_player2_pos[1] + gandalf_player2_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player_2 == 7 :
+            titre_Statut_gandalf_player2 = "Statut : Equipe"
+        elif succès_frôlements_2_player_2 :
+            titre_Statut_gandalf_player2 = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_gandalf_player2 = "Statut : Non possede"
+        font_titre_statut_gandalf_player2 = pygame.font.Font(Arcade, 15)
+        titre_statut_gandalf_player2_img = font_titre_statut_gandalf_player2.render(titre_Statut_gandalf_player2, True, (255, 255, 255))
+        titre_statut_gandalf_player2_dimensions = titre_statut_gandalf_player2_img.get_size()
+        titre_statut_gandalf_player2_pos = [statut_gandalf_player2_pos[0] + 10, statut_gandalf_player2_pos[1] + statut_gandalf_player2_size[1] / 2 - titre_statut_gandalf_player2_dimensions[1] / 2]
+
+        font_death_star_player2 = pygame.font.Font(Arcade, 35)
+        death_star_player2_img = font_death_star_player2.render("Death Star : Tire un rayon laser dans la direction actuelle", True, (255, 255, 255))
+        death_star_player2_dimensions = death_star_player2_img.get_size()
+        death_star_player2_pos = [20, statut_gandalf_player2_pos[1] + statut_gandalf_player2_size[1] + 35]
+
+        statut_death_star_player2 = pygame.Surface((150, 50))
+        statut_death_star_player2.fill("#999999")
+        statut_death_star_player2_size = [150, 50]
+        statut_death_star_player2_pos = [20, death_star_player2_pos[1] + death_star_player2_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player_2 == 8 :
+            titre_Statut_death_star_player2 = "Statut : Equipe"
+        elif succès_collectibles_2_player_2 :
+            titre_Statut_death_star_player2 = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_death_star_player2 = "Statut : Non possede"
+        font_titre_statut_death_star_player2 = pygame.font.Font(Arcade, 15)
+        titre_statut_death_star_player2_img = font_titre_statut_death_star_player2.render(titre_Statut_death_star_player2, True, (255, 255, 255))
+        titre_statut_death_star_player2_dimensions = titre_statut_death_star_player2_img.get_size()
+        titre_statut_death_star_player2_pos = [statut_death_star_player2_pos[0] + 10, statut_death_star_player2_pos[1] + statut_death_star_player2_size[1] / 2 - titre_statut_death_star_player2_dimensions[1] / 2]
+
+        #----------------------------------------------------------------------LEGENDAIRE---------------------------------------------------------------------------
+
+        bt_rareté_légendaire2 = pygame.Surface((300, 50))
+        bt_rareté_légendaire2.fill("#999999")
+        bt_rareté_légendaire2_size = [300, 50]
+        bt_rareté_légendaire2_pos = [bt_rareté_épique2_pos[0] + bt_rareté_épique2_size[0] + 20, titre_menu_i_memes_pos[1] + titre_menu_i_memes_dimensions[1] + 75 + bt_rareté_légendaire2_size[1]]
+
+        font_titre_bt_rareté_légendaire2 = pygame.font.Font(Technos, 25)
+        titre_bt_rareté_légendaire2_img = font_titre_bt_rareté_légendaire2.render("Legendaire", True, (255, 255, 255))
+        titre_bt_rareté_légendaire2_dimensions = titre_bt_rareté_légendaire2_img.get_size()
+        titre_bt_rareté_légendaire2_pos = [bt_rareté_légendaire2_pos[0] + bt_rareté_légendaire2_size[0] / 2 - titre_bt_rareté_légendaire2_dimensions[0] / 2, bt_rareté_légendaire2_pos[1] + bt_rareté_légendaire2_size[1] / 2 - titre_bt_rareté_légendaire2_dimensions[1] / 2]
+
+
+        font_thanos_player2 = pygame.font.Font(Arcade, 35)
+        thanos_player2_img = font_thanos_player2.render("Thanos : Fais disparaitre toutes les trainees de la grille", True, (255, 255, 255))
+        thanos_player2_dimensions = thanos_player2_img.get_size()
+        thanos_player2_pos = [20, bt_rareté_légendaire2_pos[1] + bt_rareté_légendaire2_size[1] + 35]
+
+        statut_thanos_player2 = pygame.Surface((150, 50))
+        statut_thanos_player2.fill("#999999")
+        statut_thanos_player2_size = [150, 50]
+        statut_thanos_player2_pos = [20, thanos_player2_pos[1] + thanos_player2_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player_2 == 9 :
+            titre_Statut_thanos_player2 = "Statut : Equipe"
+        elif succès_temps_caché_player_2 :
+            titre_Statut_thanos_player2 = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_thanos_player2 = "Statut : Non possede"
+        font_titre_statut_thanos_player2 = pygame.font.Font(Arcade, 15)
+        titre_statut_thanos_player2_img = font_titre_statut_thanos_player2.render(titre_Statut_thanos_player2, True, (255, 255, 255))
+        titre_statut_thanos_player2_dimensions = titre_statut_thanos_player2_img.get_size()
+        titre_statut_thanos_player2_pos = [statut_thanos_player2_pos[0] + 10, statut_thanos_player2_pos[1] + statut_thanos_player2_size[1] / 2 - titre_statut_thanos_player2_dimensions[1] / 2]
+
+        font_c_est_quoi_ce_monde_player2 = pygame.font.Font(Arcade, 35)
+        c_est_quoi_ce_monde_player2_img = font_c_est_quoi_ce_monde_player2.render("C'est quoi ce monde ? : Inverse les touches de l'adversaire pendant 5 secondes", True, (255, 255, 255))
+        c_est_quoi_ce_monde_player2_dimensions = c_est_quoi_ce_monde_player2_img.get_size()
+        c_est_quoi_ce_monde_player2_pos = [20, statut_thanos_player2_pos[1] + statut_thanos_player2_size[1] + 35]
+
+        statut_c_est_quoi_ce_monde_player2 = pygame.Surface((150, 50))
+        statut_c_est_quoi_ce_monde_player2.fill("#999999")
+        statut_c_est_quoi_ce_monde_player2_size = [150, 50]
+        statut_c_est_quoi_ce_monde_player2_pos = [20, c_est_quoi_ce_monde_player2_pos[1] + c_est_quoi_ce_monde_player2_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player_2 == 10 :
+            titre_Statut_c_est_quoi_ce_monde_player2 = "Statut : Equipe"
+        elif succès_score_caché_player_2 :
+            titre_Statut_c_est_quoi_ce_monde_player2 = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_c_est_quoi_ce_monde_player2 = "Statut : Non possede"
+        font_titre_statut_c_est_quoi_ce_monde_player2 = pygame.font.Font(Arcade, 15)
+        titre_statut_c_est_quoi_ce_monde_player2_img = font_titre_statut_c_est_quoi_ce_monde_player2.render(titre_Statut_c_est_quoi_ce_monde_player2, True, (255, 255, 255))
+        titre_statut_c_est_quoi_ce_monde_player2_dimensions = titre_statut_c_est_quoi_ce_monde_player2_img.get_size()
+        titre_statut_c_est_quoi_ce_monde_player2_pos = [statut_c_est_quoi_ce_monde_player2_pos[0] + 10, statut_c_est_quoi_ce_monde_player2_pos[1] + statut_c_est_quoi_ce_monde_player2_size[1] / 2 - titre_statut_c_est_quoi_ce_monde_player2_dimensions[1] / 2]
+
+        font_virtual_insanity_player2 = pygame.font.Font(Arcade, 35)
+        virtual_insanity_player2_img = font_virtual_insanity_player2.render("Virtual Insanity : L'adversaire ne peut plus se diriger et est ralentit pendant 5 secondes", True, (255, 255, 255))
+        virtual_insanity_player2_dimensions = virtual_insanity_player2_img.get_size()
+        virtual_insanity_player2_pos = [20, statut_c_est_quoi_ce_monde_player2_pos[1] + statut_c_est_quoi_ce_monde_player2_size[1] + 35]
+
+        statut_virtual_insanity_player2 = pygame.Surface((150, 50))
+        statut_virtual_insanity_player2.fill("#999999")
+        statut_virtual_insanity_player2_size = [150, 50]
+        statut_virtual_insanity_player2_pos = [20, virtual_insanity_player2_pos[1] + virtual_insanity_player2_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player_2 == 11 :
+            titre_Statut_virtual_insanity_player2 = "Statut : Equipe"
+        elif succès_frôlements_caché_player_2 :
+            titre_Statut_virtual_insanity_player2 = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_virtual_insanity_player2 = "Statut : Non possede"
+        font_titre_statut_virtual_insanity_player2 = pygame.font.Font(Arcade, 15)
+        titre_statut_virtual_insanity_player2_img = font_titre_statut_virtual_insanity_player2.render(titre_Statut_virtual_insanity_player2, True, (255, 255, 255))
+        titre_statut_virtual_insanity_player2_dimensions = titre_statut_virtual_insanity_player2_img.get_size()
+        titre_statut_virtual_insanity_player2_pos = [statut_virtual_insanity_player2_pos[0] + 10, statut_virtual_insanity_player2_pos[1] + statut_virtual_insanity_player2_size[1] / 2 - titre_statut_virtual_insanity_player2_dimensions[1] / 2]
+
+        font_la_peace_player2 = pygame.font.Font(Arcade, 35)
+        la_peace_player2_img = font_la_peace_player.render("La Peace : Vous et votre adversaire cessez de vous battre et trouvez La Peace", True, (255, 255, 255))
+        la_peace_player2_dimensions = la_peace_player2_img.get_size()
+        la_peace_player2_pos = [20, statut_virtual_insanity_player2_pos[1] + statut_virtual_insanity_player2_size[1] + 35]
+
+        statut_la_peace_player2 = pygame.Surface((150, 50))
+        statut_la_peace_player2.fill("#999999")
+        statut_la_peace_player2_size = [150, 50]
+        statut_la_peace_player2_pos = [20, la_peace_player2_pos[1] + la_peace_player2_dimensions[1] + 10]
+
+        if i_meme_sélectionné_player_2 == 12 :
+            titre_Statut_la_peace_player2 = "Statut : Equipe"
+        elif succès_collectibles_caché_player_2 :
+            titre_Statut_la_peace_player2 = "Statut : Possede ; Equiper ?"
+        else :
+            titre_Statut_la_peace_player2 = "Statut : Non possede"
+        font_titre_statut_la_peace_player2 = pygame.font.Font(Arcade, 15)
+        titre_statut_la_peace_player2_img = font_titre_statut_la_peace_player2.render(titre_Statut_la_peace_player2, True, (255, 255, 255))
+        titre_statut_la_peace_player2_dimensions = titre_statut_la_peace_player2_img.get_size()
+        titre_statut_la_peace_player2_pos = [statut_la_peace_player2_pos[0] + 10, statut_la_peace_player2_pos[1] + statut_la_peace_player2_size[1] / 2 - titre_statut_la_peace_player2_dimensions[1] / 2]
+
+
+        #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+        #----------------------------------------------------------------------BT RETOUR---------------------------------------------------------------------------
+        #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        bt_retour = pygame.Surface((600, 100))
+        bt_retour.fill("#999999")
+        bt_retour_size = [600, 100]
+        bt_retour_pos = [screen_size[0] / 2 - bt_retour_size[0] / 2, screen_size[1] - bt_retour_size[1] - 5]
+
+        font_titre_bt_retour = pygame.font.Font(Technos, 50)
+        titre_bt_retour_img = font_titre_bt_retour.render("Retour", True, (255, 255, 255))
+        titre_bt_retour_dimensions = titre_bt_retour_img.get_size()
+        titre_bt_retour_pos = [screen_size[0] / 2 - titre_bt_retour_dimensions[0] / 2, bt_retour_pos[1] + bt_retour_size[1] / 2 - titre_bt_retour_dimensions[1] / 2]
+
+
+        #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+        #----------------------------------------------------------------------BT QUITTER---------------------------------------------------------------------------
+        #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        bt_retour2 = pygame.Surface((600, 100))
+        bt_retour2.fill("#999999")
+        bt_retour2_size = [600, 100]
+        bt_retour2_pos = [screen_size[0] / 2 - bt_retour2_size[0] / 2, screen_size[1] - bt_retour2_size[1] - bt_retour_size[1] - 25]
+
+        font_titre_bt_retour2 = pygame.font.Font(Technos, 35)
+        titre_bt_retour2_img = font_titre_bt_retour2.render("Retour au menu", True, (255, 255, 255))
+        titre_bt_retour2_dimensions = titre_bt_retour2_img.get_size()
+        titre_bt_retour2_pos = [screen_size[0] / 2 - titre_bt_retour2_dimensions[0] / 2, bt_retour2_pos[1] + bt_retour2_size[1] / 2 - titre_bt_retour2_dimensions[1] / 2]
+
+
+        #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+        #---------------------------------------------------------------------ORGANISATION--------------------------------------------------------------------------
+        #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+        sélection_joueurs = 1
+        sélection_rareté_joueur_1 = 2
+        rareté_rare_joueur_1 = 3
+        rareté_épique_joueur_1 = 4
+        rareté_légendaire_joueur_1 = 5
+        sélection_rareté_joueur_2 = 6
+        rareté_rare_joueur_2 = 7
+        rareté_épique_joueur_2 = 8
+        rareté_légendaire_joueur_2 = 9
+
+
+        fenêtre_actuelle = sélection_joueurs
+
+        mouse = pygame.mouse.get_pos()
+
+        clique_gauche = pygame.mouse.get_pressed()[0]
+
+        if clique_gauche :
+            if mouse[0] >= bt_joueur_1_pos[0] and mouse[0] <= bt_joueur_1_pos[0] + bt_joueur_1_size[0] and mouse[1] >= bt_joueur_1_pos[1] and mouse[1] <= bt_joueur_1_pos[1] + bt_joueur_1_size[1] :
+                fenêtre_actuelle = sélection_rareté_joueur_1
+
+            if mouse[0] >= bt_rareté_rare_pos[0] and mouse[0] <= bt_rareté_rare_pos[0] + bt_rareté_rare_size[0] and mouse[1] >= bt_rareté_rare_pos[1] and mouse[1] <= bt_rareté_rare_pos[1] + bt_rareté_rare_size[1] :
+                fenêtre_actuelle = rareté_rare_joueur_1
+
+            if mouse[0] >= bt_rareté_épique_pos[0] and mouse[0] <= bt_rareté_épique_pos[0] + bt_rareté_épique_size[0] and mouse[1] >= bt_rareté_épique_pos[1] and mouse[1] <= bt_rareté_épique_pos[1] + bt_rareté_épique_size[1] :
+                fenêtre_actuelle = rareté_épique_joueur_1
+
+            if mouse[0] >= bt_rareté_légendaire_pos[0] and mouse[0] <= bt_rareté_légendaire_pos[0] + bt_rareté_légendaire_size[0] and mouse[1] >= bt_rareté_légendaire_pos[1] and mouse[1] <= bt_rareté_légendaire_pos[1] + bt_rareté_légendaire_size[1] :
+                fenêtre_actuelle = rareté_légendaire_joueur_1
+
+
+            if mouse[0] >= bt_joueur_2_pos[0] and mouse[0] <= bt_joueur_2_pos[0] + bt_joueur_2_size[0] and mouse[1] >= bt_joueur_2_pos[1] and mouse[1] <= bt_joueur_2_pos[1] + bt_joueur_2_size[1] :
+                fenêtre_actuelle = sélection_rareté_joueur_2
+
+            if mouse[0] >= bt_rareté_rare2_pos[0] and mouse[0] <= bt_rareté_rare2_pos[0] + bt_rareté_rare2_size[0] and mouse[1] >= bt_rareté_rare2_pos[1] and mouse[1] <= bt_rareté_rare2_pos[1] + bt_rareté_rare2_size[1] :
+                fenêtre_actuelle = rareté_rare_joueur_2
+
+            if mouse[0] >= bt_rareté_épique2_pos[0] and mouse[0] <= bt_rareté_épique2_pos[0] + bt_rareté_épique2_size[0] and mouse[1] >= bt_rareté_épique2_pos[1] and mouse[1] <= bt_rareté_épique2_pos[1] + bt_rareté_épique2_size[1] :
+                fenêtre_actuelle = rareté_épique_joueur_2
+
+            if mouse[0] >= bt_rareté_légendaire2_pos[0] and mouse[0] <= bt_rareté_légendaire2_pos[0] + bt_rareté_légendaire2_size[0] and mouse[1] >= bt_rareté_légendaire2_pos[1] and mouse[1] <= bt_rareté_légendaire2_pos[1] + bt_rareté_légendaire2_size[1] :
+                fenêtre_actuelle = rareté_légendaire_joueur_2
+
+            if mouse[0] >= bt_retour_pos[0] and mouse[0] <= bt_retour_pos[0] + bt_retour_size[0] and mouse[1] >= bt_retour_pos[1] and mouse[1] <= bt_retour_pos[1] + bt_retour_size[1] :
+                fenêtre_actuelle = sélection_joueurs
+
+
+            if mouse[0] >= bt_retour2_pos[0] and mouse[0] <= bt_retour2_pos[0] + bt_retour2_size[0] and mouse[1] >= bt_retour2_pos[1] and mouse[1] <= bt_retour2_pos[1] + bt_retour2_size[1] :
+                mode_actuel = MODE_ACCUEIL
+
+            if fenêtre_actuelle == sélection_joueurs :
+                screen.fill("#0B041F")
+                screen.blit(titre_menu_i_memes_img, titre_menu_i_memes_pos)
+                screen.blit(bt_joueur_1, bt_joueur_1_pos)
+                screen.blit(titre_bt_joueur_1_img, titre_bt_joueur_1_pos)
+                screen.blit(bt_joueur_2, bt_joueur_2_pos)
+                screen.blit(titre_bt_joueur_2_img, titre_bt_joueur_2_pos)
+                screen.blit(bt_retour2, bt_retour2_pos)
+                screen.blit(titre_bt_retour2_img, titre_bt_retour2_pos)
+
+            if fenêtre_actuelle == sélection_rareté_joueur_1 :
+                screen.fill("#0B041F")
+                screen.blit(titre_menu_i_memes_img, titre_menu_i_memes_pos)
+                screen.blit(_titre_bt_joueur_1_img, _titre_bt_joueur_1_pos)
+                screen.blit(bt_rareté_rare, bt_rareté_rare_pos)
+                screen.blit(titre_bt_rareté_rare_img, titre_bt_rareté_rare_pos)
+                screen.blit(bt_rareté_épique, bt_rareté_épique_pos)
+                screen.blit(titre_bt_rareté_épique_img, titre_bt_rareté_épique_pos)
+                screen.blit(bt_rareté_légendaire, bt_rareté_légendaire_pos)
+                screen.blit(titre_bt_rareté_légendaire_img, titre_bt_rareté_légendaire_pos)
+                screen.blit(bt_retour, bt_retour_pos)
+                screen.blit(titre_bt_retour_img, titre_bt_retour_pos)
+
+            if fenêtre_actuelle == rareté_rare_joueur_1 :
+                screen.fill("#0B041F")
+                screen.blit(titre_menu_i_memes_img, titre_menu_i_memes_pos)
+                screen.blit(_titre_bt_joueur_1_img, _titre_bt_joueur_1_pos)
+                screen.blit(bt_rareté_rare, bt_rareté_rare_pos)
+                screen.blit(titre_bt_rareté_rare_img, titre_bt_rareté_rare_pos)
+                screen.blit(bt_rareté_épique, bt_rareté_épique_pos)
+                screen.blit(titre_bt_rareté_épique_img, titre_bt_rareté_épique_pos)
+                screen.blit(bt_rareté_légendaire, bt_rareté_légendaire_pos)
+                screen.blit(titre_bt_rareté_légendaire_img, titre_bt_rareté_légendaire_pos)
+                screen.blit(red_bull_player_img, red_bull_player_pos)
+                screen.blit(statut_red_bull_player, statut_red_bull_player_pos)
+                screen.blit(titre_statut_red_bull_player_img, titre_statut_red_bull_player_pos)
+                screen.blit(disparition_player_img, disparition_player_pos)
+                screen.blit(statut_disparition_player, statut_disparition_player_pos)
+                screen.blit(titre_statut_disparition_player_img, titre_statut_disparition_player_pos)
+                screen.blit(jackpot_player_img, jackpot_player_pos)
+                screen.blit(statut_jackpot_player, statut_jackpot_player_pos)
+                screen.blit(titre_statut_jackpot_player_img, titre_statut_jackpot_player_pos)
+                screen.blit(devil_never_cry_player_img, devil_never_cry_player_pos)
+                screen.blit(statut_devil_never_cry_player, statut_devil_never_cry_player_pos)
+                screen.blit(titre_statut_devil_never_cry_player_img, titre_statut_devil_never_cry_player_pos)
+                screen.blit(bt_retour, bt_retour_pos)
+                screen.blit(titre_bt_retour_img, titre_bt_retour_pos)
+
+            if fenêtre_actuelle == rareté_épique_joueur_1 :
+                screen.fill("#0B041F")
+                screen.blit(titre_menu_i_memes_img, titre_menu_i_memes_pos)
+                screen.blit(_titre_bt_joueur_1_img, _titre_bt_joueur_1_pos)
+                screen.blit(bt_rareté_rare, bt_rareté_rare_pos)
+                screen.blit(titre_bt_rareté_rare_img, titre_bt_rareté_rare_pos)
+                screen.blit(bt_rareté_épique, bt_rareté_épique_pos)
+                screen.blit(titre_bt_rareté_épique_img, titre_bt_rareté_épique_pos)
+                screen.blit(bt_rareté_légendaire, bt_rareté_légendaire_pos)
+                screen.blit(titre_bt_rareté_légendaire_img, titre_bt_rareté_légendaire_pos)
+                screen.blit(hyperdrive_player_img, hyperdrive_player_pos)
+                screen.blit(statut_hyperdrive_player, statut_hyperdrive_player_pos)
+                screen.blit(titre_statut_hyperdrive_player_img, titre_statut_hyperdrive_player_pos)
+                screen.blit(nope_player_img, nope_player_pos)
+                screen.blit(statut_nope_player, statut_nope_player_pos)
+                screen.blit(titre_statut_nope_player_img, titre_statut_nope_player_pos)
+                screen.blit(gandalf_player_img, gandalf_player_pos)
+                screen.blit(statut_gandalf_player, statut_gandalf_player_pos)
+                screen.blit(titre_statut_gandalf_player_img, titre_statut_gandalf_player_pos)
+                screen.blit(death_star_player_img, death_star_player_pos)
+                screen.blit(statut_death_star_player, statut_death_star_player_pos)
+                screen.blit(titre_statut_death_star_player_img, titre_statut_death_star_player_pos)
+                screen.blit(bt_retour, bt_retour_pos)
+                screen.blit(titre_bt_retour_img, titre_bt_retour_pos)
+
+            if fenêtre_actuelle == rareté_légendaire_joueur_1 :
+                screen.fill("#0B041F")
+                screen.blit(titre_menu_i_memes_img, titre_menu_i_memes_pos)
+                screen.blit(_titre_bt_joueur_1_img, _titre_bt_joueur_1_pos)
+                screen.blit(bt_rareté_rare, bt_rareté_rare_pos)
+                screen.blit(titre_bt_rareté_rare_img, titre_bt_rareté_rare_pos)
+                screen.blit(bt_rareté_épique, bt_rareté_épique_pos)
+                screen.blit(titre_bt_rareté_épique_img, titre_bt_rareté_épique_pos)
+                screen.blit(bt_rareté_légendaire, bt_rareté_légendaire_pos)
+                screen.blit(titre_bt_rareté_légendaire_img, titre_bt_rareté_légendaire_pos)
+                if succès_temps_caché_player :
+                    screen.blit(thanos_player_img, thanos_player_pos)
+                    screen.blit(statut_thanos_player, statut_thanos_player_pos)
+                    screen.blit(titre_statut_thanos_player_img, titre_statut_thanos_player_pos)
+                if succès_score_caché_player :
+                    screen.blit(c_est_quoi_ce_monde_player_img, c_est_quoi_ce_monde_player_pos)
+                    screen.blit(statut_c_est_quoi_ce_monde_player, statut_c_est_quoi_ce_monde_player_pos)
+                    screen.blit(titre_statut_c_est_quoi_ce_monde_player_img, titre_statut_c_est_quoi_ce_monde_player_pos)
+                if succès_frôlements_caché_player :
+                    screen.blit(virtual_insanity_player_img, virtual_insanity_player_pos)
+                    screen.blit(statut_virtual_insanity_player, statut_virtual_insanity_player_pos)
+                    screen.blit(titre_statut_virtual_insanity_player_img, titre_statut_virtual_insanity_player_pos)
+                if succès_collectibles_caché_player :
+                    screen.blit(la_peace_player_img, la_peace_player_pos)
+                    screen.blit(statut_la_peace_player, statut_la_peace_player_pos)
+                    screen.blit(titre_statut_la_peace_player_img, titre_statut_la_peace_player_pos)
+                screen.blit(bt_retour, bt_retour_pos)
+                screen.blit(titre_bt_retour_img, titre_bt_retour_pos)
+
+
+            if fenêtre_actuelle == sélection_rareté_joueur_2 :
+                screen.fill("#0B041F")
+                screen.blit(titre_menu_i_memes_img, titre_menu_i_memes_pos)
+                screen.blit(_titre_bt_joueur_2_img, _titre_bt_joueur_2_pos)
+                screen.blit(bt_rareté_rare2, bt_rareté_rare2_pos)
+                screen.blit(titre_bt_rareté_rare2_img, titre_bt_rareté_rare2_pos)
+                screen.blit(bt_rareté_épique2, bt_rareté_épique2_pos)
+                screen.blit(titre_bt_rareté_épique2_img, titre_bt_rareté_épique2_pos)
+                screen.blit(bt_rareté_légendaire2, bt_rareté_légendaire2_pos)
+                screen.blit(titre_bt_rareté_légendaire2_img, titre_bt_rareté_légendaire2_pos)
+                screen.blit(bt_retour, bt_retour_pos)
+                screen.blit(titre_bt_retour_img, titre_bt_retour_pos)
+
+            if fenêtre_actuelle == rareté_rare_joueur_2 :
+                screen.fill("#0B041F")
+                screen.blit(titre_menu_i_memes_img, titre_menu_i_memes_pos)
+                screen.blit(_titre_bt_joueur_2_img, _titre_bt_joueur_2_pos)
+                screen.blit(bt_rareté_rare2, bt_rareté_rare2_pos)
+                screen.blit(titre_bt_rareté_rare2_img, titre_bt_rareté_rare2_pos)
+                screen.blit(bt_rareté_épique2, bt_rareté_épique2_pos)
+                screen.blit(titre_bt_rareté_épique2_img, titre_bt_rareté_épique2_pos)
+                screen.blit(bt_rareté_légendaire2, bt_rareté_légendaire2_pos)
+                screen.blit(titre_bt_rareté_légendaire2_img, titre_bt_rareté_légendaire2_pos)
+                screen.blit(red_bull_player2_img, red_bull_player2_pos)
+                screen.blit(statut_red_bull_player2, statut_red_bull_player2_pos)
+                screen.blit(titre_statut_red_bull_player2_img, titre_statut_red_bull_player2_pos)
+                screen.blit(disparition_player2_img, disparition_player2_pos)
+                screen.blit(statut_disparition_player2, statut_disparition_player2_pos)
+                screen.blit(titre_statut_disparition_player2_img, titre_statut_disparition_player2_pos)
+                screen.blit(jackpot_player2_img, jackpot_player2_pos)
+                screen.blit(statut_jackpot_player2, statut_jackpot_player2_pos)
+                screen.blit(titre_statut_jackpot_player2_img, titre_statut_jackpot_player2_pos)
+                screen.blit(devil_never_cry_player2_img, devil_never_cry_player2_pos)
+                screen.blit(statut_devil_never_cry_player2, statut_devil_never_cry_player2_pos)
+                screen.blit(titre_statut_devil_never_cry_player2_img, titre_statut_devil_never_cry_player2_pos)
+                screen.blit(bt_retour, bt_retour_pos)
+                screen.blit(titre_bt_retour_img, titre_bt_retour_pos)
+
+            if fenêtre_actuelle == rareté_épique_joueur_2 :
+                screen.fill("#0B041F")
+                screen.blit(titre_menu_i_memes_img, titre_menu_i_memes_pos)
+                screen.blit(_titre_bt_joueur_2_img, _titre_bt_joueur_2_pos)
+                screen.blit(bt_rareté_rare2, bt_rareté_rare2_pos)
+                screen.blit(titre_bt_rareté_rare2_img, titre_bt_rareté_rare2_pos)
+                screen.blit(bt_rareté_épique2, bt_rareté_épique2_pos)
+                screen.blit(titre_bt_rareté_épique2_img, titre_bt_rareté_épique2_pos)
+                screen.blit(bt_rareté_légendaire2, bt_rareté_légendaire2_pos)
+                screen.blit(titre_bt_rareté_légendaire2_img, titre_bt_rareté_légendaire2_pos)
+                screen.blit(hyperdrive_player2_img, hyperdrive_player2_pos)
+                screen.blit(statut_hyperdrive_player2, statut_hyperdrive_player2_pos)
+                screen.blit(titre_statut_hyperdrive_player2_img, titre_statut_hyperdrive_player2_pos)
+                screen.blit(nope_player2_img, nope_player2_pos)
+                screen.blit(statut_nope_player2, statut_nope_player2_pos)
+                screen.blit(titre_statut_nope_player2_img, titre_statut_nope_player2_pos)
+                screen.blit(gandalf_player2_img, gandalf_player2_pos)
+                screen.blit(statut_gandalf_player2, statut_gandalf_player2_pos)
+                screen.blit(titre_statut_gandalf_player2_img, titre_statut_gandalf_player2_pos)
+                screen.blit(death_star_player2_img, death_star_player2_pos)
+                screen.blit(statut_death_star_player2, statut_death_star_player2_pos)
+                screen.blit(titre_statut_death_star_player2_img, titre_statut_death_star_player2_pos)
+                screen.blit(bt_retour, bt_retour_pos)
+                screen.blit(titre_bt_retour_img, titre_bt_retour_pos)
+
+            if fenêtre_actuelle == rareté_légendaire_joueur_2 :
+                screen.fill("#0B041F")
+                screen.blit(titre_menu_i_memes_img, titre_menu_i_memes_pos)
+                screen.blit(_titre_bt_joueur_2_img, _titre_bt_joueur_2_pos)
+                screen.blit(bt_rareté_rare2, bt_rareté_rare2_pos)
+                screen.blit(titre_bt_rareté_rare2_img, titre_bt_rareté_rare2_pos)
+                screen.blit(bt_rareté_épique2, bt_rareté_épique2_pos)
+                screen.blit(titre_bt_rareté_épique2_img, titre_bt_rareté_épique2_pos)
+                screen.blit(bt_rareté_légendaire2, bt_rareté_légendaire2_pos)
+                screen.blit(titre_bt_rareté_légendaire2_img, titre_bt_rareté_légendaire2_pos)
+                if succès_temps_caché_player_2 :
+                    screen.blit(thanos_player2_img, thanos_player2_pos)
+                    screen.blit(statut_thanos_player2, statut_thanos_player2_pos)
+                    screen.blit(titre_statut_thanos_player2_img, titre_statut_thanos_player2_pos)
+                if succès_score_caché_player_2 :
+                    screen.blit(c_est_quoi_ce_monde_player2_img, c_est_quoi_ce_monde_player2_pos)
+                    screen.blit(statut_c_est_quoi_ce_monde_player2, statut_c_est_quoi_ce_monde_player2_pos)
+                    screen.blit(titre_statut_c_est_quoi_ce_monde_player2_img, titre_statut_c_est_quoi_ce_monde_player2_pos)
+                if succès_frôlements_caché_player_2 :
+                    screen.blit(virtual_insanity_player2_img, virtual_insanity_player2_pos)
+                    screen.blit(statut_virtual_insanity_player2, statut_virtual_insanity_player2_pos)
+                    screen.blit(titre_statut_virtual_insanity_player2_img, titre_statut_virtual_insanity_player2_pos)
+                if succès_collectibles_caché_player_2 :
+                    screen.blit(la_peace_player2_img, la_peace_player2_pos)
+                    screen.blit(statut_la_peace_player2, statut_la_peace_player2_pos)
+                    screen.blit(titre_statut_la_peace_player2_img, titre_statut_la_peace_player2_pos)
+                screen.blit(bt_retour, bt_retour_pos)
+                screen.blit(titre_bt_retour_img, titre_bt_retour_pos)
+
 
 
     pygame.display.flip()
