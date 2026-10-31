@@ -2,7 +2,7 @@ import random
 import os
 import time
 import pygame
-from pygame.locals import (KEYDOWN, QUIT, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_DOWN, K_q, K_d, K_z, K_s, K_LSHIFT, K_KP0, MOUSEBUTTONDOWN)
+from pygame.locals import (KEYDOWN, QUIT, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_DOWN, K_q, K_d, K_z, K_s, K_LSHIFT, K_RSHIFT, MOUSEBUTTONDOWN)
 pygame.init()
 
 resolution = pygame.display.Info()
@@ -119,10 +119,17 @@ executing_lightcycle_movement_down = False
 #---------------------------------------------------------------VARIABLES/FONCTIONS I-MEMES-----------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-pressed_keys = pygame.key.get_pressed()
 
-i_meme_sélectionné_player = None
-i_meme_sélectionné_player_2 = None
+i_meme_sélectionné_player = 0
+i_meme_sélectionné_player_2 = 0
+cooldown_i_meme_sélectionné_player = 0
+cooldown_i_meme_sélectionné_player_2 = 0
+cooldown_i_meme_rare_sélectionné_player = 0
+cooldown_i_meme_rare_sélectionné_player_2 = 0
+cooldown_i_meme_épique_sélectionné_player = 0
+cooldown_i_meme_épique_sélectionné_player_2 = 0
+cooldown_i_meme_légendaire_sélectionné_player = 0
+cooldown_i_meme_légendaire_sélectionné_player_2 = 0
 
 cooldown_i_meme_red_bull_player = 600
 cooldown_i_meme_red_bull_player_2 = 600
@@ -153,7 +160,7 @@ def i_meme_red_bull(pressed_keys, cooldown_i_meme_red_bull_player, cooldown_i_me
             cooldown_i_meme_red_bull_player_2 -= 1
 
         if cooldown_i_meme_red_bull_player_2 == 0 :
-            if pressed_keys[K_KP0] :
+            if pressed_keys[K_RSHIFT] :
                 executing_i_meme_red_bull_player_2 == True
                 cooldown_i_meme_red_bull_player_2 == 600
 
@@ -195,7 +202,7 @@ def i_meme_disparition(pressed_keys, i_meme_sélectionné_player, i_meme_sélect
             cooldown_i_meme_disparition_player_2 -= 1
 
         if cooldown_i_meme_disparition_player_2 == 0 :
-            if pressed_keys[K_KP0] :
+            if pressed_keys[K_RSHIFT] :
                 executing_i_meme_disparition_player_2 == True
                 cooldown_i_meme_disparition_player_2 == 600
 
@@ -208,13 +215,20 @@ def i_meme_disparition(pressed_keys, i_meme_sélectionné_player, i_meme_sélect
 
     return cooldown_i_meme_disparition_player, cooldown_i_meme_disparition_player_2, executing_i_meme_disparition_player, executing_i_meme_disparition_player_2, executing_time_i_meme_disparition_player, executing_time_i_meme_disparition_player_2
 
-def i_meme_jackpot(i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2) :
-    if i_meme_sélectionné_player == 3 :
-        score_player *= 2
-    if i_meme_sélectionné_player_2 == 3 :
-        score_player_2 *= 2
+utilisé_i_meme_jackpot_player = False
+utilisé_i_meme_jackpot_player_2 = False
 
-    return score_player, score_player_2
+def i_meme_jackpot(i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2) :
+    if i_meme_sélectionné_player == 3 :
+        if utilisé_i_meme_jackpot_player == False :
+            score_player *= 2
+            utilisé_i_meme_jackpot_player = True
+    if i_meme_sélectionné_player_2 == 3 :
+        if utilisé_i_meme_jackpot_player_2 == False :
+            score_player_2 *= 2
+            utilisé_i_meme_jackpot_player_2 = True
+
+    return score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2
 
 utilisé_i_meme_devil_never_cry_player = False
 utilisé_i_meme_devil_never_cry_player_2 = False
@@ -248,7 +262,1940 @@ def i_meme_devil_never_cry(i_meme_sélectionné_player, i_meme_sélectionné_pla
             invulnérabilité_temporaire_player_2 = False
             time_invulnérabilité_temporaire_player_2 = 0
 
-    return mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2
+    return mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2
+
+cooldown_i_meme_hyperdrive_player = 1200
+cooldown_i_meme_hyperdrive_player_2 = 1200
+
+def i_meme_hyperdrive(pressed_keys, i_meme_sélectionné_player, i_meme_sélectionné_player_2, cooldown_i_meme_hyperdrive_player, cooldown_i_meme_hyperdrive_player_2, player_pos, player_pos_2, player_size, player_size_2, grid_pos, grid_size, executing_lightcycle_movement_q, executing_lightcycle_movement_d, executing_lightcycle_movement_z, executing_lightcycle_movement_s, executing_lightcycle_movement_left, executing_lightcycle_movement_right, executing_lightcycle_movement_up, executing_lightcycle_movement_down) :
+    if i_meme_sélectionné_player == 5 :
+        if cooldown_i_meme_hyperdrive_player > 0 :
+            cooldown_i_meme_hyperdrive_player -= 1
+
+        if cooldown_i_meme_hyperdrive_player == 0 :
+            if pressed_keys[K_LSHIFT] :
+                if executing_lightcycle_movement_q :
+                    player_pos[0] = grid_pos[0] + 100
+                if executing_lightcycle_movement_d :
+                    player_pos[0] = grid_pos[0] + grid_size[0] - player_size[0] - 100
+                if executing_lightcycle_movement_z :
+                    player_pos[1] = grid_pos[1] + 100
+                if executing_lightcycle_movement_s :
+                    player_pos[1] = grid_pos[1] + grid_size[1] - player_size[1] - 100
+                cooldown_i_meme_hyperdrive_player = 1200
+
+    if i_meme_sélectionné_player_2 == 5 :
+        if cooldown_i_meme_hyperdrive_player_2 > 0 :
+            cooldown_i_meme_hyperdrive_player_2 -= 1
+
+        if cooldown_i_meme_hyperdrive_player_2 == 0 :
+            if pressed_keys[K_RSHIFT] :
+                if executing_lightcycle_movement_left :
+                    player_pos_2[0] = grid_pos[0] + 100
+                if executing_lightcycle_movement_right :
+                    player_pos_2[0] = grid_pos[0] + grid_size[0] - player_size_2[0] - 100
+                if executing_lightcycle_movement_up :
+                    player_pos_2[1] = grid_pos[1] + 100
+                if executing_lightcycle_movement_down :
+                    player_pos_2[1] = grid_pos[1] + grid_size[1] - player_size_2[1] - 100
+                cooldown_i_meme_hyperdrive_player_2 = 1200
+
+    return cooldown_i_meme_hyperdrive_player, cooldown_i_meme_hyperdrive_player_2, player_pos, player_pos_2
+
+utilisé_i_meme_nope_player = False
+utilisé_i_meme_nope_player_2 = False
+cooldown_i_meme_nope_player = 1200
+cooldown_i_meme_nope_player_2 = 1200
+
+def i_meme_nope(pressed_keys, i_meme_sélectionné_player, i_meme_sélectionné_player_2, cooldown_i_meme_nope_player, cooldown_i_meme_nope_player_2, utilisé_i_meme_nope_player, utilisé_i_meme_nope_player_2, executing_i_meme_red_bull_player, executing_i_meme_red_bull_player_2, executing_i_meme_disparition_player, executing_i_meme_disparition_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, executing_i_meme_c_est_quoi_ce_monde_player, executing_i_meme_c_est_quoi_ce_monde_player_2, executing_i_meme_virtual_insanity_player, executing_i_meme_virtual_insanity_player_2) :
+    if i_meme_sélectionné_player == 6 :
+        if cooldown_i_meme_nope_player > 0 :
+            cooldown_i_meme_nope_player -= 1
+
+        if cooldown_i_meme_nope_player == 0 :
+            if pressed_keys[K_LSHIFT] :
+                if utilisé_i_meme_nope_player == False :
+                    if executing_i_meme_red_bull_player_2 :
+                        executing_i_meme_red_bull_player_2 = False
+                    if executing_i_meme_disparition_player_2 :
+                        executing_i_meme_disparition_player_2 = False
+                    if invulnérabilité_temporaire_player_2 :
+                        invulnérabilité_temporaire_player_2 = False
+                    if executing_i_meme_c_est_quoi_ce_monde_player_2 :
+                        executing_i_meme_c_est_quoi_ce_monde_player_2 = False
+                    if executing_i_meme_virtual_insanity_player_2 :
+                        executing_i_meme_virtual_insanity_player_2 = False
+                    cooldown_i_meme_nope_player = 1200
+                    utilisé_i_meme_nope_player = True
+
+    if i_meme_sélectionné_player_2 == 6 :
+        if cooldown_i_meme_nope_player_2 > 0 :
+            cooldown_i_meme_nope_player_2 -= 1
+
+        if cooldown_i_meme_nope_player_2 == 0 :
+            if pressed_keys[K_RSHIFT] :
+                if utilisé_i_meme_nope_player_2 == False :
+                    if executing_i_meme_red_bull_player :
+                        executing_i_meme_red_bull_player = False
+                    if executing_i_meme_disparition_player :
+                        executing_i_meme_disparition_player = False
+                    if invulnérabilité_temporaire_player :
+                        invulnérabilité_temporaire_player = False
+                    if executing_i_meme_c_est_quoi_ce_monde_player :
+                        executing_i_meme_c_est_quoi_ce_monde_player = False
+                    if executing_i_meme_virtual_insanity_player :
+                        executing_i_meme_virtual_insanity_player = False
+                    cooldown_i_meme_nope_player_2 = 1200
+                    utilisé_i_meme_nope_player_2 = True
+
+    return cooldown_i_meme_nope_player, cooldown_i_meme_nope_player_2, utilisé_i_meme_nope_player, utilisé_i_meme_nope_player_2, executing_i_meme_red_bull_player, executing_i_meme_red_bull_player_2, executing_i_meme_disparition_player, executing_i_meme_disparition_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, executing_i_meme_c_est_quoi_ce_monde_player, executing_i_meme_c_est_quoi_ce_monde_player_2, executing_i_meme_virtual_insanity_player, executing_i_meme_virtual_insanity_player_2
+
+cooldown_i_meme_gandalf_player = 1200
+cooldown_i_meme_gandalf_player_2 = 1200
+
+gandalf_murs_petit_1 = {
+    "type_x" : 25,
+    "type_y" : 50,
+    "color" : "#4D3206",
+    "pos_x" : player_pos[0] - 50,
+    "pos_y" : player_pos[1] - 25,
+    "size_x" : 25,
+    "size_y" : 50
+}
+
+gandalf_murs_grand = {
+    "type_x" : 125,
+    "type_y" : 20,
+    "color" : "#4D3206",
+    "pos_x" : player_pos[0] - 50,
+    "pos_y" : player_pos[1] - 50,
+    "size_x" : 125,
+    "size_y" : 20
+}
+
+gandalf_murs_petit_2 = {
+    "type_x" : 25,
+    "type_y" : 50,
+    "color" : "#4D3206",
+    "pos_x" : player_pos[0] + 50,
+    "pos_y" : player_pos[1] - 25,
+    "size_x" : 25,
+    "size_y" : 50
+}
+
+gandalf_murs_finaux_petit_1_q = []
+gandalf_murs_finaux_petit_1_q_pos = []
+gandalf_murs_finaux_petit_1_q_size = []
+gandalf_murs_finaux_grand_q = []
+gandalf_murs_finaux_grand_q_pos = []
+gandalf_murs_finaux_grand_q_size = []
+gandalf_murs_finaux_petit_2_q = []
+gandalf_murs_finaux_petit_2_q_pos = []
+gandalf_murs_finaux_petit_2_q_size = []
+
+gandalf_murs_finaux_petit_1_d = []
+gandalf_murs_finaux_petit_1_d_pos = []
+gandalf_murs_finaux_petit_1_d_size = []
+gandalf_murs_finaux_grand_d = []
+gandalf_murs_finaux_grand_d_pos = []
+gandalf_murs_finaux_grand_d_size = []
+gandalf_murs_finaux_petit_2_d = []
+gandalf_murs_finaux_petit_2_d_pos = []
+gandalf_murs_finaux_petit_2_d_size = []
+
+gandalf_murs_finaux_petit_1_z = []
+gandalf_murs_finaux_petit_1_z_pos = []
+gandalf_murs_finaux_petit_1_z_size = []
+gandalf_murs_finaux_grand_z = []
+gandalf_murs_finaux_grand_z_pos = []
+gandalf_murs_finaux_grand_z_size = []
+gandalf_murs_finaux_petit_2_z = []
+gandalf_murs_finaux_petit_2_z_pos = []
+gandalf_murs_finaux_petit_2_z_size = []
+
+gandalf_murs_finaux_petit_1_s = []
+gandalf_murs_finaux_petit_1_s_pos = []
+gandalf_murs_finaux_petit_1_s_size = []
+gandalf_murs_finaux_grand_s = []
+gandalf_murs_finaux_grand_s_pos = []
+gandalf_murs_finaux_grand_s_size = []
+gandalf_murs_finaux_petit_2_s = []
+gandalf_murs_finaux_petit_2_s_pos = []
+gandalf_murs_finaux_petit_2_s_size = []
+
+
+gandalf_murs_finaux_petit_1_left = []
+gandalf_murs_finaux_petit_1_left_pos = []
+gandalf_murs_finaux_petit_1_left_size = []
+gandalf_murs_finaux_grand_left = []
+gandalf_murs_finaux_grand_left_pos = []
+gandalf_murs_finaux_grand_left_size = []
+gandalf_murs_finaux_petit_2_left = []
+gandalf_murs_finaux_petit_2_left_pos = []
+gandalf_murs_finaux_petit_2_left_size = []
+
+gandalf_murs_finaux_petit_1_right = []
+gandalf_murs_finaux_petit_1_right_pos = []
+gandalf_murs_finaux_petit_1_right_size = []
+gandalf_murs_finaux_grand_right = []
+gandalf_murs_finaux_grand_right_pos = []
+gandalf_murs_finaux_grand_right_size = []
+gandalf_murs_finaux_petit_2_right = []
+gandalf_murs_finaux_petit_2_right_pos = []
+gandalf_murs_finaux_petit_2_right_size = []
+
+gandalf_murs_finaux_petit_1_up = []
+gandalf_murs_finaux_petit_1_up_pos = []
+gandalf_murs_finaux_petit_1_up_size = []
+gandalf_murs_finaux_grand_up = []
+gandalf_murs_finaux_grand_up_pos = []
+gandalf_murs_finaux_grand_up_size = []
+gandalf_murs_finaux_petit_2_up = []
+gandalf_murs_finaux_petit_2_up_pos = []
+gandalf_murs_finaux_petit_2_up_size = []
+
+gandalf_murs_finaux_petit_1_down = []
+gandalf_murs_finaux_petit_1_down_pos = []
+gandalf_murs_finaux_petit_1_down_size = []
+gandalf_murs_finaux_grand_down = []
+gandalf_murs_finaux_grand_down_pos = []
+gandalf_murs_finaux_grand_down_size = []
+gandalf_murs_finaux_petit_2_down = []
+gandalf_murs_finaux_petit_2_down_pos = []
+gandalf_murs_finaux_petit_2_down_size = []
+
+def i_meme_gandalf(pressed_keys, player_pos, player_pos_2, executing_lightcycle_movement_q, executing_lightcycle_movement_d, executing_lightcycle_movement_z, executing_lightcycle_movement_s, executing_lightcycle_movement_left, executing_lightcycle_movement_right, executing_lightcycle_movement_up, executing_lightcycle_movement_down, i_meme_sélectionné_player, i_meme_sélectionné_player_2, gandalf_murs_petit_1, gandalf_murs_grand, gandalf_murs_petit_2, cooldown_i_meme_gandalf_player, cooldown_i_meme_gandalf_player_2, gandalf_murs_finaux_petit_1_q, gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size, gandalf_murs_finaux_grand_q, gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size, gandalf_murs_finaux_petit_2_q, gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size, gandalf_murs_finaux_petit_1_d, gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size, gandalf_murs_finaux_grand_d, gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size, gandalf_murs_finaux_petit_2_d, gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size, gandalf_murs_finaux_petit_1_z, gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size, gandalf_murs_finaux_grand_z, gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size, gandalf_murs_finaux_petit_2_z, gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size, gandalf_murs_finaux_petit_1_s, gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size, gandalf_murs_finaux_grand_s, gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size, gandalf_murs_finaux_petit_2_s, gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size, gandalf_murs_finaux_petit_1_left, gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size, gandalf_murs_finaux_grand_left, gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size, gandalf_murs_finaux_petit_2_left, gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size, gandalf_murs_finaux_petit_1_right, gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size, gandalf_murs_finaux_grand_right, gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size, gandalf_murs_finaux_petit_2_right, gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size, gandalf_murs_finaux_petit_1_up, gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size, gandalf_murs_finaux_grand_up,gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size, gandalf_murs_finaux_petit_2_up, gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size, gandalf_murs_finaux_petit_1_down, gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size, gandalf_murs_finaux_grand_down, gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size, gandalf_murs_finaux_petit_2_down, gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size) :
+    if i_meme_sélectionné_player == 7 :
+        if cooldown_i_meme_gandalf_player > 0 :
+            cooldown_i_meme_gandalf_player -= 1
+
+        if cooldown_i_meme_gandalf_player == 0 :
+            if pressed_keys[K_LSHIFT] :
+                if executing_lightcycle_movement_left :
+                    m1 = None
+                    m1_pos = [5, 5]
+                    m1_size = [5, 5]
+
+                    g1 = gandalf_murs_petit_1.copy()
+                    g1 = {
+                        "type_x" : 50,
+                        "type_y" : 25,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos_2[0] - 25,
+                        "pos_y" : player_pos_2[1] + 50,
+                        "size_x" : 50,
+                        "size_y" : 25
+                    }
+
+                    m1 = pygame.Surface((g1["type_x"], g1["type_y"]))
+                    m1_pos = [g1["pos_x"], g1["pos_y"]]
+                    m1_size = [g1["size_x"], g1["size_y"]]
+
+                    if m1 is not None :
+                        gandalf_murs_finaux_petit_1_left.append(m1)
+                        gandalf_murs_finaux_petit_1_left_pos.append(m1_pos)
+                        gandalf_murs_finaux_petit_1_left_size.append(m1_size)
+
+                    m2 = None
+                    m2_pos = [5, 5]
+                    m2_size = [5, 5]
+
+                    g2 = gandalf_murs_grand.copy()
+                    g2 = {
+                        "type_x" : 25,
+                        "type_y" : 125,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos_2[0] - 50,
+                        "pos_y" : player_pos_2[1] - 50,
+                        "size_x" : 25,
+                        "size_y" : 125
+                    }
+
+                    m2 = pygame.Surface((g2["type_x"], g2["type_y"]))
+                    m2_pos = [g2["pos_x"], g2["pos_y"]]
+                    m2_size = [g2["size_x"], g2["size_y"]]
+
+                    if m2 is not None :
+                        gandalf_murs_finaux_grand_left.append(m2)
+                        gandalf_murs_finaux_grand_left_pos.append(m2_pos)
+                        gandalf_murs_finaux_grand_left_size.append(m2_size)
+
+                    m3 = None
+                    m3_pos = [5, 5]
+                    m3_size = [5, 5]
+
+                    g3 = gandalf_murs_petit_2.copy()
+                    g3 = {
+                        "type_x" : 50,
+                        "type_y" : 25,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos_2[0] - 25,
+                        "pos_y" : player_pos_2[1] - 50,
+                        "size_x" : 50,
+                        "size_y" : 25
+                    }
+
+                    m3 = pygame.Surface((g3["type_x"], g3["type_y"]))
+                    m3_pos = [g3["pos_x"], g3["pos_y"]]
+                    m3_size = [g3["size_x"], g3["size_y"]]
+
+                    if m3 is not None :
+                        gandalf_murs_finaux_petit_2_left.append(m3)
+                        gandalf_murs_finaux_petit_2_left_pos.append(m3_pos)
+                        gandalf_murs_finaux_petit_2_left_size.append(m3_size)
+
+                if executing_lightcycle_movement_right :
+                    m1 = None
+                    m1_pos = [5, 5]
+                    m1_size = [5, 5]
+
+                    g1 = gandalf_murs_petit_1.copy()
+                    g1 = {
+                        "type_x" : 50,
+                        "type_y" : 25,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos_2[0],
+                        "pos_y" : player_pos_2[1] - 50,
+                        "size_x" : 50,
+                        "size_y" : 25
+                    }
+
+                    m1 = pygame.Surface((g1["type_x"], g1["type_y"]))
+                    m1_pos = [g1["pos_x"], g1["pos_y"]]
+                    m1_size = [g1["size_x"], g1["size_y"]]
+
+                    if m1 is not None :
+                        gandalf_murs_finaux_petit_1_right.append(m1)
+                        gandalf_murs_finaux_petit_1_right_pos.append(m1_pos)
+                        gandalf_murs_finaux_petit_1_right_size.append(m1_size)
+
+                    m2 = None
+                    m2_pos = [5, 5]
+                    m2_size = [5, 5]
+
+                    g2 = gandalf_murs_grand.copy()
+                    g2 = {
+                        "type_x" : 25,
+                        "type_y" : 125,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos_2[0] + 50,
+                        "pos_y" : player_pos_2[1] - 50,
+                        "size_x" : 25,
+                        "size_y" : 125
+                    }
+
+                    m2 = pygame.Surface((g2["type_x"], g2["type_y"]))
+                    m2_pos = [g2["pos_x"], g2["pos_y"]]
+                    m2_size = [g2["size_x"], g2["size_y"]]
+
+                    if m2 is not None :
+                        gandalf_murs_finaux_grand_right.append(m2)
+                        gandalf_murs_finaux_grand_right_pos.append(m2_pos)
+                        gandalf_murs_finaux_grand_right_size.append(m2_size)
+
+                    m3 = None
+                    m3_pos = [5, 5]
+                    m3_size = [5, 5]
+
+                    g3 = gandalf_murs_petit_2.copy()
+                    g3 = {
+                        "type_x" : 50,
+                        "type_y" : 25,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos_2[0],
+                        "pos_y" : player_pos_2[1] + 50,
+                        "size_x" : 50,
+                        "size_y" : 25
+                    }
+
+                    m3 = pygame.Surface((g3["type_x"], g3["type_y"]))
+                    m3_pos = [g3["pos_x"], g3["pos_y"]]
+                    m3_size = [g3["size_x"], g3["size_y"]]
+
+                    if m3 is not None :
+                        gandalf_murs_finaux_petit_2_right.append(m3)
+                        gandalf_murs_finaux_petit_2_right_pos.append(m3_pos)
+                        gandalf_murs_finaux_petit_2_right_size.append(m3_size)
+
+                if executing_lightcycle_movement_up :
+                    m1 = None
+                    m1_pos = [5, 5]
+                    m1_size = [5, 5]
+
+                    g1 = gandalf_murs_petit_1.copy()
+                    g1 = {
+                        "type_x" : 25,
+                        "type_y" : 50,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos_2[0] - 50,
+                        "pos_y" : player_pos_2[1] + 25,
+                        "size_x" : 25,
+                        "size_y" : 50
+                    }
+
+                    m1 = pygame.Surface((g1["type_x"], g1["type_y"]))
+                    m1_pos = [g1["pos_x"], g1["pos_y"]]
+                    m1_size = [g1["size_x"], g1["size_y"]]
+
+                    if m1 is not None :
+                        gandalf_murs_finaux_petit_1_up.append(m1)
+                        gandalf_murs_finaux_petit_1_up_pos.append(m1_pos)
+                        gandalf_murs_finaux_petit_1_up_size.append(m1_size)
+
+                    m2 = None
+                    m2_pos = [5, 5]
+                    m2_size = [5, 5]
+
+                    g2 = gandalf_murs_grand.copy()
+                    g2 = {
+                        "type_x" : 125,
+                        "type_y" : 25,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos_2[0] - 50,
+                        "pos_y" : player_pos_2[1] - 50,
+                        "size_x" : 125,
+                        "size_y" : 25
+                    }
+
+                    m2 = pygame.Surface((g2["type_x"], g2["type_y"]))
+                    m2_pos = [g2["pos_x"], g2["pos_y"]]
+                    m2_size = [g2["size_x"], g2["size_y"]]
+
+                    if m2 is not None :
+                        gandalf_murs_finaux_grand_up.append(m2)
+                        gandalf_murs_finaux_grand_up_pos.append(m2_pos)
+                        gandalf_murs_finaux_grand_up_size.append(m2_size)
+
+                    m3 = None
+                    m3_pos = [5, 5]
+                    m3_size = [5, 5]
+
+                    g3 = gandalf_murs_petit_2.copy()
+                    g3 = {
+                        "type_x" : 25,
+                        "type_y" : 50,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos_2[0] + 50,
+                        "pos_y" : player_pos_2[1] - 25,
+                        "size_x" : 25,
+                        "size_y" : 50
+                    }
+
+                    m3 = pygame.Surface((g3["type_x"], g3["type_y"]))
+                    m3_pos = [g3["pos_x"], g3["pos_y"]]
+                    m3_size = [g3["size_x"], g3["size_y"]]
+
+                    if m3 is not None :
+                        gandalf_murs_finaux_petit_2_up.append(m3)
+                        gandalf_murs_finaux_petit_2_up_pos.append(m3_pos)
+                        gandalf_murs_finaux_petit_2_up_size.append(m3_size)
+
+                if executing_lightcycle_movement_down :
+                    m1 = None
+                    m1_pos = [5, 5]
+                    m1_size = [5, 5]
+
+                    g1 = gandalf_murs_petit_1.copy()
+                    g1 = {
+                        "type_x" : 25,
+                        "type_y" : 50,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos_2[0] - 50,
+                        "pos_y" : player_pos_2[1],
+                        "size_x" : 25,
+                        "size_y" : 50
+                    }
+
+                    m1 = pygame.Surface((g1["type_x"], g1["type_y"]))
+                    m1_pos = [g1["pos_x"], g1["pos_y"]]
+                    m1_size = [g1["size_x"], g1["size_y"]]
+
+                    if m1 is not None :
+                        gandalf_murs_finaux_petit_1_down.append(m1)
+                        gandalf_murs_finaux_petit_1_down_pos.append(m1_pos)
+                        gandalf_murs_finaux_petit_1_down_size.append(m1_size)
+
+                    m2 = None
+                    m2_pos = [5, 5]
+                    m2_size = [5, 5]
+
+                    g2 = gandalf_murs_grand.copy()
+                    g2 = {
+                        "type_x" : 125,
+                        "type_y" : 25,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos_2[0] + 50,
+                        "pos_y" : player_pos_2[1] - 50,
+                        "size_x" : 125,
+                        "size_y" : 25
+                    }
+
+                    m2 = pygame.Surface((g2["type_x"], g2["type_y"]))
+                    m2_pos = [g2["pos_x"], g2["pos_y"]]
+                    m2_size = [g2["size_x"], g2["size_y"]]
+
+                    if m2 is not None :
+                        gandalf_murs_finaux_grand_down.append(m2)
+                        gandalf_murs_finaux_grand_down_pos.append(m2_pos)
+                        gandalf_murs_finaux_grand_down_size.append(m2_size)
+
+                    m3 = None
+                    m3_pos = [5, 5]
+                    m3_size = [5, 5]
+
+                    g3 = gandalf_murs_petit_2.copy()
+                    g3 = {
+                        "type_x" : 25,
+                        "type_y" : 50,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos_2[0] + 50,
+                        "pos_y" : player_pos_2[1],
+                        "size_x" : 25,
+                        "size_y" : 50
+                    }
+
+                    m3 = pygame.Surface((g3["type_x"], g3["type_y"]))
+                    m3_pos = [g3["pos_x"], g3["pos_y"]]
+                    m3_size = [g3["size_x"], g3["size_y"]]
+
+                    if m3 is not None :
+                        gandalf_murs_finaux_petit_2_down.append(m3)
+                        gandalf_murs_finaux_petit_2_down_pos.append(m3_pos)
+                        gandalf_murs_finaux_petit_2_down_size.append(m3_size)
+
+            cooldown_i_meme_gandalf_player = 1200
+
+    if i_meme_sélectionné_player_2 == 7 :
+        if cooldown_i_meme_gandalf_player_2 > 0 :
+            cooldown_i_meme_gandalf_player_2 -= 1
+
+        if cooldown_i_meme_gandalf_player_2 == 0 :
+            if pressed_keys[K_RSHIFT] :
+                if executing_lightcycle_movement_q :
+                    m1 = None
+                    m1_pos = [5, 5]
+                    m1_size = [5, 5]
+
+                    g1 = gandalf_murs_petit_1.copy()
+                    g1 = {
+                        "type_x" : 50,
+                        "type_y" : 25,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos[0] - 25,
+                        "pos_y" : player_pos[1] + 50,
+                        "size_x" : 50,
+                        "size_y" : 25
+                    }
+
+                    m1 = pygame.Surface((g1["type_x"], g1["type_y"]))
+                    m1_pos = [g1["pos_x"], g1["pos_y"]]
+                    m1_size = [g1["size_x"], g1["size_y"]]
+
+                    if m1 is not None :
+                        gandalf_murs_finaux_petit_1_q.append(m1)
+                        gandalf_murs_finaux_petit_1_q_pos.append(m1_pos)
+                        gandalf_murs_finaux_petit_1_q_size.append(m1_size)
+
+                    m2 = None
+                    m2_pos = [5, 5]
+                    m2_size = [5, 5]
+
+                    g2 = gandalf_murs_grand.copy()
+                    g2 = {
+                        "type_x" : 25,
+                        "type_y" : 125,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos[0] - 50,
+                        "pos_y" : player_pos[1] - 50,
+                        "size_x" : 25,
+                        "size_y" : 125
+                    }
+
+                    m2 = pygame.Surface((g2["type_x"], g2["type_y"]))
+                    m2_pos = [g2["pos_x"], g2["pos_y"]]
+                    m2_size = [g2["size_x"], g2["size_y"]]
+
+                    if m2 is not None :
+                        gandalf_murs_finaux_grand_q.append(m2)
+                        gandalf_murs_finaux_grand_q_pos.append(m2_pos)
+                        gandalf_murs_finaux_grand_q_size.append(m2_size)
+
+                    m3 = None
+                    m3_pos = [5, 5]
+                    m3_size = [5, 5]
+
+                    g3 = gandalf_murs_petit_2.copy()
+                    g3 = {
+                        "type_x" : 50,
+                        "type_y" : 25,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos[0] - 25,
+                        "pos_y" : player_pos[1] - 50,
+                        "size_x" : 50,
+                        "size_y" : 25
+                    }
+
+                    m3 = pygame.Surface((g3["type_x"], g3["type_y"]))
+                    m3_pos = [g3["pos_x"], g3["pos_y"]]
+                    m3_size = [g3["size_x"], g3["size_y"]]
+
+                    if m3 is not None :
+                        gandalf_murs_finaux_petit_2_q.append(m3)
+                        gandalf_murs_finaux_petit_2_q_pos.append(m3_pos)
+                        gandalf_murs_finaux_petit_2_q_size.append(m3_size)
+
+                if executing_lightcycle_movement_d :
+                    m1 = None
+                    m1_pos = [5, 5]
+                    m1_size = [5, 5]
+
+                    g1 = gandalf_murs_petit_1.copy()
+                    g1 = {
+                        "type_x" : 50,
+                        "type_y" : 25,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos[0],
+                        "pos_y" : player_pos[1] - 50,
+                        "size_x" : 50,
+                        "size_y" : 25
+                    }
+
+                    m1 = pygame.Surface((g1["type_x"], g1["type_y"]))
+                    m1_pos = [g1["pos_x"], g1["pos_y"]]
+                    m1_size = [g1["size_x"], g1["size_y"]]
+
+                    if m1 is not None :
+                        gandalf_murs_finaux_petit_1_d.append(m1)
+                        gandalf_murs_finaux_petit_1_d_pos.append(m1_pos)
+                        gandalf_murs_finaux_petit_1_d_size.append(m1_size)
+
+                    m2 = None
+                    m2_pos = [5, 5]
+                    m2_size = [5, 5]
+
+                    g2 = gandalf_murs_grand.copy()
+                    g2 = {
+                        "type_x" : 25,
+                        "type_y" : 125,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos[0] + 50,
+                        "pos_y" : player_pos[1] - 50,
+                        "size_x" : 25,
+                        "size_y" : 125
+                    }
+
+                    m2 = pygame.Surface((g2["type_x"], g2["type_y"]))
+                    m2_pos = [g2["pos_x"], g2["pos_y"]]
+                    m2_size = [g2["size_x"], g2["size_y"]]
+
+                    if m2 is not None :
+                        gandalf_murs_finaux_grand_d.append(m2)
+                        gandalf_murs_finaux_grand_d_pos.append(m2_pos)
+                        gandalf_murs_finaux_grand_d_size.append(m2_size)
+
+                    m3 = None
+                    m3_pos = [5, 5]
+                    m3_size = [5, 5]
+
+                    g3 = gandalf_murs_petit_2.copy()
+                    g3 = {
+                        "type_x" : 50,
+                        "type_y" : 25,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos[0],
+                        "pos_y" : player_pos[1] + 50,
+                        "size_x" : 50,
+                        "size_y" : 25
+                    }
+
+                    m3 = pygame.Surface((g3["type_x"], g3["type_y"]))
+                    m3_pos = [g3["pos_x"], g3["pos_y"]]
+                    m3_size = [g3["size_x"], g3["size_y"]]
+
+                    if m3 is not None :
+                        gandalf_murs_finaux_petit_2_d.append(m3)
+                        gandalf_murs_finaux_petit_2_d_pos.append(m3_pos)
+                        gandalf_murs_finaux_petit_2_d_size.append(m3_size)
+
+                if executing_lightcycle_movement_z :
+                    m1 = None
+                    m1_pos = [5, 5]
+                    m1_size = [5, 5]
+
+                    g1 = gandalf_murs_petit_1.copy()
+                    g1 = {
+                        "type_x" : 25,
+                        "type_y" : 50,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos[0] - 50,
+                        "pos_y" : player_pos[1] + 25,
+                        "size_x" : 25,
+                        "size_y" : 50
+                    }
+
+                    m1 = pygame.Surface((g1["type_x"], g1["type_y"]))
+                    m1_pos = [g1["pos_x"], g1["pos_y"]]
+                    m1_size = [g1["size_x"], g1["size_y"]]
+
+                    if m1 is not None :
+                        gandalf_murs_finaux_petit_1_z.append(m1)
+                        gandalf_murs_finaux_petit_1_z_pos.append(m1_pos)
+                        gandalf_murs_finaux_petit_1_z_size.append(m1_size)
+
+                    m2 = None
+                    m2_pos = [5, 5]
+                    m2_size = [5, 5]
+
+                    g2 = gandalf_murs_grand.copy()
+                    g2 = {
+                        "type_x" : 125,
+                        "type_y" : 25,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos[0] - 50,
+                        "pos_y" : player_pos[1] - 50,
+                        "size_x" : 125,
+                        "size_y" : 25
+                    }
+
+                    m2 = pygame.Surface((g2["type_x"], g2["type_y"]))
+                    m2_pos = [g2["pos_x"], g2["pos_y"]]
+                    m2_size = [g2["size_x"], g2["size_y"]]
+
+                    if m2 is not None :
+                        gandalf_murs_finaux_grand_z.append(m2)
+                        gandalf_murs_finaux_grand_z_pos.append(m2_pos)
+                        gandalf_murs_finaux_grand_z_size.append(m2_size)
+
+                    m3 = None
+                    m3_pos = [5, 5]
+                    m3_size = [5, 5]
+
+                    g3 = gandalf_murs_petit_2.copy()
+                    g3 = {
+                        "type_x" : 25,
+                        "type_y" : 50,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos[0] + 50,
+                        "pos_y" : player_pos[1] - 25,
+                        "size_x" : 25,
+                        "size_y" : 50
+                    }
+
+                    m3 = pygame.Surface((g3["type_x"], g3["type_y"]))
+                    m3_pos = [g3["pos_x"], g3["pos_y"]]
+                    m3_size = [g3["size_x"], g3["size_y"]]
+
+                    if m3 is not None :
+                        gandalf_murs_finaux_petit_2_z.append(m3)
+                        gandalf_murs_finaux_petit_2_z_pos.append(m3_pos)
+                        gandalf_murs_finaux_petit_2_z_size.append(m3_size)
+
+                if executing_lightcycle_movement_s :
+                    m1 = None
+                    m1_pos = [5, 5]
+                    m1_size = [5, 5]
+
+                    g1 = gandalf_murs_petit_1.copy()
+                    g1 = {
+                        "type_x" : 25,
+                        "type_y" : 50,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos[0] - 50,
+                        "pos_y" : player_pos[1],
+                        "size_x" : 25,
+                        "size_y" : 50
+                    }
+
+                    m1 = pygame.Surface((g1["type_x"], g1["type_y"]))
+                    m1_pos = [g1["pos_x"], g1["pos_y"]]
+                    m1_size = [g1["size_x"], g1["size_y"]]
+
+                    if m1 is not None :
+                        gandalf_murs_finaux_petit_1_s.append(m1)
+                        gandalf_murs_finaux_petit_1_s_pos.append(m1_pos)
+                        gandalf_murs_finaux_petit_1_s_size.append(m1_size)
+
+                    m2 = None
+                    m2_pos = [5, 5]
+                    m2_size = [5, 5]
+
+                    g2 = gandalf_murs_grand.copy()
+                    g2 = {
+                        "type_x" : 125,
+                        "type_y" : 25,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos[0] + 50,
+                        "pos_y" : player_pos[1] - 50,
+                        "size_x" : 125,
+                        "size_y" : 25
+                    }
+
+                    m2 = pygame.Surface((g2["type_x"], g2["type_y"]))
+                    m2_pos = [g2["pos_x"], g2["pos_y"]]
+                    m2_size = [g2["size_x"], g2["size_y"]]
+
+                    if m2 is not None :
+                        gandalf_murs_finaux_grand_s.append(m2)
+                        gandalf_murs_finaux_grand_s_pos.append(m2_pos)
+                        gandalf_murs_finaux_grand_s_size.append(m2_size)
+
+                    m3 = None
+                    m3_pos = [5, 5]
+                    m3_size = [5, 5]
+
+                    g3 = gandalf_murs_petit_2.copy()
+                    g3 = {
+                        "type_x" : 25,
+                        "type_y" : 50,
+                        "color" : "#4D3206",
+                        "pos_x" : player_pos[0] + 50,
+                        "pos_y" : player_pos[1],
+                        "size_x" : 25,
+                        "size_y" : 50
+                    }
+
+                    m3 = pygame.Surface((g3["type_x"], g3["type_y"]))
+                    m3_pos = [g3["pos_x"], g3["pos_y"]]
+                    m3_size = [g3["size_x"], g3["size_y"]]
+
+                    if m3 is not None :
+                        gandalf_murs_finaux_petit_2_s.append(m3)
+                        gandalf_murs_finaux_petit_2_s_pos.append(m3_pos)
+                        gandalf_murs_finaux_petit_2_s_size.append(m3_size)
+
+            cooldown_i_meme_gandalf_player_2 = 1200
+
+    return cooldown_i_meme_gandalf_player, cooldown_i_meme_gandalf_player_2, gandalf_murs_finaux_petit_1_q, gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size, gandalf_murs_finaux_grand_q, gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size, gandalf_murs_finaux_petit_2_q, gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size, gandalf_murs_finaux_petit_1_d, gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size, gandalf_murs_finaux_grand_d, gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size, gandalf_murs_finaux_petit_2_d, gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size, gandalf_murs_finaux_petit_1_z, gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size, gandalf_murs_finaux_grand_z, gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size, gandalf_murs_finaux_petit_2_z, gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size, gandalf_murs_finaux_petit_1_s, gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size, gandalf_murs_finaux_grand_s, gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size, gandalf_murs_finaux_petit_2_s, gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size, gandalf_murs_finaux_petit_1_left, gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size, gandalf_murs_finaux_grand_left, gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size, gandalf_murs_finaux_petit_2_left, gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size, gandalf_murs_finaux_petit_1_right, gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size, gandalf_murs_finaux_grand_right, gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size, gandalf_murs_finaux_petit_2_right, gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size, gandalf_murs_finaux_petit_1_up, gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size, gandalf_murs_finaux_grand_up,gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size, gandalf_murs_finaux_petit_2_up, gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size, gandalf_murs_finaux_petit_1_down, gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size, gandalf_murs_finaux_grand_down, gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size, gandalf_murs_finaux_petit_2_down, gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size
+
+def collision_gandalf_murs() :
+    if executing_lightcycle_movement_q :
+        for i, j in zip(gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+        
+        for i, j in zip(gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+        
+        for i, j in zip(gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size) :
+            if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+    if executing_lightcycle_movement_d :
+        for i, j in zip(gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size) :
+            if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+    if executing_lightcycle_movement_z :
+        for i, j in zip(gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size) :
+            if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+    if executing_lightcycle_movement_s :
+        for i, j in zip(gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size) :
+            if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+                if invulnérabilité_temporaire_player == False :
+                    mode_actuel = MODE_WIN2_LOSE1
+
+
+    if executing_lightcycle_movement_left :
+        for i, j in zip(gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+        
+        for i, j in zip(gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+        
+        for i, j in zip(gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size) :
+            if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+    if executing_lightcycle_movement_right :
+        for i, j in zip(gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size) :
+            if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+    if executing_lightcycle_movement_up :
+        for i, j in zip(gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size) :
+            if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+    if executing_lightcycle_movement_down :
+        for i, j in zip(gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size) :
+            if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                if executing_i_meme_disparition_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
+                if invulnérabilité_temporaire_player_2 == False :
+                    mode_actuel = MODE_WIN1_LOSE2
 
 
 
@@ -896,6 +2843,12 @@ while running :
         executing_lightcycle_movement_up = False
         executing_lightcycle_movement_down = False
 
+        utilisé_i_meme_jackpot_player = False
+        utilisé_i_meme_jackpot_player_2 = False
+
+        utilisé_i_meme_devil_never_cry_player = False
+        utilisé_i_meme_devil_never_cry_player_2 = False
+
 
 
     if mode_actuel == MODE_GAME :
@@ -1492,6 +3445,47 @@ while running :
 
         screen.blit(titre_Score_player_2_img, titre_Score_player_2_pos)
 
+
+        cooldown_i_meme_player_fond = pygame.Surface ((104, 19))
+        cooldown_i_meme_player_fond.fill("#000000")
+        cooldown_i_meme_player_fond_size = [104, 19]
+        cooldown_i_meme_player_fond_pos = [grid_pos[0] + (Score_player_pos[0] - grid_pos[0]) / 2 - cooldown_i_meme_player_fond_size[0] / 2, grid_pos[1] / 2]
+
+        screen.blit(cooldown_i_meme_player_fond, cooldown_i_meme_player_fond_pos)
+
+        if cooldown_i_meme_sélectionné_player == cooldown_i_meme_rare_sélectionné_player :
+            avancement_cooldown_player = (100 - (cooldown_i_meme_sélectionné_player * 0.16666))
+        if cooldown_i_meme_sélectionné_player == cooldown_i_meme_épique_sélectionné_player :
+            avancement_cooldown_player = (100 - (cooldown_i_meme_sélectionné_player * 0.08333))
+        if cooldown_i_meme_sélectionné_player == cooldown_i_meme_légendaire_sélectionné_player :
+            avancement_cooldown_player = (100 - (cooldown_i_meme_sélectionné_player * 0.05555))
+        cooldown_i_meme_player = pygame.Surface((round(avancement_cooldown_player), 15))
+        cooldown_i_meme_player.fill("#F54927")
+        cooldown_i_meme_player_size = [round(avancement_cooldown_player), 15]
+        cooldown_i_meme_player_pos = [cooldown_i_meme_player_fond_pos[0] + 2, cooldown_i_meme_player_fond_pos[1] + 2]
+
+        screen.blit(cooldown_i_meme_player, cooldown_i_meme_player_pos)
+
+
+        cooldown_i_meme_player_2_fond = pygame.Surface ((104, 19))
+        cooldown_i_meme_player_2_fond.fill("#000000")
+        cooldown_i_meme_player_2_fond_size = [104, 19]
+        cooldown_i_meme_player_2_fond_pos = [((grid_pos[0] + grid_size[0]) - (((grid_pos[0] + grid_size[0]) - (Score_player_2_pos[0] + Score_player_2_dimensions[0])) / 2)) - cooldown_i_meme_player_fond_size[0] / 2, grid_pos[1] / 2]
+
+        screen.blit(cooldown_i_meme_player_2_fond, cooldown_i_meme_player_2_fond_pos)
+
+        if cooldown_i_meme_sélectionné_player_2 == cooldown_i_meme_rare_sélectionné_player_2 :
+            avancement_cooldown_player_2 = (100 - (cooldown_i_meme_sélectionné_player_2 * 0.16666))
+        if cooldown_i_meme_sélectionné_player_2 == cooldown_i_meme_épique_sélectionné_player_2 :
+            avancement_cooldown_player_2 = (100 - (cooldown_i_meme_sélectionné_player_2 * 0.08333))
+        if cooldown_i_meme_sélectionné_player_2 == cooldown_i_meme_légendaire_sélectionné_player_2 :
+            avancement_cooldown_player_2 = (100 - (cooldown_i_meme_sélectionné_player_2 * 0.05555))
+        cooldown_i_meme_player_2 = pygame.Surface((round(avancement_cooldown_player_2), 15))
+        cooldown_i_meme_player_2.fill("#0000FF")
+        cooldown_i_meme_player_2_size = [round(avancement_cooldown_player_2), 15]
+        cooldown_i_meme_player_2_pos = [cooldown_i_meme_player_2_fond_pos[0] + 2, cooldown_i_meme_player_2_fond_pos[1] + 2]
+
+        screen.blit(cooldown_i_meme_player_2, cooldown_i_meme_player_2_pos)
         
         score_player, collectibles_player, collectibles_pos = réapparition_collectibles(executing_lightcycle_movement_q, executing_lightcycle_movement_d , executing_lightcycle_movement_z, executing_lightcycle_movement_s, grid_pos, grid_size, player_pos, player_size, collectibles_pos, collectibles_size, collectibles_player, score_player)
         score_player_2, collectibles_player_2, collectibles_pos = réapparition_collectibles(executing_lightcycle_movement_left, executing_lightcycle_movement_right, executing_lightcycle_movement_up, executing_lightcycle_movement_down, grid_pos, grid_size, player_pos_2, player_size_2, collectibles_pos, collectibles_size, collectibles_player_2, score_player_2)
@@ -1505,8 +3499,8 @@ while running :
         #------------------------------------------------------------------CALCULS DE FIN DE PARTIE-----------------------------------------------------------------
         #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2 = i_meme_devil_never_cry(i_meme_sélectionné_player, i_meme_sélectionné_player_2, mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2)
-        score_player, score_player_2 = i_meme_jackpot(i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2)
+        mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2 = i_meme_devil_never_cry(i_meme_sélectionné_player, i_meme_sélectionné_player_2, mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2)
+        score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2 = i_meme_jackpot(i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2)
 
         temps_total = heures * 3600 + minutes * 60 + secondes
 
@@ -1671,8 +3665,8 @@ while running :
         #------------------------------------------------------------------CALCULS DE FIN DE PARTIE-----------------------------------------------------------------
         #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2 = i_meme_devil_never_cry(i_meme_sélectionné_player, i_meme_sélectionné_player_2, mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2)
-        score_player, score_player_2 = i_meme_jackpot(i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2)
+        mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2 = i_meme_devil_never_cry(i_meme_sélectionné_player, i_meme_sélectionné_player_2, mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2)
+        score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2 = i_meme_jackpot(i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2)
 
         temps_total = heures * 3600 + minutes * 60 + secondes
 
@@ -1804,6 +3798,172 @@ while running :
         stat_score_player_2 = f"Score total : {score_player_2}"
         font_stat_score_player_2 = pygame.font.Font(Arcade, 25)
         stat_score_player_2_img = font_stat_score_player_2.render(stat_score_player_2, True, (0, 0, 0))
+        stat_score_player_2_dimensions = stat_score_player_2_img.get_size()
+        stat_score_player_2_pos = [3 * (separation_pos[0] / 2) - stat_score_player_2_dimensions[0] / 2, stat_collectibles_player_2_pos[1] + stat_collectibles_player_2_dimensions[1] + 50]
+        screen.blit(stat_score_player_2_img, stat_score_player_2_pos)
+
+        #-------------------------------------------------------------------------BT QUITTER------------------------------------------------------------------------
+
+        bt_retour_au_menu = pygame.Surface((800, 125))
+        bt_retour_au_menu.fill("#999999")
+        bt_retour_au_menu_size = [800, 125]
+        bt_retour_au_menu_pos = [screen_size[0] / 2 - bt_retour_au_menu_size[0] / 2, separation_pos[1] + separation_size[1] + 25]
+        screen.blit(bt_retour_au_menu, bt_retour_au_menu_pos)
+
+        font_titre_bt_retour_au_menu = pygame.font.Font(Technos, 50)
+        titre_bt_retour_au_menu_img = font_titre_bt_retour_au_menu.render("Retour au menu", True, (255, 255, 255))
+        titre_bt_retour_au_menu_dimensions = titre_bt_retour_au_menu_img.get_size()
+        titre_bt_retour_au_menu_pos = [screen_size[0] / 2 - titre_bt_retour_au_menu_dimensions[0] / 2, bt_retour_au_menu_pos[1] + bt_retour_au_menu_size[1] / 2 - titre_bt_retour_au_menu_dimensions[1] / 2]
+        screen.blit(titre_bt_retour_au_menu_img, titre_bt_retour_au_menu_pos)
+
+        mouse = pygame.mouse.get_pos()
+
+        clique_gauche = pygame.mouse.get_pressed()[0]
+
+        if clique_gauche :
+            if mouse[0] >= bt_retour_au_menu_pos[0] and mouse[0] <= bt_retour_au_menu_pos[0] + bt_retour_au_menu_size[0] and mouse[1] >= bt_retour_au_menu_pos[1] and mouse[1] <= bt_retour_au_menu_pos[1] + bt_retour_au_menu_size[1] :
+                mode_actuel = MODE_ACCUEIL
+
+
+
+    if mode_actuel == MODE_LA_PEACE :
+        #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+        #------------------------------------------------------------------CALCULS DE FIN DE PARTIE-----------------------------------------------------------------
+        #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2 = i_meme_devil_never_cry(i_meme_sélectionné_player, i_meme_sélectionné_player_2, mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2)
+        score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2 = i_meme_jackpot(i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2)
+
+        temps_total = heures * 3600 + minutes * 60 + secondes
+
+        frôlements_player += frôlements_de_la_mort_qui_tue_player
+        frôlements_player_2 += frôlements_de_la_mort_qui_tue_player_2
+
+        succès_temps_1_player, succès_temps_1_player_2, succès_temps_2_player, succès_temps_2_player_2, succès_temps_caché_player, succès_temps_caché_player_2 = succès_temps(temps_total, succès_temps_1_player, succès_temps_1_player_2, succès_temps_2_player, succès_temps_2_player_2, succès_temps_caché_player, succès_temps_caché_player_2)
+
+        succès_score_1_player, succès_score_2_player, succès_score_caché_player = succès_score(score_player, succès_score_1_player, succès_score_2_player, succès_score_caché_player)
+        succès_score_1_player_2, succès_score_2_player_2, succès_score_caché_player_2 = succès_score(score_player_2, succès_score_1_player_2, succès_score_2_player_2, succès_score_caché_player_2)
+
+        succès_frôlements_1_player, succès_frôlements_2_player, succès_frôlements_caché_player = succès_frôlements(frôlements_player, succès_frôlements_1_player, succès_frôlements_2_player, succès_frôlements_caché_player)
+        succès_frôlements_1_player_2, succès_frôlements_2_player_2, succès_frôlements_caché_player_2 = succès_frôlements(frôlements_player_2, succès_frôlements_1_player_2, succès_frôlements_2_player_2, succès_frôlements_caché_player_2)
+
+        succès_collectibles_1_player, succès_collectibles_2_player, succès_collectibles_caché_player = succès_collectibles(collectibles_player, succès_collectibles_1_player, succès_collectibles_2_player, succès_collectibles_caché_player)
+        succès_collectibles_1_player_2, succès_collectibles_2_player_2, succès_collectibles_caché_player_2 = succès_collectibles(collectibles_player_2, succès_collectibles_1_player_2, succès_collectibles_2_player_2, succès_collectibles_caché_player_2)
+
+
+        #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+        #-------------------------------------------------------------------------AFFICHAGE-------------------------------------------------------------------------
+        #-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        screen.fill("#0B041F")
+
+        #---------------------------------------------------------------------------TITRE---------------------------------------------------------------------------
+        
+        font_titre_LA_PEACE = pygame.font.Font(Technos, 50)
+        titre_LA_PEACE_img = font_titre_LA_PEACE.render("Vous avez trouve La Peace", True, (255, 255, 255))
+        titre_LA_PEACE_dimensions = titre_LA_PEACE_img.get_size()
+        titre_LA_PEACE_pos = [screen_size[0] / 2 - titre_LA_PEACE_dimensions[0] / 2, 50]
+        screen.blit(titre_LA_PEACE_img, titre_LA_PEACE_pos)
+
+        #-------------------------------------------------------------------------STAT TEMPS------------------------------------------------------------------------
+
+        if heures > 1 :
+            stats_temps = f"Cette partie a dure {heures} heures, {minutes} minute(s) et {round(secondes)} seconde(s)."
+        elif heures > 0 :
+            stats_temps = f"Cette partie a dure {heures} heure, {minutes} minute(s) et {round(secondes)} seconde(s)."
+        elif minutes > 1 :
+            stats_temps = f"Cette partie a dure {minutes} minutes et {round(secondes)} seconde(s)."
+        elif minutes > 0 :
+            stats_temps = f"Cette partie a dure {minutes} minute et {round(secondes)} seconde(s)."
+        elif round(secondes) > 1 :
+            stats_temps = f"Cette partie a dure {round(secondes)} secondes."
+        else :
+            stats_temps = f"Cette partie a dure {round(secondes)} seconde."
+
+        font_stats_temps = pygame.font.Font(Arcade, 50)
+        stats_temps_img = font_stats_temps.render(stats_temps, True, (255, 255, 255))
+        stats_temps_dimensions = stats_temps_img.get_size()
+        stats_temps_pos = [screen_size[0] / 2 - stats_temps_dimensions[0] / 2, titre_LA_PEACE_pos[1] + titre_LA_PEACE_dimensions[1] + 50]
+        screen.blit(stats_temps_img, stats_temps_pos)
+
+        #-------------------------------------------------------------------------SEPARATION------------------------------------------------------------------------
+
+        separation = pygame.Surface((2, 400))
+        separation.fill("#FFFFFF")
+        separation_size = [2, 400]
+        separation_pos = [screen_size[0] / 2 - separation_size[0] / 2, stats_temps_pos[1] + stats_temps_dimensions[1] + 50]
+        screen.blit(separation, separation_pos)
+
+        #--------------------------------------------------------------------------STATS J1-------------------------------------------------------------------------
+
+        font_titre_stats_player = pygame.font.Font(Technos, 30)
+        titre_stats_player_img = font_titre_stats_player.render("Joueur 1", True, (255, 255, 255))
+        titre_stats_player_dimenions = titre_stats_player_img.get_size()
+        titre_stats_player_pos = [separation_pos[0] / 2 - titre_stats_player_dimenions[0] / 2, separation_pos[1]]
+        screen.blit(titre_stats_player_img, titre_stats_player_pos)
+
+
+        stat_frôlements_player = f"Trainees frolees : {frôlements_player}"
+        font_stat_frôlements_player = pygame.font.Font(Arcade, 25)
+        stat_frôlements_player_img = font_stat_frôlements_player.render(stat_frôlements_player, True, (255, 255, 255))
+        stat_frôlements_player_dimensions = stat_frôlements_player_img.get_size()
+        stat_frôlements_player_pos = [separation_pos[0] / 2 - stat_frôlements_player_dimensions[0] / 2, titre_stats_player_pos[1] + titre_stats_player_dimenions[1] + 50]
+        screen.blit(stat_frôlements_player_img, stat_frôlements_player_pos)
+
+        stat_frôlements_de_la_mort_qui_tue_player = f"Traines frolees (frolements de la mort qui tue) : {frôlements_de_la_mort_qui_tue_player}"
+        font_stat_frôlements_de_la_mort_qui_tue_player = pygame.font.Font(Arcade, 25)
+        stat_frôlements_de_la_mort_qui_tue_player_img = font_stat_frôlements_de_la_mort_qui_tue_player.render(stat_frôlements_de_la_mort_qui_tue_player, True, (255, 255, 255))
+        stat_frôlements_de_la_mort_qui_tue_player_dimensions = stat_frôlements_de_la_mort_qui_tue_player_img.get_size()
+        stat_frôlements_de_la_mort_qui_tue_player_pos = [separation_pos[0] / 2 - stat_frôlements_de_la_mort_qui_tue_player_dimensions[0] / 2, stat_frôlements_player_pos[1] + stat_frôlements_player_dimensions[1] + 50]
+        screen.blit(stat_frôlements_de_la_mort_qui_tue_player_img, stat_frôlements_de_la_mort_qui_tue_player_pos)
+
+        stat_collectibles_player = f"Collectibles recuperes : {collectibles_player}"
+        font_stat_collectibles_player = pygame.font.Font(Arcade, 25)
+        stat_collectibles_player_img = font_stat_collectibles_player.render(stat_collectibles_player, True, (255, 255, 255))
+        stat_collectibles_player_dimensions = stat_collectibles_player_img.get_size()
+        stat_collectibles_player_pos = [separation_pos[0] / 2 - stat_collectibles_player_dimensions[0] / 2, stat_frôlements_de_la_mort_qui_tue_player_pos[1] + stat_frôlements_de_la_mort_qui_tue_player_dimensions[1] + 50]
+        screen.blit(stat_collectibles_player_img, stat_collectibles_player_pos)
+
+        stat_score_player = f"Score total : {score_player}"
+        font_stat_score_player = pygame.font.Font(Arcade, 25)
+        stat_score_player_img = font_stat_score_player.render(stat_score_player, True, (255, 255, 255))
+        stat_score_player_dimensions = stat_score_player_img.get_size()
+        stat_score_player_pos = [separation_pos[0] / 2 - stat_score_player_dimensions[0] / 2, stat_collectibles_player_pos[1] + stat_collectibles_player_dimensions[1] + 50]
+        screen.blit(stat_score_player_img, stat_score_player_pos)
+
+        #--------------------------------------------------------------------------STATS J2-------------------------------------------------------------------------
+
+        font_titre_stats_player_2 = pygame.font.Font(Technos, 30)
+        titre_stats_player_2_img = font_titre_stats_player_2.render("Joueur 2", True, (255, 255, 255))
+        titre_stats_player_2_dimenions = titre_stats_player_2_img.get_size()
+        titre_stats_player_2_pos = [3 * (separation_pos[0] / 2) - titre_stats_player_2_dimenions[0] / 2, separation_pos[1]]
+        screen.blit(titre_stats_player_2_img, titre_stats_player_2_pos)
+
+
+        stat_frôlements_player_2 = f"Trainees frolees : {frôlements_player_2}"
+        font_stat_frôlements_player_2 = pygame.font.Font(Arcade, 25)
+        stat_frôlements_player_2_img = font_stat_frôlements_player_2.render(stat_frôlements_player_2, True, (255, 255, 255))
+        stat_frôlements_player_2_dimensions = stat_frôlements_player_2_img.get_size()
+        stat_frôlements_player_2_pos = [3 * (separation_pos[0] / 2) - stat_frôlements_player_2_dimensions[0] / 2, titre_stats_player_2_pos[1] + titre_stats_player_2_dimenions[1] + 50]
+        screen.blit(stat_frôlements_player_2_img, stat_frôlements_player_2_pos)
+
+        stat_frôlements_de_la_mort_qui_tue_player_2 = f"Traines frolees (frolements de la mort qui tue) : {frôlements_de_la_mort_qui_tue_player_2}"
+        font_stat_frôlements_de_la_mort_qui_tue_player_2 = pygame.font.Font(Arcade, 25)
+        stat_frôlements_de_la_mort_qui_tue_player_2_img = font_stat_frôlements_de_la_mort_qui_tue_player_2.render(stat_frôlements_de_la_mort_qui_tue_player_2, True, (255, 255, 255))
+        stat_frôlements_de_la_mort_qui_tue_player_2_dimensions = stat_frôlements_de_la_mort_qui_tue_player_2_img.get_size()
+        stat_frôlements_de_la_mort_qui_tue_player_2_pos = [3 * (separation_pos[0] / 2) - stat_frôlements_de_la_mort_qui_tue_player_2_dimensions[0] / 2, stat_frôlements_player_2_pos[1] + stat_frôlements_player_2_dimensions[1] + 50]
+        screen.blit(stat_frôlements_de_la_mort_qui_tue_player_2_img, stat_frôlements_de_la_mort_qui_tue_player_2_pos)
+
+        stat_collectibles_player_2 = f"Collectibles recuperes : {collectibles_player_2}"
+        font_stat_collectibles_player_2 = pygame.font.Font(Arcade, 25)
+        stat_collectibles_player_2_img = font_stat_collectibles_player_2.render(stat_collectibles_player_2, True, (255, 255, 255))
+        stat_collectibles_player_2_dimensions = stat_collectibles_player_2_img.get_size()
+        stat_collectibles_player_2_pos = [ 3 * (separation_pos[0] / 2) - stat_collectibles_player_2_dimensions[0] / 2, stat_frôlements_de_la_mort_qui_tue_player_2_pos[1] + stat_frôlements_de_la_mort_qui_tue_player_2_dimensions[1] + 50]
+        screen.blit(stat_collectibles_player_2_img, stat_collectibles_player_2_pos)
+
+        stat_score_player_2 = f"Score total : {score_player_2}"
+        font_stat_score_player_2 = pygame.font.Font(Arcade, 25)
+        stat_score_player_2_img = font_stat_score_player_2.render(stat_score_player_2, True, (255, 255, 255))
         stat_score_player_2_dimensions = stat_score_player_2_img.get_size()
         stat_score_player_2_pos = [3 * (separation_pos[0] / 2) - stat_score_player_2_dimensions[0] / 2, stat_collectibles_player_2_pos[1] + stat_collectibles_player_2_dimensions[1] + 50]
         screen.blit(stat_score_player_2_img, stat_score_player_2_pos)
@@ -2680,84 +4840,84 @@ while running :
         red_bull_player_dimensions = red_bull_player_img.get_size()
         red_bull_player_pos = [20, bt_rareté_rare_pos[1] + bt_rareté_rare_size[1] + 35]
 
-        statut_red_bull_player = pygame.Surface((150, 50))
+        statut_red_bull_player = pygame.Surface((175, 25))
         statut_red_bull_player.fill("#999999")
-        statut_red_bull_player_size = [150, 50]
+        statut_red_bull_player_size = [175, 25]
         statut_red_bull_player_pos = [20, red_bull_player_pos[1] + red_bull_player_dimensions[1] + 10]
 
         if i_meme_sélectionné_player == 1 :
             titre_Statut_red_bull_player = "Statut : Equipe"
         elif succès_temps_1_player :
-            titre_Statut_red_bull_player = "Statut : Possédé ; Equiper ?"
+            titre_Statut_red_bull_player = "Statut : Possede"
         else :
             titre_Statut_red_bull_player = "Statut : Non possede"
         font_titre_statut_red_bull_player = pygame.font.Font(Arcade, 15)
         titre_statut_red_bull_player_img = font_titre_statut_red_bull_player.render(titre_Statut_red_bull_player, True, (255, 255, 255))
         titre_statut_red_bull_player_dimensions = titre_statut_red_bull_player_img.get_size()
-        titre_statut_red_bull_player_pos = [statut_red_bull_player_pos[0] + 10, statut_red_bull_player_pos[1] + statut_red_bull_player_size[1] / 2 - titre_statut_red_bull_player_dimensions[1] / 2]
+        titre_statut_red_bull_player_pos = [statut_red_bull_player_pos[0] + statut_red_bull_player_size[0] / 2 - titre_statut_red_bull_player_dimensions[0] / 2, statut_red_bull_player_pos[1] + statut_red_bull_player_size[1] / 2 - titre_statut_red_bull_player_dimensions[1] / 2]
 
         font_disparition_player = pygame.font.Font(Arcade, 35)
         disparition_player_img = font_disparition_player.render("Disparition : Rend invisible et intangible pendant 5 secondes", True, (255, 255, 255))
         disparition_player_dimensions = disparition_player_img.get_size()
         disparition_player_pos = [20, statut_red_bull_player_pos[1] + statut_red_bull_player_size[1] + 35]
 
-        statut_disparition_player = pygame.Surface((150, 50))
+        statut_disparition_player = pygame.Surface((175, 25))
         statut_disparition_player.fill("#999999")
-        statut_disparition_player_size = [150, 50]
+        statut_disparition_player_size = [175, 25]
         statut_disparition_player_pos = [20, disparition_player_pos[1] + disparition_player_dimensions[1] + 10]
 
         if i_meme_sélectionné_player == 2 :
             titre_Statut_disparition_player = "Statut : Equipe"
         elif succès_score_1_player :
-            titre_Statut_disparition_player = "Statut : Possede ; Equiper ?"
+            titre_Statut_disparition_player = "Statut : Possede"
         else :
             titre_Statut_disparition_player = "Statut : Non possede"
         font_titre_statut_disparition_player = pygame.font.Font(Arcade, 15)
         titre_statut_disparition_player_img = font_titre_statut_disparition_player.render(titre_Statut_disparition_player, True, (255, 255, 255))
         titre_statut_disparition_player_dimensions = titre_statut_disparition_player_img.get_size()
-        titre_statut_disparition_player_pos = [statut_disparition_player_pos[0] + 10, statut_disparition_player_pos[1] + statut_disparition_player_size[1] / 2 - titre_statut_disparition_player_dimensions[1] / 2]
+        titre_statut_disparition_player_pos = [statut_disparition_player_pos[0] + statut_disparition_player_size[0] / 2 - titre_statut_disparition_player_dimensions[0] / 2, statut_disparition_player_pos[1] + statut_disparition_player_size[1] / 2 - titre_statut_disparition_player_dimensions[1] / 2]
 
         font_jackpot_player = pygame.font.Font(Arcade, 35)
         jackpot_player_img = font_jackpot_player.render("Jackpot (Passif) : Double votre score final en fin de partie", True, (255, 255, 255))
         jackpot_player_dimensions = jackpot_player_img.get_size()
         jackpot_player_pos = [20, statut_disparition_player_pos[1] + statut_disparition_player_size[1] + 35]
 
-        statut_jackpot_player = pygame.Surface((150, 50))
+        statut_jackpot_player = pygame.Surface((175, 25))
         statut_jackpot_player.fill("#999999")
-        statut_jackpot_player_size = [150, 50]
+        statut_jackpot_player_size = [175, 25]
         statut_jackpot_player_pos = [20, jackpot_player_pos[1] + jackpot_player_dimensions[1] + 10]
 
         if i_meme_sélectionné_player == 3 :
             titre_Statut_jackpot_player = "Statut : Equipe"
         elif succès_frôlements_1_player :
-            titre_Statut_jackpot_player = "Statut : Possede ; Equiper ?"
+            titre_Statut_jackpot_player = "Statut : Possede"
         else :
             titre_Statut_jackpot_player = "Statut : Non possede"
         font_titre_statut_jackpot_player = pygame.font.Font(Arcade, 15)
         titre_statut_jackpot_player_img = font_titre_statut_jackpot_player.render(titre_Statut_jackpot_player, True, (255, 255, 255))
         titre_statut_jackpot_player_dimensions = titre_statut_jackpot_player_img.get_size()
-        titre_statut_jackpot_player_pos = [statut_jackpot_player_pos[0] + 10, statut_jackpot_player_pos[1] + statut_jackpot_player_size[1] / 2 - titre_statut_jackpot_player_dimensions[1] / 2]
+        titre_statut_jackpot_player_pos = [statut_jackpot_player_pos[0] + statut_jackpot_player_size[0] / 2 - titre_statut_jackpot_player_dimensions[0] / 2, statut_jackpot_player_pos[1] + statut_jackpot_player_size[1] / 2 - titre_statut_jackpot_player_dimensions[1] / 2]
 
         font_devil_never_cry_player = pygame.font.Font(Arcade, 35)
         devil_never_cry_player_img = font_devil_never_cry_player.render("Devil Never Cry (Passif) : Ressuscite 1 fois", True, (255, 255, 255))
         devil_never_cry_player_dimensions = devil_never_cry_player_img.get_size()
         devil_never_cry_player_pos = [20, statut_jackpot_player_pos[1] + statut_jackpot_player_size[1] + 35]
 
-        statut_devil_never_cry_player = pygame.Surface((150, 50))
+        statut_devil_never_cry_player = pygame.Surface((175, 25))
         statut_devil_never_cry_player.fill("#999999")
-        statut_devil_never_cry_player_size = [150, 50]
+        statut_devil_never_cry_player_size = [175, 25]
         statut_devil_never_cry_player_pos = [20, devil_never_cry_player_pos[1] + devil_never_cry_player_dimensions[1] + 10]
 
         if i_meme_sélectionné_player == 4 :
             titre_Statut_devil_never_cry_player = "Statut : Equipe"
         elif succès_collectibles_1_player :
-            titre_Statut_devil_never_cry_player = "Statut : Possede ; Equiper ?"
+            titre_Statut_devil_never_cry_player = "Statut : Possede"
         else :
             titre_Statut_devil_never_cry_player = "Statut : Non possede"
         font_titre_statut_devil_never_cry_player = pygame.font.Font(Arcade, 15)
         titre_statut_devil_never_cry_player_img = font_titre_statut_devil_never_cry_player.render(titre_Statut_devil_never_cry_player, True, (255, 255, 255))
         titre_statut_devil_never_cry_player_dimensions = titre_statut_devil_never_cry_player_img.get_size()
-        titre_statut_devil_never_cry_player_pos = [statut_devil_never_cry_player_pos[0] + 10, statut_devil_never_cry_player_pos[1] + statut_devil_never_cry_player_size[1] / 2 - titre_statut_devil_never_cry_player_dimensions[1] / 2]
+        titre_statut_devil_never_cry_player_pos = [statut_devil_never_cry_player_pos[0] + statut_devil_never_cry_player_size[0] / 2 - titre_statut_devil_never_cry_player_dimensions[0] / 2, statut_devil_never_cry_player_pos[1] + statut_devil_never_cry_player_size[1] / 2 - titre_statut_devil_never_cry_player_dimensions[1] / 2]
 
         #-------------------------------------------------------------------------EPIQUE-----------------------------------------------------------------------------
 
@@ -2777,84 +4937,84 @@ while running :
         hyperdrive_player_dimensions = hyperdrive_player_img.get_size()
         hyperdrive_player_pos = [20, bt_rareté_épique_pos[1] + bt_rareté_épique_size[1] + 35]
 
-        statut_hyperdrive_player = pygame.Surface((150, 50))
+        statut_hyperdrive_player = pygame.Surface((175, 25))
         statut_hyperdrive_player.fill("#999999")
-        statut_hyperdrive_player_size = [150, 50]
+        statut_hyperdrive_player_size = [175, 25]
         statut_hyperdrive_player_pos = [20, hyperdrive_player_pos[1] + hyperdrive_player_dimensions[1] + 10]
 
         if i_meme_sélectionné_player == 5 :
             titre_Statut_hyperdrive_player = "Statut : Equipe"
         elif succès_temps_2_player :
-            titre_Statut_hyperdrive_player = "Statut : Possede ; Equiper ?"
+            titre_Statut_hyperdrive_player = "Statut : Possede"
         else :
             titre_Statut_hyperdrive_player = "Statut : Non possede"
         font_titre_statut_hyperdrive_player = pygame.font.Font(Arcade, 15)
         titre_statut_hyperdrive_player_img = font_titre_statut_hyperdrive_player.render(titre_Statut_hyperdrive_player, True, (255, 255, 255))
         titre_statut_hyperdrive_player_dimensions = titre_statut_hyperdrive_player_img.get_size()
-        titre_statut_hyperdrive_player_pos = [statut_hyperdrive_player_pos[0] + 10, statut_hyperdrive_player_pos[1] + statut_hyperdrive_player_size[1] / 2 - titre_statut_hyperdrive_player_dimensions[1] / 2]
+        titre_statut_hyperdrive_player_pos = [statut_hyperdrive_player_pos[0] + statut_hyperdrive_player_size[0] / 2 - titre_statut_hyperdrive_player_dimensions[0] / 2, statut_hyperdrive_player_pos[1] + statut_hyperdrive_player_size[1] / 2 - titre_statut_hyperdrive_player_dimensions[1] / 2]
 
         font_nope_player = pygame.font.Font(Arcade, 35)
         nope_player_img = font_nope_player.render("Nope (usage unique) : Contre l'effet nefaste d'un I-Meme adverse", True, (255, 255, 255))
         nope_player_dimensions = nope_player_img.get_size()
         nope_player_pos = [20, statut_hyperdrive_player_pos[1] + statut_hyperdrive_player_size[1] + 35]
 
-        statut_nope_player = pygame.Surface((150, 50))
+        statut_nope_player = pygame.Surface((175, 25))
         statut_nope_player.fill("#999999")
-        statut_nope_player_size = [150, 50]
+        statut_nope_player_size = [175, 25]
         statut_nope_player_pos = [20, nope_player_pos[1] + nope_player_dimensions[1] + 10]
 
         if i_meme_sélectionné_player == 6 :
             titre_Statut_nope_player = "Statut : Equipe"
         elif succès_score_2_player :
-            titre_Statut_nope_player = "Statut : Possede ; Equiper ?"
+            titre_Statut_nope_player = "Statut : Possede"
         else :
             titre_Statut_nope_player = "Statut : Non possede"
         font_titre_statut_nope_player = pygame.font.Font(Arcade, 15)
         titre_statut_nope_player_img = font_titre_statut_nope_player.render(titre_Statut_nope_player, True, (255, 255, 255))
         titre_statut_nope_player_dimensions = titre_statut_nope_player_img.get_size()
-        titre_statut_nope_player_pos = [statut_nope_player_pos[0] + 10, statut_nope_player_pos[1] + statut_nope_player_size[1] / 2 - titre_statut_nope_player_dimensions[1] / 2]
+        titre_statut_nope_player_pos = [statut_nope_player_pos[0] + statut_nope_player_size[0] / 2 - titre_statut_nope_player_dimensions[0] / 2, statut_nope_player_pos[1] + statut_nope_player_size[1] / 2 - titre_statut_nope_player_dimensions[1] / 2]
 
         font_gandalf_player = pygame.font.Font(Arcade, 35)
         gandalf_player_img = font_gandalf_player.render("Gandalf : Erige un mur en face de l'adversaire", True, (255, 255, 255))
         gandalf_player_dimensions = gandalf_player_img.get_size()
         gandalf_player_pos = [20, statut_nope_player_pos[1] + statut_nope_player_size[1] + 35]
 
-        statut_gandalf_player = pygame.Surface((150, 50))
+        statut_gandalf_player = pygame.Surface((175, 25))
         statut_gandalf_player.fill("#999999")
-        statut_gandalf_player_size = [150, 50]
+        statut_gandalf_player_size = [175, 25]
         statut_gandalf_player_pos = [20, gandalf_player_pos[1] + gandalf_player_dimensions[1] + 10]
 
         if i_meme_sélectionné_player == 7 :
             titre_Statut_gandalf_player = "Statut : Equipe"
         elif succès_frôlements_2_player :
-            titre_Statut_gandalf_player = "Statut : Possede ; Equiper ?"
+            titre_Statut_gandalf_player = "Statut : Possede"
         else :
             titre_Statut_gandalf_player = "Statut : Non possede"
         font_titre_statut_gandalf_player = pygame.font.Font(Arcade, 15)
         titre_statut_gandalf_player_img = font_titre_statut_gandalf_player.render(titre_Statut_gandalf_player, True, (255, 255, 255))
         titre_statut_gandalf_player_dimensions = titre_statut_gandalf_player_img.get_size()
-        titre_statut_gandalf_player_pos = [statut_gandalf_player_pos[0] + 10, statut_gandalf_player_pos[1] + statut_gandalf_player_size[1] / 2 - titre_statut_gandalf_player_dimensions[1] / 2]
+        titre_statut_gandalf_player_pos = [statut_gandalf_player_pos[0] + statut_gandalf_player_size[0] / 2 - titre_statut_gandalf_player_dimensions[0] / 2, statut_gandalf_player_pos[1] + statut_gandalf_player_size[1] / 2 - titre_statut_gandalf_player_dimensions[1] / 2]
 
         font_death_star_player = pygame.font.Font(Arcade, 35)
         death_star_player_img = font_death_star_player.render("Death Star : Tire un rayon laser dans la direction actuelle", True, (255, 255, 255))
         death_star_player_dimensions = death_star_player_img.get_size()
         death_star_player_pos = [20, statut_gandalf_player_pos[1] + statut_gandalf_player_size[1] + 35]
 
-        statut_death_star_player = pygame.Surface((150, 50))
+        statut_death_star_player = pygame.Surface((175, 25))
         statut_death_star_player.fill("#999999")
-        statut_death_star_player_size = [150, 50]
+        statut_death_star_player_size = [175, 25]
         statut_death_star_player_pos = [20, death_star_player_pos[1] + death_star_player_dimensions[1] + 10]
 
         if i_meme_sélectionné_player == 8 :
             titre_Statut_death_star_player = "Statut : Equipe"
         elif succès_collectibles_2_player :
-            titre_Statut_death_star_player = "Statut : Possede ; Equiper ?"
+            titre_Statut_death_star_player = "Statut : Possede"
         else :
             titre_Statut_death_star_player = "Statut : Non possede"
         font_titre_statut_death_star_player = pygame.font.Font(Arcade, 15)
         titre_statut_death_star_player_img = font_titre_statut_death_star_player.render(titre_Statut_death_star_player, True, (255, 255, 255))
         titre_statut_death_star_player_dimensions = titre_statut_death_star_player_img.get_size()
-        titre_statut_death_star_player_pos = [statut_death_star_player_pos[0] + 10, statut_death_star_player_pos[1] + statut_death_star_player_size[1] / 2 - titre_statut_death_star_player_dimensions[1] / 2]
+        titre_statut_death_star_player_pos = [statut_death_star_player_pos[0] + statut_death_star_player_size[0] / 2 - titre_statut_death_star_player_dimensions[0] / 2, statut_death_star_player_pos[1] + statut_death_star_player_size[1] / 2 - titre_statut_death_star_player_dimensions[1] / 2]
 
         #----------------------------------------------------------------------LEGENDAIRE---------------------------------------------------------------------------
 
@@ -2874,84 +5034,84 @@ while running :
         thanos_player_dimensions = thanos_player_img.get_size()
         thanos_player_pos = [20, bt_rareté_légendaire_pos[1] + bt_rareté_légendaire_size[1] + 35]
 
-        statut_thanos_player = pygame.Surface((150, 50))
+        statut_thanos_player = pygame.Surface((175, 25))
         statut_thanos_player.fill("#999999")
-        statut_thanos_player_size = [150, 50]
+        statut_thanos_player_size = [175, 25]
         statut_thanos_player_pos = [20, thanos_player_pos[1] + thanos_player_dimensions[1] + 10]
 
         if i_meme_sélectionné_player == 9 :
             titre_Statut_thanos_player = "Statut : Equipe"
         elif succès_temps_caché_player :
-            titre_Statut_thanos_player = "Statut : Possede ; Equiper ?"
+            titre_Statut_thanos_player = "Statut : Possede"
         else :
             titre_Statut_thanos_player = "Statut : Non possede"
         font_titre_statut_thanos_player = pygame.font.Font(Arcade, 15)
         titre_statut_thanos_player_img = font_titre_statut_thanos_player.render(titre_Statut_thanos_player, True, (255, 255, 255))
         titre_statut_thanos_player_dimensions = titre_statut_thanos_player_img.get_size()
-        titre_statut_thanos_player_pos = [statut_thanos_player_pos[0] + 10, statut_thanos_player_pos[1] + statut_thanos_player_size[1] / 2 - titre_statut_thanos_player_dimensions[1] / 2]
+        titre_statut_thanos_player_pos = [statut_thanos_player_pos[0] + statut_thanos_player_size[0] / 2 - titre_statut_thanos_player_dimensions[0] / 2, statut_thanos_player_pos[1] + statut_thanos_player_size[1] / 2 - titre_statut_thanos_player_dimensions[1] / 2]
 
         font_c_est_quoi_ce_monde_player = pygame.font.Font(Arcade, 35)
         c_est_quoi_ce_monde_player_img = font_c_est_quoi_ce_monde_player.render("C'est quoi ce monde ? : Inverse les touches de l'adversaire pendant 5 secondes", True, (255, 255, 255))
         c_est_quoi_ce_monde_player_dimensions = c_est_quoi_ce_monde_player_img.get_size()
         c_est_quoi_ce_monde_player_pos = [20, statut_thanos_player_pos[1] + statut_thanos_player_size[1] + 35]
 
-        statut_c_est_quoi_ce_monde_player = pygame.Surface((150, 50))
+        statut_c_est_quoi_ce_monde_player = pygame.Surface((175, 25))
         statut_c_est_quoi_ce_monde_player.fill("#999999")
-        statut_c_est_quoi_ce_monde_player_size = [150, 50]
+        statut_c_est_quoi_ce_monde_player_size = [175, 25]
         statut_c_est_quoi_ce_monde_player_pos = [20, c_est_quoi_ce_monde_player_pos[1] + c_est_quoi_ce_monde_player_dimensions[1] + 10]
 
         if i_meme_sélectionné_player == 10 :
             titre_Statut_c_est_quoi_ce_monde_player = "Statut : Equipe"
         elif succès_score_caché_player :
-            titre_Statut_c_est_quoi_ce_monde_player = "Statut : Possede ; Equiper ?"
+            titre_Statut_c_est_quoi_ce_monde_player = "Statut : Possede"
         else :
             titre_Statut_c_est_quoi_ce_monde_player = "Statut : Non possede"
         font_titre_statut_c_est_quoi_ce_monde_player = pygame.font.Font(Arcade, 15)
         titre_statut_c_est_quoi_ce_monde_player_img = font_titre_statut_c_est_quoi_ce_monde_player.render(titre_Statut_c_est_quoi_ce_monde_player, True, (255, 255, 255))
         titre_statut_c_est_quoi_ce_monde_player_dimensions = titre_statut_c_est_quoi_ce_monde_player_img.get_size()
-        titre_statut_c_est_quoi_ce_monde_player_pos = [statut_c_est_quoi_ce_monde_player_pos[0] + 10, statut_c_est_quoi_ce_monde_player_pos[1] + statut_c_est_quoi_ce_monde_player_size[1] / 2 - titre_statut_c_est_quoi_ce_monde_player_dimensions[1] / 2]
+        titre_statut_c_est_quoi_ce_monde_player_pos = [statut_c_est_quoi_ce_monde_player_pos[0] + statut_c_est_quoi_ce_monde_player_size[0] / 2 - titre_statut_c_est_quoi_ce_monde_player_dimensions[0] / 2, statut_c_est_quoi_ce_monde_player_pos[1] + statut_c_est_quoi_ce_monde_player_size[1] / 2 - titre_statut_c_est_quoi_ce_monde_player_dimensions[1] / 2]
 
         font_virtual_insanity_player = pygame.font.Font(Arcade, 35)
         virtual_insanity_player_img = font_virtual_insanity_player.render("Virtual Insanity : L'adversaire ne peut plus se diriger et est ralentit pendant 5 secondes", True, (255, 255, 255))
         virtual_insanity_player_dimensions = virtual_insanity_player_img.get_size()
         virtual_insanity_player_pos = [20, statut_c_est_quoi_ce_monde_player_pos[1] + statut_c_est_quoi_ce_monde_player_size[1] + 35]
 
-        statut_virtual_insanity_player = pygame.Surface((150, 50))
+        statut_virtual_insanity_player = pygame.Surface((175, 25))
         statut_virtual_insanity_player.fill("#999999")
-        statut_virtual_insanity_player_size = [150, 50]
+        statut_virtual_insanity_player_size = [175, 25]
         statut_virtual_insanity_player_pos = [20, virtual_insanity_player_pos[1] + virtual_insanity_player_dimensions[1] + 10]
 
         if i_meme_sélectionné_player == 11 :
             titre_Statut_virtual_insanity_player = "Statut : Equipe"
         elif succès_frôlements_caché_player :
-            titre_Statut_virtual_insanity_player = "Statut : Possede ; Equiper ?"
+            titre_Statut_virtual_insanity_player = "Statut : Possede"
         else :
             titre_Statut_virtual_insanity_player = "Statut : Non possede"
         font_titre_statut_virtual_insanity_player = pygame.font.Font(Arcade, 15)
         titre_statut_virtual_insanity_player_img = font_titre_statut_virtual_insanity_player.render(titre_Statut_virtual_insanity_player, True, (255, 255, 255))
         titre_statut_virtual_insanity_player_dimensions = titre_statut_virtual_insanity_player_img.get_size()
-        titre_statut_virtual_insanity_player_pos = [statut_virtual_insanity_player_pos[0] + 10, statut_virtual_insanity_player_pos[1] + statut_virtual_insanity_player_size[1] / 2 - titre_statut_virtual_insanity_player_dimensions[1] / 2]
+        titre_statut_virtual_insanity_player_pos = [statut_virtual_insanity_player_pos[0] + statut_virtual_insanity_player_size[0] / 2 - titre_statut_virtual_insanity_player_dimensions[0] / 2, statut_virtual_insanity_player_pos[1] + statut_virtual_insanity_player_size[1] / 2 - titre_statut_virtual_insanity_player_dimensions[1] / 2]
 
         font_la_peace_player = pygame.font.Font(Arcade, 35)
         la_peace_player_img = font_la_peace_player.render("La Peace : Vous et votre adversaire cessez de vous battre et trouvez La Peace", True, (255, 255, 255))
         la_peace_player_dimensions = la_peace_player_img.get_size()
         la_peace_player_pos = [20, statut_virtual_insanity_player_pos[1] + statut_virtual_insanity_player_size[1] + 35]
 
-        statut_la_peace_player = pygame.Surface((150, 50))
+        statut_la_peace_player = pygame.Surface((175, 25))
         statut_la_peace_player.fill("#999999")
-        statut_la_peace_player_size = [150, 50]
+        statut_la_peace_player_size = [175, 25]
         statut_la_peace_player_pos = [20, la_peace_player_pos[1] + la_peace_player_dimensions[1] + 10]
 
         if i_meme_sélectionné_player == 12 :
             titre_Statut_la_peace_player = "Statut : Equipe"
         elif succès_collectibles_caché_player :
-            titre_Statut_la_peace_player = "Statut : Possede ; Equiper ?"
+            titre_Statut_la_peace_player = "Statut : Possede"
         else :
             titre_Statut_la_peace_player = "Statut : Non possede"
         font_titre_statut_la_peace_player = pygame.font.Font(Arcade, 15)
         titre_statut_la_peace_player_img = font_titre_statut_la_peace_player.render(titre_Statut_la_peace_player, True, (255, 255, 255))
         titre_statut_la_peace_player_dimensions = titre_statut_la_peace_player_img.get_size()
-        titre_statut_la_peace_player_pos = [statut_la_peace_player_pos[0] + 10, statut_la_peace_player_pos[1] + statut_la_peace_player_size[1] / 2 - titre_statut_la_peace_player_dimensions[1] / 2]
+        titre_statut_la_peace_player_pos = [statut_la_peace_player_pos[0] + statut_la_peace_player_size[0] / 2 - titre_statut_la_peace_player_dimensions[0] / 2, statut_la_peace_player_pos[1] + statut_la_peace_player_size[1] / 2 - titre_statut_la_peace_player_dimensions[1] / 2]
 
 
         #-----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2992,84 +5152,84 @@ while running :
         red_bull_player2_dimensions = red_bull_player2_img.get_size()
         red_bull_player2_pos = [20, bt_rareté_rare2_pos[1] + bt_rareté_rare2_size[1] + 35]
 
-        statut_red_bull_player2 = pygame.Surface((150, 50))
+        statut_red_bull_player2 = pygame.Surface((175, 25))
         statut_red_bull_player2.fill("#999999")
-        statut_red_bull_player2_size = [150, 50]
+        statut_red_bull_player2_size = [175, 25]
         statut_red_bull_player2_pos = [20, red_bull_player2_pos[1] + red_bull_player2_dimensions[1] + 10]
 
         if i_meme_sélectionné_player_2 == 1 :
             titre_Statut_red_bull_player2 = "Statut : Equipe"
         elif succès_temps_1_player_2 :
-            titre_Statut_red_bull_player2 = "Statut : Possédé ; Equiper ?"
+            titre_Statut_red_bull_player2 = "Statut : Possede"
         else :
             titre_Statut_red_bull_player2 = "Statut : Non possede"
         font_titre_statut_red_bull_player2 = pygame.font.Font(Arcade, 15)
         titre_statut_red_bull_player2_img = font_titre_statut_red_bull_player2.render(titre_Statut_red_bull_player2, True, (255, 255, 255))
         titre_statut_red_bull_player2_dimensions = titre_statut_red_bull_player2_img.get_size()
-        titre_statut_red_bull_player2_pos = [statut_red_bull_player2_pos[0] + 10, statut_red_bull_player2_pos[1] + statut_red_bull_player2_size[1] / 2 - titre_statut_red_bull_player2_dimensions[1] / 2]
+        titre_statut_red_bull_player2_pos = [statut_red_bull_player2_pos[0] + statut_red_bull_player2_size[0] / 2 - titre_statut_red_bull_player2_dimensions[0] / 2, statut_red_bull_player2_pos[1] + statut_red_bull_player2_size[1] / 2 - titre_statut_red_bull_player2_dimensions[1] / 2]
 
         font_disparition_player2 = pygame.font.Font(Arcade, 35)
         disparition_player2_img = font_disparition_player2.render("Disparition : Rend invisible et intangible pendant 5 secondes", True, (255, 255, 255))
         disparition_player2_dimensions = disparition_player2_img.get_size()
         disparition_player2_pos = [20, statut_red_bull_player2_pos[1] + statut_red_bull_player2_size[1] + 35]
 
-        statut_disparition_player2 = pygame.Surface((150, 50))
+        statut_disparition_player2 = pygame.Surface((175, 25))
         statut_disparition_player2.fill("#999999")
-        statut_disparition_player2_size = [150, 50]
+        statut_disparition_player2_size = [175, 25]
         statut_disparition_player2_pos = [20, disparition_player2_pos[1] + disparition_player2_dimensions[1] + 10]
 
         if i_meme_sélectionné_player_2 == 2 :
             titre_Statut_disparition_player2 = "Statut : Equipe"
         elif succès_score_1_player_2 :
-            titre_Statut_disparition_player2 = "Statut : Possede ; Equiper ?"
+            titre_Statut_disparition_player2 = "Statut : Possede"
         else :
             titre_Statut_disparition_player2 = "Statut : Non possede"
         font_titre_statut_disparition_player2 = pygame.font.Font(Arcade, 15)
         titre_statut_disparition_player2_img = font_titre_statut_disparition_player2.render(titre_Statut_disparition_player2, True, (255, 255, 255))
         titre_statut_disparition_player2_dimensions = titre_statut_disparition_player2_img.get_size()
-        titre_statut_disparition_player2_pos = [statut_disparition_player2_pos[0] + 10, statut_disparition_player2_pos[1] + statut_disparition_player2_size[1] / 2 - titre_statut_disparition_player2_dimensions[1] / 2]
+        titre_statut_disparition_player2_pos = [statut_disparition_player2_pos[0] + statut_disparition_player2_size[0] / 2 - titre_statut_disparition_player2_dimensions[0] / 2, statut_disparition_player2_pos[1] + statut_disparition_player2_size[1] / 2 - titre_statut_disparition_player2_dimensions[1] / 2]
 
         font_jackpot_player2 = pygame.font.Font(Arcade, 35)
         jackpot_player2_img = font_jackpot_player2.render("Jackpot (Passif) : Double votre score final en fin de partie", True, (255, 255, 255))
         jackpot_player2_dimensions = jackpot_player2_img.get_size()
         jackpot_player2_pos = [20, statut_disparition_player2_pos[1] + statut_disparition_player2_size[1] + 35]
 
-        statut_jackpot_player2 = pygame.Surface((150, 50))
+        statut_jackpot_player2 = pygame.Surface((175, 25))
         statut_jackpot_player2.fill("#999999")
-        statut_jackpot_player2_size = [150, 50]
+        statut_jackpot_player2_size = [175, 25]
         statut_jackpot_player2_pos = [20, jackpot_player2_pos[1] + jackpot_player2_dimensions[1] + 10]
 
         if i_meme_sélectionné_player_2 == 3 :
             titre_Statut_jackpot_player2 = "Statut : Equipe"
         elif succès_frôlements_1_player_2 :
-            titre_Statut_jackpot_player2 = "Statut : Possede ; Equiper ?"
+            titre_Statut_jackpot_player2 = "Statut : Possede"
         else :
             titre_Statut_jackpot_player2 = "Statut : Non possede"
         font_titre_statut_jackpot_player2 = pygame.font.Font(Arcade, 15)
         titre_statut_jackpot_player2_img = font_titre_statut_jackpot_player2.render(titre_Statut_jackpot_player2, True, (255, 255, 255))
         titre_statut_jackpot_player2_dimensions = titre_statut_jackpot_player2_img.get_size()
-        titre_statut_jackpot_player2_pos = [statut_jackpot_player2_pos[0] + 10, statut_jackpot_player2_pos[1] + statut_jackpot_player2_size[1] / 2 - titre_statut_jackpot_player2_dimensions[1] / 2]
+        titre_statut_jackpot_player2_pos = [statut_jackpot_player2_pos[0] + statut_jackpot_player2_size[0] / 2 - titre_statut_jackpot_player2_dimensions[0] / 2, statut_jackpot_player2_pos[1] + statut_jackpot_player2_size[1] / 2 - titre_statut_jackpot_player2_dimensions[1] / 2]
 
         font_devil_never_cry_player2 = pygame.font.Font(Arcade, 35)
         devil_never_cry_player2_img = font_devil_never_cry_player2.render("Devil Never Cry (Passif) : Ressuscite 1 fois", True, (255, 255, 255))
         devil_never_cry_player2_dimensions = devil_never_cry_player2_img.get_size()
         devil_never_cry_player2_pos = [20, statut_jackpot_player2_pos[1] + statut_jackpot_player2_size[1] + 35]
 
-        statut_devil_never_cry_player2 = pygame.Surface((150, 50))
+        statut_devil_never_cry_player2 = pygame.Surface((175, 25))
         statut_devil_never_cry_player2.fill("#999999")
-        statut_devil_never_cry_player2_size = [150, 50]
+        statut_devil_never_cry_player2_size = [175, 25]
         statut_devil_never_cry_player2_pos = [20, devil_never_cry_player2_pos[1] + devil_never_cry_player2_dimensions[1] + 10]
 
         if i_meme_sélectionné_player_2 == 4 :
             titre_Statut_devil_never_cry_player2 = "Statut : Equipe"
         elif succès_collectibles_1_player_2 :
-            titre_Statut_devil_never_cry_player2 = "Statut : Possede ; Equiper ?"
+            titre_Statut_devil_never_cry_player2 = "Statut : Possede"
         else :
             titre_Statut_devil_never_cry_player2 = "Statut : Non possede"
         font_titre_statut_devil_never_cry_player2 = pygame.font.Font(Arcade, 15)
         titre_statut_devil_never_cry_player2_img = font_titre_statut_devil_never_cry_player2.render(titre_Statut_devil_never_cry_player2, True, (255, 255, 255))
         titre_statut_devil_never_cry_player2_dimensions = titre_statut_devil_never_cry_player2_img.get_size()
-        titre_statut_devil_never_cry_player2_pos = [statut_devil_never_cry_player2_pos[0] + 10, statut_devil_never_cry_player2_pos[1] + statut_devil_never_cry_player2_size[1] / 2 - titre_statut_devil_never_cry_player2_dimensions[1] / 2]
+        titre_statut_devil_never_cry_player2_pos = [statut_devil_never_cry_player2_pos[0] + statut_devil_never_cry_player2_size[0] / 2 - titre_statut_devil_never_cry_player2_dimensions[0] / 2, statut_devil_never_cry_player2_pos[1] + statut_devil_never_cry_player2_size[1] / 2 - titre_statut_devil_never_cry_player2_dimensions[1] / 2]
 
         #-------------------------------------------------------------------------EPIQUE-----------------------------------------------------------------------------
 
@@ -3089,84 +5249,84 @@ while running :
         hyperdrive_player2_dimensions = hyperdrive_player2_img.get_size()
         hyperdrive_player2_pos = [20, bt_rareté_épique2_pos[1] + bt_rareté_épique2_size[1] + 35]
 
-        statut_hyperdrive_player2 = pygame.Surface((150, 50))
+        statut_hyperdrive_player2 = pygame.Surface((175, 25))
         statut_hyperdrive_player2.fill("#999999")
-        statut_hyperdrive_player2_size = [150, 50]
+        statut_hyperdrive_player2_size = [175, 25]
         statut_hyperdrive_player2_pos = [20, hyperdrive_player2_pos[1] + hyperdrive_player2_dimensions[1] + 10]
 
         if i_meme_sélectionné_player_2 == 5 :
             titre_Statut_hyperdrive_player2 = "Statut : Equipe"
         elif succès_temps_2_player_2 :
-            titre_Statut_hyperdrive_player2 = "Statut : Possede ; Equiper ?"
+            titre_Statut_hyperdrive_player2 = "Statut : Possede"
         else :
             titre_Statut_hyperdrive_player2 = "Statut : Non possede"
         font_titre_statut_hyperdrive_player2 = pygame.font.Font(Arcade, 15)
         titre_statut_hyperdrive_player2_img = font_titre_statut_hyperdrive_player2.render(titre_Statut_hyperdrive_player2, True, (255, 255, 255))
         titre_statut_hyperdrive_player2_dimensions = titre_statut_hyperdrive_player2_img.get_size()
-        titre_statut_hyperdrive_player2_pos = [statut_hyperdrive_player2_pos[0] + 10, statut_hyperdrive_player2_pos[1] + statut_hyperdrive_player2_size[1] / 2 - titre_statut_hyperdrive_player2_dimensions[1] / 2]
+        titre_statut_hyperdrive_player2_pos = [statut_hyperdrive_player2_pos[0] + statut_hyperdrive_player2_size[0] / 2 - titre_statut_hyperdrive_player2_dimensions[0] / 2, statut_hyperdrive_player2_pos[1] + statut_hyperdrive_player2_size[1] / 2 - titre_statut_hyperdrive_player2_dimensions[1] / 2]
 
         font_nope_player2 = pygame.font.Font(Arcade, 35)
         nope_player2_img = font_nope_player2.render("Nope (usage unique) : Contre l'effet nefaste d'un I-Meme adverse", True, (255, 255, 255))
         nope_player2_dimensions = nope_player2_img.get_size()
         nope_player2_pos = [20, statut_hyperdrive_player2_pos[1] + statut_hyperdrive_player2_size[1] + 35]
 
-        statut_nope_player2 = pygame.Surface((150, 50))
+        statut_nope_player2 = pygame.Surface((175, 25))
         statut_nope_player2.fill("#999999")
-        statut_nope_player2_size = [150, 50]
+        statut_nope_player2_size = [175, 25]
         statut_nope_player2_pos = [20, nope_player2_pos[1] + nope_player2_dimensions[1] + 10]
 
         if i_meme_sélectionné_player_2 == 6 :
             titre_Statut_nope_player2 = "Statut : Equipe"
         elif succès_score_2_player_2 :
-            titre_Statut_nope_player2 = "Statut : Possede ; Equiper ?"
+            titre_Statut_nope_player2 = "Statut : Possede"
         else :
             titre_Statut_nope_player2 = "Statut : Non possede"
         font_titre_statut_nope_player2 = pygame.font.Font(Arcade, 15)
         titre_statut_nope_player2_img = font_titre_statut_nope_player2.render(titre_Statut_nope_player2, True, (255, 255, 255))
         titre_statut_nope_player2_dimensions = titre_statut_nope_player2_img.get_size()
-        titre_statut_nope_player2_pos = [statut_nope_player2_pos[0] + 10, statut_nope_player2_pos[1] + statut_nope_player2_size[1] / 2 - titre_statut_nope_player2_dimensions[1] / 2]
+        titre_statut_nope_player2_pos = [statut_nope_player2_pos[0] + statut_nope_player2_size[0] / 2 - titre_statut_nope_player2_dimensions[0] / 2, statut_nope_player2_pos[1] + statut_nope_player2_size[1] / 2 - titre_statut_nope_player2_dimensions[1] / 2]
 
         font_gandalf_player2 = pygame.font.Font(Arcade, 35)
         gandalf_player2_img = font_gandalf_player2.render("Gandalf : Erige un mur en face de l'adversaire", True, (255, 255, 255))
         gandalf_player2_dimensions = gandalf_player2_img.get_size()
         gandalf_player2_pos = [20, statut_nope_player2_pos[1] + statut_nope_player2_size[1] + 35]
 
-        statut_gandalf_player2 = pygame.Surface((150, 50))
+        statut_gandalf_player2 = pygame.Surface((175, 25))
         statut_gandalf_player2.fill("#999999")
-        statut_gandalf_player2_size = [150, 50]
+        statut_gandalf_player2_size = [175, 25]
         statut_gandalf_player2_pos = [20, gandalf_player2_pos[1] + gandalf_player2_dimensions[1] + 10]
 
         if i_meme_sélectionné_player_2 == 7 :
             titre_Statut_gandalf_player2 = "Statut : Equipe"
         elif succès_frôlements_2_player_2 :
-            titre_Statut_gandalf_player2 = "Statut : Possede ; Equiper ?"
+            titre_Statut_gandalf_player2 = "Statut : Possede"
         else :
             titre_Statut_gandalf_player2 = "Statut : Non possede"
         font_titre_statut_gandalf_player2 = pygame.font.Font(Arcade, 15)
         titre_statut_gandalf_player2_img = font_titre_statut_gandalf_player2.render(titre_Statut_gandalf_player2, True, (255, 255, 255))
         titre_statut_gandalf_player2_dimensions = titre_statut_gandalf_player2_img.get_size()
-        titre_statut_gandalf_player2_pos = [statut_gandalf_player2_pos[0] + 10, statut_gandalf_player2_pos[1] + statut_gandalf_player2_size[1] / 2 - titre_statut_gandalf_player2_dimensions[1] / 2]
+        titre_statut_gandalf_player2_pos = [statut_gandalf_player2_pos[0] + statut_gandalf_player2_size[0] / 2 - titre_statut_gandalf_player2_dimensions[0] / 2, statut_gandalf_player2_pos[1] + statut_gandalf_player2_size[1] / 2 - titre_statut_gandalf_player2_dimensions[1] / 2]
 
         font_death_star_player2 = pygame.font.Font(Arcade, 35)
         death_star_player2_img = font_death_star_player2.render("Death Star : Tire un rayon laser dans la direction actuelle", True, (255, 255, 255))
         death_star_player2_dimensions = death_star_player2_img.get_size()
         death_star_player2_pos = [20, statut_gandalf_player2_pos[1] + statut_gandalf_player2_size[1] + 35]
 
-        statut_death_star_player2 = pygame.Surface((150, 50))
+        statut_death_star_player2 = pygame.Surface((175, 25))
         statut_death_star_player2.fill("#999999")
-        statut_death_star_player2_size = [150, 50]
+        statut_death_star_player2_size = [175, 25]
         statut_death_star_player2_pos = [20, death_star_player2_pos[1] + death_star_player2_dimensions[1] + 10]
 
         if i_meme_sélectionné_player_2 == 8 :
             titre_Statut_death_star_player2 = "Statut : Equipe"
         elif succès_collectibles_2_player_2 :
-            titre_Statut_death_star_player2 = "Statut : Possede ; Equiper ?"
+            titre_Statut_death_star_player2 = "Statut : Possede"
         else :
             titre_Statut_death_star_player2 = "Statut : Non possede"
         font_titre_statut_death_star_player2 = pygame.font.Font(Arcade, 15)
         titre_statut_death_star_player2_img = font_titre_statut_death_star_player2.render(titre_Statut_death_star_player2, True, (255, 255, 255))
         titre_statut_death_star_player2_dimensions = titre_statut_death_star_player2_img.get_size()
-        titre_statut_death_star_player2_pos = [statut_death_star_player2_pos[0] + 10, statut_death_star_player2_pos[1] + statut_death_star_player2_size[1] / 2 - titre_statut_death_star_player2_dimensions[1] / 2]
+        titre_statut_death_star_player2_pos = [statut_death_star_player2_pos[0] + statut_death_star_player2_size[0] / 2 - titre_statut_death_star_player2_dimensions[0] / 2, statut_death_star_player2_pos[1] + statut_death_star_player2_size[1] / 2 - titre_statut_death_star_player2_dimensions[1] / 2]
 
         #----------------------------------------------------------------------LEGENDAIRE---------------------------------------------------------------------------
 
@@ -3186,84 +5346,84 @@ while running :
         thanos_player2_dimensions = thanos_player2_img.get_size()
         thanos_player2_pos = [20, bt_rareté_légendaire2_pos[1] + bt_rareté_légendaire2_size[1] + 35]
 
-        statut_thanos_player2 = pygame.Surface((150, 50))
+        statut_thanos_player2 = pygame.Surface((175, 25))
         statut_thanos_player2.fill("#999999")
-        statut_thanos_player2_size = [150, 50]
+        statut_thanos_player2_size = [175, 25]
         statut_thanos_player2_pos = [20, thanos_player2_pos[1] + thanos_player2_dimensions[1] + 10]
 
         if i_meme_sélectionné_player_2 == 9 :
             titre_Statut_thanos_player2 = "Statut : Equipe"
         elif succès_temps_caché_player_2 :
-            titre_Statut_thanos_player2 = "Statut : Possede ; Equiper ?"
+            titre_Statut_thanos_player2 = "Statut : Possede"
         else :
             titre_Statut_thanos_player2 = "Statut : Non possede"
         font_titre_statut_thanos_player2 = pygame.font.Font(Arcade, 15)
         titre_statut_thanos_player2_img = font_titre_statut_thanos_player2.render(titre_Statut_thanos_player2, True, (255, 255, 255))
         titre_statut_thanos_player2_dimensions = titre_statut_thanos_player2_img.get_size()
-        titre_statut_thanos_player2_pos = [statut_thanos_player2_pos[0] + 10, statut_thanos_player2_pos[1] + statut_thanos_player2_size[1] / 2 - titre_statut_thanos_player2_dimensions[1] / 2]
+        titre_statut_thanos_player2_pos = [statut_thanos_player2_pos[0] + statut_thanos_player2_size[0] / 2 - titre_statut_thanos_player2_dimensions[0] / 2, statut_thanos_player2_pos[1] + statut_thanos_player2_size[1] / 2 - titre_statut_thanos_player2_dimensions[1] / 2]
 
         font_c_est_quoi_ce_monde_player2 = pygame.font.Font(Arcade, 35)
         c_est_quoi_ce_monde_player2_img = font_c_est_quoi_ce_monde_player2.render("C'est quoi ce monde ? : Inverse les touches de l'adversaire pendant 5 secondes", True, (255, 255, 255))
         c_est_quoi_ce_monde_player2_dimensions = c_est_quoi_ce_monde_player2_img.get_size()
         c_est_quoi_ce_monde_player2_pos = [20, statut_thanos_player2_pos[1] + statut_thanos_player2_size[1] + 35]
 
-        statut_c_est_quoi_ce_monde_player2 = pygame.Surface((150, 50))
+        statut_c_est_quoi_ce_monde_player2 = pygame.Surface((175, 25))
         statut_c_est_quoi_ce_monde_player2.fill("#999999")
-        statut_c_est_quoi_ce_monde_player2_size = [150, 50]
+        statut_c_est_quoi_ce_monde_player2_size = [175, 25]
         statut_c_est_quoi_ce_monde_player2_pos = [20, c_est_quoi_ce_monde_player2_pos[1] + c_est_quoi_ce_monde_player2_dimensions[1] + 10]
 
         if i_meme_sélectionné_player_2 == 10 :
             titre_Statut_c_est_quoi_ce_monde_player2 = "Statut : Equipe"
         elif succès_score_caché_player_2 :
-            titre_Statut_c_est_quoi_ce_monde_player2 = "Statut : Possede ; Equiper ?"
+            titre_Statut_c_est_quoi_ce_monde_player2 = "Statut : Possede"
         else :
             titre_Statut_c_est_quoi_ce_monde_player2 = "Statut : Non possede"
         font_titre_statut_c_est_quoi_ce_monde_player2 = pygame.font.Font(Arcade, 15)
         titre_statut_c_est_quoi_ce_monde_player2_img = font_titre_statut_c_est_quoi_ce_monde_player2.render(titre_Statut_c_est_quoi_ce_monde_player2, True, (255, 255, 255))
         titre_statut_c_est_quoi_ce_monde_player2_dimensions = titre_statut_c_est_quoi_ce_monde_player2_img.get_size()
-        titre_statut_c_est_quoi_ce_monde_player2_pos = [statut_c_est_quoi_ce_monde_player2_pos[0] + 10, statut_c_est_quoi_ce_monde_player2_pos[1] + statut_c_est_quoi_ce_monde_player2_size[1] / 2 - titre_statut_c_est_quoi_ce_monde_player2_dimensions[1] / 2]
+        titre_statut_c_est_quoi_ce_monde_player2_pos = [statut_c_est_quoi_ce_monde_player2_pos[0] + statut_c_est_quoi_ce_monde_player2_size[0] / 2 - titre_statut_c_est_quoi_ce_monde_player2_dimensions[0] / 2, statut_c_est_quoi_ce_monde_player2_pos[1] + statut_c_est_quoi_ce_monde_player2_size[1] / 2 - titre_statut_c_est_quoi_ce_monde_player2_dimensions[1] / 2]
 
         font_virtual_insanity_player2 = pygame.font.Font(Arcade, 35)
         virtual_insanity_player2_img = font_virtual_insanity_player2.render("Virtual Insanity : L'adversaire ne peut plus se diriger et est ralentit pendant 5 secondes", True, (255, 255, 255))
         virtual_insanity_player2_dimensions = virtual_insanity_player2_img.get_size()
         virtual_insanity_player2_pos = [20, statut_c_est_quoi_ce_monde_player2_pos[1] + statut_c_est_quoi_ce_monde_player2_size[1] + 35]
 
-        statut_virtual_insanity_player2 = pygame.Surface((150, 50))
+        statut_virtual_insanity_player2 = pygame.Surface((175, 25))
         statut_virtual_insanity_player2.fill("#999999")
-        statut_virtual_insanity_player2_size = [150, 50]
+        statut_virtual_insanity_player2_size = [175, 25]
         statut_virtual_insanity_player2_pos = [20, virtual_insanity_player2_pos[1] + virtual_insanity_player2_dimensions[1] + 10]
 
         if i_meme_sélectionné_player_2 == 11 :
             titre_Statut_virtual_insanity_player2 = "Statut : Equipe"
         elif succès_frôlements_caché_player_2 :
-            titre_Statut_virtual_insanity_player2 = "Statut : Possede ; Equiper ?"
+            titre_Statut_virtual_insanity_player2 = "Statut : Possede"
         else :
             titre_Statut_virtual_insanity_player2 = "Statut : Non possede"
         font_titre_statut_virtual_insanity_player2 = pygame.font.Font(Arcade, 15)
         titre_statut_virtual_insanity_player2_img = font_titre_statut_virtual_insanity_player2.render(titre_Statut_virtual_insanity_player2, True, (255, 255, 255))
         titre_statut_virtual_insanity_player2_dimensions = titre_statut_virtual_insanity_player2_img.get_size()
-        titre_statut_virtual_insanity_player2_pos = [statut_virtual_insanity_player2_pos[0] + 10, statut_virtual_insanity_player2_pos[1] + statut_virtual_insanity_player2_size[1] / 2 - titre_statut_virtual_insanity_player2_dimensions[1] / 2]
+        titre_statut_virtual_insanity_player2_pos = [statut_virtual_insanity_player2_pos[0] + statut_virtual_insanity_player2_size[0] / 2 - titre_statut_virtual_insanity_player2_dimensions[0] / 2, statut_virtual_insanity_player2_pos[1] + statut_virtual_insanity_player2_size[1] / 2 - titre_statut_virtual_insanity_player2_dimensions[1] / 2]
 
         font_la_peace_player2 = pygame.font.Font(Arcade, 35)
         la_peace_player2_img = font_la_peace_player.render("La Peace : Vous et votre adversaire cessez de vous battre et trouvez La Peace", True, (255, 255, 255))
         la_peace_player2_dimensions = la_peace_player2_img.get_size()
         la_peace_player2_pos = [20, statut_virtual_insanity_player2_pos[1] + statut_virtual_insanity_player2_size[1] + 35]
 
-        statut_la_peace_player2 = pygame.Surface((150, 50))
+        statut_la_peace_player2 = pygame.Surface((175, 25))
         statut_la_peace_player2.fill("#999999")
-        statut_la_peace_player2_size = [150, 50]
+        statut_la_peace_player2_size = [175, 25]
         statut_la_peace_player2_pos = [20, la_peace_player2_pos[1] + la_peace_player2_dimensions[1] + 10]
 
         if i_meme_sélectionné_player_2 == 12 :
             titre_Statut_la_peace_player2 = "Statut : Equipe"
         elif succès_collectibles_caché_player_2 :
-            titre_Statut_la_peace_player2 = "Statut : Possede ; Equiper ?"
+            titre_Statut_la_peace_player2 = "Statut : Possede"
         else :
             titre_Statut_la_peace_player2 = "Statut : Non possede"
         font_titre_statut_la_peace_player2 = pygame.font.Font(Arcade, 15)
         titre_statut_la_peace_player2_img = font_titre_statut_la_peace_player2.render(titre_Statut_la_peace_player2, True, (255, 255, 255))
         titre_statut_la_peace_player2_dimensions = titre_statut_la_peace_player2_img.get_size()
-        titre_statut_la_peace_player2_pos = [statut_la_peace_player2_pos[0] + 10, statut_la_peace_player2_pos[1] + statut_la_peace_player2_size[1] / 2 - titre_statut_la_peace_player2_dimensions[1] / 2]
+        titre_statut_la_peace_player2_pos = [statut_la_peace_player2_pos[0] + statut_la_peace_player2_size[0] / 2 - titre_statut_la_peace_player2_dimensions[0] / 2, statut_la_peace_player2_pos[1] + statut_la_peace_player2_size[1] / 2 - titre_statut_la_peace_player2_dimensions[1] / 2]
 
 
         #-----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3350,6 +5510,185 @@ while running :
 
             if mouse[0] >= bt_retour2_pos[0] and mouse[0] <= bt_retour2_pos[0] + bt_retour2_size[0] and mouse[1] >= bt_retour2_pos[1] and mouse[1] <= bt_retour2_pos[1] + bt_retour2_size[1] :
                 mode_actuel = MODE_ACCUEIL
+
+
+
+            if mouse[0] >= statut_red_bull_player_pos[0] and mouse[0] <= statut_red_bull_player_pos[0] + statut_red_bull_player_size[0] and mouse[1] >= statut_red_bull_player_pos[1] and mouse[1] <= statut_red_bull_player_pos[1] + statut_red_bull_player_size[1] :
+                if succès_temps_1_player :
+                    if i_meme_sélectionné_player != 1 :
+                        i_meme_sélectionné_player = 1
+                        cooldown_i_meme_rare_sélectionné_player = cooldown_i_meme_red_bull_player
+                        cooldown_i_meme_sélectionné_player = cooldown_i_meme_rare_sélectionné_player
+                
+                fenêtre_actuelle = rareté_rare_joueur_1
+
+            if mouse[0] >= statut_disparition_player_pos[0] and mouse[0] <= statut_disparition_player_pos[0] + statut_disparition_player_size[0] and mouse[1] >= statut_disparition_player_pos[1] and mouse[1] <= statut_disparition_player_pos[1] + statut_disparition_player_size[1] :
+                if succès_score_1_player :
+                    if i_meme_sélectionné_player != 2 :
+                        i_meme_sélectionné_player = 2
+                        cooldown_i_meme_rare_sélectionné_player = cooldown_i_meme_disparition_player
+                        cooldown_i_meme_sélectionné_player = cooldown_i_meme_rare_sélectionné_player
+
+                fenêtre_actuelle = rareté_rare_joueur_1
+
+            if mouse[0] >= statut_jackpot_player_pos[0] and mouse[0] <= statut_jackpot_player_pos[0] + statut_jackpot_player_size[0] and mouse[1] >= statut_jackpot_player_pos[1] and mouse[1] <= statut_jackpot_player_pos[1] + statut_jackpot_player_size[1] :
+                if succès_frôlements_1_player :
+                    if i_meme_sélectionné_player != 3 :
+                        i_meme_sélectionné_player = 3
+
+                fenêtre_actuelle = rareté_rare_joueur_1
+
+            if mouse[0] >= statut_devil_never_cry_player_pos[0] and mouse[0] <= statut_devil_never_cry_player_pos[0] + statut_devil_never_cry_player_size[0] and mouse[1] >= statut_devil_never_cry_player_pos[1] and mouse[1] <= statut_devil_never_cry_player_pos[1] + statut_devil_never_cry_player_size[1] :
+                if succès_collectibles_1_player :
+                    if i_meme_sélectionné_player != 4 :
+                        i_meme_sélectionné_player = 4
+
+                fenêtre_actuelle = rareté_rare_joueur_1
+
+            if mouse[0] >= statut_hyperdrive_player_pos[0] and mouse[0] <= statut_hyperdrive_player_pos[0] + statut_hyperdrive_player_size[0] and mouse[1] >= statut_hyperdrive_player_pos[1] and mouse[1] <= statut_hyperdrive_player_pos[1] + statut_hyperdrive_player_size[1] :
+                if succès_temps_2_player :
+                    if i_meme_sélectionné_player != 5 :
+                        i_meme_sélectionné_player = 5
+
+                fenêtre_actuelle = rareté_épique_joueur_1
+
+            if mouse[0] >= statut_nope_player_pos[0] and mouse[0] <= statut_nope_player_pos[0] + statut_nope_player_size[0] and mouse[1] >= statut_nope_player_pos[1] and mouse[1] <= statut_nope_player_pos[1] + statut_nope_player_size[1] :
+                if succès_score_2_player :
+                    if i_meme_sélectionné_player != 6 :
+                        i_meme_sélectionné_player = 6
+
+                fenêtre_actuelle = rareté_épique_joueur_1
+
+            if mouse[0] >= statut_gandalf_player_pos[0] and mouse[0] <= statut_gandalf_player_pos[0] + statut_gandalf_player_size[0] and mouse[1] >= statut_gandalf_player_pos[1] and mouse[1] <= statut_gandalf_player_pos[1] + statut_gandalf_player_size[1] :
+                if succès_frôlements_2_player :
+                    if i_meme_sélectionné_player != 7 :
+                        i_meme_sélectionné_player = 7
+
+                fenêtre_actuelle = rareté_épique_joueur_1
+
+            if mouse[0] >= statut_death_star_player_pos[0] and mouse[0] <= statut_death_star_player_pos[0] + statut_death_star_player_size[0] and mouse[1] >= statut_death_star_player_pos[1] and mouse[1] <= statut_death_star_player_pos[1] + statut_death_star_player_size[1] :
+                if succès_collectibles_2_player :
+                    if i_meme_sélectionné_player != 8 :
+                        i_meme_sélectionné_player = 8
+
+                fenêtre_actuelle = rareté_épique_joueur_1
+
+            if mouse[0] >= statut_thanos_player_pos[0] and mouse[0] <= statut_thanos_player_pos[0] + statut_thanos_player_size[0] and mouse[1] >= statut_thanos_player_pos[1] and mouse[1] <= statut_thanos_player_pos[1] + statut_thanos_player_size[1] :
+                if succès_temps_caché_player :
+                    if i_meme_sélectionné_player != 9 :
+                        i_meme_sélectionné_player = 9
+
+                fenêtre_actuelle = rareté_légendaire_joueur_1
+
+            if mouse[0] >= statut_c_est_quoi_ce_monde_player_pos[0] and mouse[0] <= statut_c_est_quoi_ce_monde_player_pos[0] + statut_c_est_quoi_ce_monde_player_size[0] and mouse[1] >= statut_c_est_quoi_ce_monde_player_pos[1] and mouse[1] <= statut_c_est_quoi_ce_monde_player_pos[1] + statut_c_est_quoi_ce_monde_player_size[1] :
+                if succès_score_caché_player :
+                    if i_meme_sélectionné_player != 10 :
+                        i_meme_sélectionné_player = 10
+
+                fenêtre_actuelle = rareté_légendaire_joueur_1
+
+            if mouse[0] >= statut_virtual_insanity_player_pos[0] and mouse[0] <= statut_virtual_insanity_player_pos[0] + statut_virtual_insanity_player_size[0] and mouse[1] >= statut_virtual_insanity_player_pos[1] and mouse[1] <= statut_virtual_insanity_player_pos[1] + statut_virtual_insanity_player_size[1] :
+                if succès_frôlements_caché_player :
+                    if i_meme_sélectionné_player != 11 :
+                        i_meme_sélectionné_player = 11
+
+                fenêtre_actuelle = rareté_légendaire_joueur_1
+
+            if mouse[0] >= statut_la_peace_player_pos[0] and mouse[0] <= statut_la_peace_player_pos[0] + statut_la_peace_player_size[0] and mouse[1] >= statut_la_peace_player_pos[1] and mouse[1] <= statut_la_peace_player_pos[1] + statut_la_peace_player_size[1] :
+                if succès_collectibles_caché_player :
+                    if i_meme_sélectionné_player != 12 :
+                        i_meme_sélectionné_player = 12
+
+                fenêtre_actuelle = rareté_légendaire_joueur_1
+
+
+            if mouse[0] >= statut_red_bull_player2_pos[0] and mouse[0] <= statut_red_bull_player2_pos[0] + statut_red_bull_player2_size[0] and mouse[1] >= statut_red_bull_player2_pos[1] and mouse[1] <= statut_red_bull_player2_pos[1] + statut_red_bull_player2_size[1] :
+                if succès_temps_1_player_2 :
+                    i_meme_sélectionné_player_2 = 1
+                    cooldown_i_meme_rare_sélectionné_player_2 = cooldown_i_meme_red_bull_player_2
+                    cooldown_i_meme_sélectionné_player_2 = cooldown_i_meme_rare_sélectionné_player_2
+
+                fenêtre_actuelle = rareté_rare_joueur_2
+
+            if mouse[0] >= statut_disparition_player2_pos[0] and mouse[0] <= statut_disparition_player2_pos[0] + statut_disparition_player2_size[0] and mouse[1] >= statut_disparition_player2_pos[1] and mouse[1] <= statut_disparition_player2_pos[1] + statut_disparition_player2_size[1] :
+                if succès_score_1_player_2 :
+                    if i_meme_sélectionné_player_2 != 2 :
+                        cooldown_i_meme_rare_sélectionné_player_2 = cooldown_i_meme_disparition_player_2
+                        cooldown_i_meme_sélectionné_player_2 = cooldown_i_meme_rare_sélectionné_player_2
+                        i_meme_sélectionné_player_2 = 2
+                
+                fenêtre_actuelle = rareté_rare_joueur_2
+
+            if mouse[0] >= statut_jackpot_player2_pos[0] and mouse[0] <= statut_jackpot_player2_pos[0] + statut_jackpot_player2_size[0] and mouse[1] >= statut_jackpot_player2_pos[1] and mouse[1] <= statut_jackpot_player2_pos[1] + statut_jackpot_player2_size[1] :
+                if succès_frôlements_1_player_2 :
+                    if i_meme_sélectionné_player_2 != 3 :
+                        i_meme_sélectionné_player_2 = 3
+
+                fenêtre_actuelle = rareté_rare_joueur_2
+
+            if mouse[0] >= statut_devil_never_cry_player2_pos[0] and mouse[0] <= statut_devil_never_cry_player2_pos[0] + statut_devil_never_cry_player2_size[0] and mouse[1] >= statut_devil_never_cry_player2_pos[1] and mouse[1] <= statut_devil_never_cry_player2_pos[1] + statut_devil_never_cry_player2_size[1] :
+                if succès_collectibles_1_player_2 :
+                    if i_meme_sélectionné_player_2 != 4 :
+                        i_meme_sélectionné_player_2 = 4
+
+                fenêtre_actuelle = rareté_rare_joueur_2
+
+            if mouse[0] >= statut_hyperdrive_player2_pos[0] and mouse[0] <= statut_hyperdrive_player2_pos[0] + statut_hyperdrive_player2_size[0] and mouse[1] >= statut_hyperdrive_player2_pos[1] and mouse[1] <= statut_hyperdrive_player2_pos[1] + statut_hyperdrive_player2_size[1] :
+                if succès_temps_2_player_2 :
+                    if i_meme_sélectionné_player_2 != 5 :
+                        i_meme_sélectionné_player_2 = 5
+
+                fenêtre_actuelle = rareté_épique_joueur_2
+
+            if mouse[0] >= statut_nope_player2_pos[0] and mouse[0] <= statut_nope_player2_pos[0] + statut_nope_player2_size[0] and mouse[1] >= statut_nope_player2_pos[1] and mouse[1] <= statut_nope_player2_pos[1] + statut_nope_player2_size[1] :
+                if succès_score_2_player_2 :
+                    if i_meme_sélectionné_player_2 != 6 :
+                        i_meme_sélectionné_player_2 = 6
+
+                fenêtre_actuelle = rareté_épique_joueur_2
+
+            if mouse[0] >= statut_gandalf_player2_pos[0] and mouse[0] <= statut_gandalf_player2_pos[0] + statut_gandalf_player2_size[0] and mouse[1] >= statut_gandalf_player2_pos[1] and mouse[1] <= statut_gandalf_player2_pos[1] + statut_gandalf_player2_size[1] :
+                if succès_frôlements_2_player_2 :
+                    if i_meme_sélectionné_player_2 != 7 :
+                        i_meme_sélectionné_player_2 = 7
+
+                fenêtre_actuelle = rareté_épique_joueur_2
+
+            if mouse[0] >= statut_death_star_player2_pos[0] and mouse[0] <= statut_death_star_player2_pos[0] + statut_death_star_player2_size[0] and mouse[1] >= statut_death_star_player2_pos[1] and mouse[1] <= statut_death_star_player2_pos[1] + statut_death_star_player2_size[1] :
+                if succès_collectibles_2_player_2 :
+                    if i_meme_sélectionné_player_2 != 8 :
+                        i_meme_sélectionné_player_2 = 8
+
+                fenêtre_actuelle = rareté_épique_joueur_2
+
+            if mouse[0] >= statut_thanos_player2_pos[0] and mouse[0] <= statut_thanos_player2_pos[0] + statut_thanos_player2_size[0] and mouse[1] >= statut_thanos_player2_pos[1] and mouse[1] <= statut_thanos_player2_pos[1] + statut_thanos_player2_size[1] :
+                if succès_temps_caché_player_2 :
+                    if i_meme_sélectionné_player_2 != 9 :
+                        i_meme_sélectionné_player_2 = 9
+
+                fenêtre_actuelle = rareté_légendaire_joueur_2
+
+            if mouse[0] >= statut_c_est_quoi_ce_monde_player2_pos[0] and mouse[0] <= statut_c_est_quoi_ce_monde_player2_pos[0] + statut_c_est_quoi_ce_monde_player2_size[0] and mouse[1] >= statut_c_est_quoi_ce_monde_player2_pos[1] and mouse[1] <= statut_c_est_quoi_ce_monde_player2_pos[1] + statut_c_est_quoi_ce_monde_player2_size[1] :
+                if succès_score_caché_player_2 :
+                    if i_meme_sélectionné_player_2 != 10 :
+                        i_meme_sélectionné_player_2 = 10
+
+                fenêtre_actuelle = rareté_légendaire_joueur_2
+
+            if mouse[0] >= statut_virtual_insanity_player2_pos[0] and mouse[0] <= statut_virtual_insanity_player2_pos[0] + statut_virtual_insanity_player2_size[0] and mouse[1] >= statut_virtual_insanity_player2_pos[1] and mouse[1] <= statut_virtual_insanity_player2_pos[1] + statut_virtual_insanity_player2_size[1] :
+                if succès_frôlements_caché_player_2 :
+                    if i_meme_sélectionné_player_2 != 11 :
+                        i_meme_sélectionné_player_2 = 11
+
+                fenêtre_actuelle = rareté_légendaire_joueur_2
+
+            if mouse[0] >= statut_la_peace_player2_pos[0] and mouse[0] <= statut_la_peace_player2_pos[0] + statut_la_peace_player2_size[0] and mouse[1] >= statut_la_peace_player2_pos[1] and mouse[1] <= statut_la_peace_player2_pos[1] + statut_la_peace_player2_size[1] :
+                if succès_collectibles_caché_player_2 :
+                    if i_meme_sélectionné_player_2 != 12 :
+                        i_meme_sélectionné_player_2 = 12
+
+                fenêtre_actuelle = rareté_légendaire_joueur_2
+
 
             if fenêtre_actuelle == sélection_joueurs :
                 screen.fill("#0B041F")
