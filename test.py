@@ -4,6 +4,7 @@ import time
 import pygame
 from pygame.locals import (KEYDOWN, QUIT, K_ESCAPE, K_LEFT, K_RIGHT, K_UP, K_DOWN, K_q, K_d, K_z, K_s, K_LSHIFT, K_RSHIFT, MOUSEBUTTONDOWN)
 pygame.init()
+pygame.mixer.init()
 
 resolution = pygame.display.Info()
 
@@ -19,6 +20,18 @@ Technos = os.path.join(dossier_script, "assets", "fonts", "Technos.otf")
 Score_Board_St = os.path.join(dossier_script, "assets", "fonts", "Score Board St.ttf")
 Arcade = os.path.join(dossier_script, "assets", "fonts", "ARCADE.ttf")
 
+red_bull_son = os.path.join(dossier_script, "assets", "sound", "anyme-red-bull.mp3")
+disparition_son = os.path.join(dossier_script, "assets", "sound", "disparition.mp3")
+jackpot_son = os.path.join(dossier_script, "assets", "sound", "jackpot.mp3")
+devil_never_cry_son = os.path.join(dossier_script, "assets", "sound", "devils-never-cry-meme.mp3")
+hyperdrive_son = os.path.join(dossier_script, "assets", "sound", "hyperdrive.mp3")
+nope_son = os.path.join(dossier_script, "assets", "sound", "nope.mp3")
+gandalf_son = os.path.join(dossier_script, "assets", "sound", "gandalf.mp3")
+death_star_son = os.path.join(dossier_script, "assets", "sound", "death-star.mp3")
+thanos_son = os.path.join(dossier_script, "assets", "sound", "thanos.mp3")
+cest_quoi_ce_monde_son = os.path.join(dossier_script, "assets", "sound", "cest-quoi-ce-monde.mp3")
+virtual_insanity_son = os.path.join(dossier_script, "assets", "sound", "virtual-insanity.mp3")
+la_peace_son = os.path.join(dossier_script, "assets", "sound", "la-peace.mp3")
 
 
 
@@ -138,15 +151,17 @@ executing_i_meme_red_bull_player_2 = False
 executing_time_i_meme_red_bull_player = 0
 executing_time_i_meme_red_bull_player_2 = 0
 
-def i_meme_red_bull(pressed_keys, cooldown_i_meme_red_bull_player, cooldown_i_meme_red_bull_player_2, i_meme_sélectionné_player, i_meme_sélectionné_player_2, executing_i_meme_red_bull_player, executing_i_meme_red_bull_player_2, executing_time_i_meme_red_bull_player, executing_time_i_meme_red_bull_player_2) :
+def i_meme_red_bull(pressed_keys, red_bull_son, cooldown_i_meme_red_bull_player, cooldown_i_meme_red_bull_player_2, i_meme_sélectionné_player, i_meme_sélectionné_player_2, executing_i_meme_red_bull_player, executing_i_meme_red_bull_player_2, executing_time_i_meme_red_bull_player, executing_time_i_meme_red_bull_player_2) :
     if i_meme_sélectionné_player == 1 :
         if cooldown_i_meme_red_bull_player > 0 :
             cooldown_i_meme_red_bull_player -= 1
 
         if cooldown_i_meme_red_bull_player == 0 :
             if pressed_keys[K_LSHIFT] :
-                executing_i_meme_red_bull_player == True
-                cooldown_i_meme_red_bull_player == 600
+                executing_i_meme_red_bull_player = True
+                cooldown_i_meme_red_bull_player = 600
+                pygame.mixer.music.load(red_bull_son)
+                pygame.mixer.music.play(0)
         
         if executing_i_meme_red_bull_player :
             executing_time_i_meme_red_bull_player += 1
@@ -161,8 +176,10 @@ def i_meme_red_bull(pressed_keys, cooldown_i_meme_red_bull_player, cooldown_i_me
 
         if cooldown_i_meme_red_bull_player_2 == 0 :
             if pressed_keys[K_RSHIFT] :
-                executing_i_meme_red_bull_player_2 == True
-                cooldown_i_meme_red_bull_player_2 == 600
+                executing_i_meme_red_bull_player_2 = True
+                cooldown_i_meme_red_bull_player_2 = 600
+                pygame.mixer.music.load(red_bull_son)
+                pygame.mixer.music.play(0)
 
         if executing_i_meme_red_bull_player_2 :
             executing_time_i_meme_red_bull_player_2 += 1
@@ -180,15 +197,17 @@ executing_i_meme_disparition_player_2 = False
 executing_time_i_meme_disparition_player = 0
 executing_time_i_meme_disparition_player_2 = 0
 
-def i_meme_disparition(pressed_keys, i_meme_sélectionné_player, i_meme_sélectionné_player_2, cooldown_i_meme_disparition_player, cooldown_i_meme_disparition_player_2, executing_i_meme_disparition_player, executing_i_meme_disparition_player_2, executing_time_i_meme_disparition_player, executing_time_i_meme_disparition_player_2) :
+def i_meme_disparition(pressed_keys, disparition_son, i_meme_sélectionné_player, i_meme_sélectionné_player_2, cooldown_i_meme_disparition_player, cooldown_i_meme_disparition_player_2, executing_i_meme_disparition_player, executing_i_meme_disparition_player_2, executing_time_i_meme_disparition_player, executing_time_i_meme_disparition_player_2) :
     if i_meme_sélectionné_player == 2 :
         if cooldown_i_meme_disparition_player > 0 :
             cooldown_i_meme_disparition_player -= 1
 
         if cooldown_i_meme_disparition_player == 0 :
             if pressed_keys[K_LSHIFT] :
-                executing_i_meme_disparition_player == True
-                cooldown_i_meme_disparition_player == 600
+                executing_i_meme_disparition_player = True
+                cooldown_i_meme_disparition_player = 600
+                pygame.mixer.music.load(disparition_son)
+                pygame.mixer.music.play(0)
         
         if executing_i_meme_disparition_player :
             executing_time_i_meme_disparition_player += 1
@@ -203,8 +222,10 @@ def i_meme_disparition(pressed_keys, i_meme_sélectionné_player, i_meme_sélect
 
         if cooldown_i_meme_disparition_player_2 == 0 :
             if pressed_keys[K_RSHIFT] :
-                executing_i_meme_disparition_player_2 == True
-                cooldown_i_meme_disparition_player_2 == 600
+                executing_i_meme_disparition_player_2 = True
+                cooldown_i_meme_disparition_player_2 = 600
+                pygame.mixer.music.load(disparition_son)
+                pygame.mixer.music.play(0)
 
         if executing_i_meme_disparition_player_2 :
             executing_time_i_meme_disparition_player_2 += 1
@@ -218,14 +239,18 @@ def i_meme_disparition(pressed_keys, i_meme_sélectionné_player, i_meme_sélect
 utilisé_i_meme_jackpot_player = False
 utilisé_i_meme_jackpot_player_2 = False
 
-def i_meme_jackpot(i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2) :
+def i_meme_jackpot(jackpot_son, i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2) :
     if i_meme_sélectionné_player == 3 :
         if utilisé_i_meme_jackpot_player == False :
             score_player *= 2
+            pygame.mixer.music.load(jackpot_son)
+            pygame.mixer.music.play(0)
             utilisé_i_meme_jackpot_player = True
     if i_meme_sélectionné_player_2 == 3 :
         if utilisé_i_meme_jackpot_player_2 == False :
             score_player_2 *= 2
+            pygame.mixer.music.load(jackpot_son)
+            pygame.mixer.music.play(0)
             utilisé_i_meme_jackpot_player_2 = True
 
     return score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2
@@ -237,11 +262,13 @@ invulnérabilité_temporaire_player_2 = False
 time_invulnérabilité_temporaire_player = 0
 time_invulnérabilité_temporaire_player_2 = 0
 
-def i_meme_devil_never_cry(i_meme_sélectionné_player, i_meme_sélectionné_player_2, mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2) :
+def i_meme_devil_never_cry(devil_never_cry_son, i_meme_sélectionné_player, i_meme_sélectionné_player_2, mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2) :
     if i_meme_sélectionné_player == 4 :
         if mode_actuel == MODE_WIN2_LOSE1 :
             if utilisé_i_meme_devil_never_cry_player == False :
                 mode_actuel = MODE_GAME
+                pygame.mixer.music.load(devil_never_cry_son)
+                pygame.mixer.music.play(0)
                 utilisé_i_meme_devil_never_cry_player = True
                 invulnérabilité_temporaire_player = True
         if invulnérabilité_temporaire_player :
@@ -254,6 +281,8 @@ def i_meme_devil_never_cry(i_meme_sélectionné_player, i_meme_sélectionné_pla
         if mode_actuel == MODE_WIN1_LOSE2 :
             if utilisé_i_meme_devil_never_cry_player_2 == False :
                 mode_actuel = MODE_GAME
+                pygame.mixer.music.load(devil_never_cry_son)
+                pygame.mixer.music.play(0)
                 utilisé_i_meme_devil_never_cry_player_2 = True
                 invulnérabilité_temporaire_player_2 = True
         if invulnérabilité_temporaire_player_2 :
@@ -267,21 +296,23 @@ def i_meme_devil_never_cry(i_meme_sélectionné_player, i_meme_sélectionné_pla
 cooldown_i_meme_hyperdrive_player = 1200
 cooldown_i_meme_hyperdrive_player_2 = 1200
 
-def i_meme_hyperdrive(pressed_keys, i_meme_sélectionné_player, i_meme_sélectionné_player_2, cooldown_i_meme_hyperdrive_player, cooldown_i_meme_hyperdrive_player_2, player_pos, player_pos_2, player_size, player_size_2, grid_pos, grid_size, executing_lightcycle_movement_q, executing_lightcycle_movement_d, executing_lightcycle_movement_z, executing_lightcycle_movement_s, executing_lightcycle_movement_left, executing_lightcycle_movement_right, executing_lightcycle_movement_up, executing_lightcycle_movement_down) :
+def i_meme_hyperdrive(pressed_keys, hyperdrive_son, i_meme_sélectionné_player, i_meme_sélectionné_player_2, cooldown_i_meme_hyperdrive_player, cooldown_i_meme_hyperdrive_player_2, player_pos, player_pos_2, player_size, player_size_2, grid_pos, grid_size, executing_lightcycle_movement_q, executing_lightcycle_movement_d, executing_lightcycle_movement_z, executing_lightcycle_movement_s, executing_lightcycle_movement_left, executing_lightcycle_movement_right, executing_lightcycle_movement_up, executing_lightcycle_movement_down) :
     if i_meme_sélectionné_player == 5 :
         if cooldown_i_meme_hyperdrive_player > 0 :
             cooldown_i_meme_hyperdrive_player -= 1
 
         if cooldown_i_meme_hyperdrive_player == 0 :
             if pressed_keys[K_LSHIFT] :
+                pygame.mixer.music.load(hyperdrive_son)
+                pygame.mixer.music.play(0)
                 if executing_lightcycle_movement_q :
-                    player_pos[0] = grid_pos[0] + 100
+                    player_pos[0] = grid_pos[0] + 300
                 if executing_lightcycle_movement_d :
-                    player_pos[0] = grid_pos[0] + grid_size[0] - player_size[0] - 100
+                    player_pos[0] = grid_pos[0] + grid_size[0] - player_size[0] - 300
                 if executing_lightcycle_movement_z :
-                    player_pos[1] = grid_pos[1] + 100
+                    player_pos[1] = grid_pos[1] + 300
                 if executing_lightcycle_movement_s :
-                    player_pos[1] = grid_pos[1] + grid_size[1] - player_size[1] - 100
+                    player_pos[1] = grid_pos[1] + grid_size[1] - player_size[1] - 300
                 cooldown_i_meme_hyperdrive_player = 1200
 
     if i_meme_sélectionné_player_2 == 5 :
@@ -290,14 +321,16 @@ def i_meme_hyperdrive(pressed_keys, i_meme_sélectionné_player, i_meme_sélecti
 
         if cooldown_i_meme_hyperdrive_player_2 == 0 :
             if pressed_keys[K_RSHIFT] :
+                pygame.mixer.music.load(hyperdrive_son)
+                pygame.mixer.music.play(0)
                 if executing_lightcycle_movement_left :
-                    player_pos_2[0] = grid_pos[0] + 100
+                    player_pos_2[0] = grid_pos[0] + 300
                 if executing_lightcycle_movement_right :
-                    player_pos_2[0] = grid_pos[0] + grid_size[0] - player_size_2[0] - 100
+                    player_pos_2[0] = grid_pos[0] + grid_size[0] - player_size_2[0] - 300
                 if executing_lightcycle_movement_up :
-                    player_pos_2[1] = grid_pos[1] + 100
+                    player_pos_2[1] = grid_pos[1] + 300
                 if executing_lightcycle_movement_down :
-                    player_pos_2[1] = grid_pos[1] + grid_size[1] - player_size_2[1] - 100
+                    player_pos_2[1] = grid_pos[1] + grid_size[1] - player_size_2[1] - 300
                 cooldown_i_meme_hyperdrive_player_2 = 1200
 
     return cooldown_i_meme_hyperdrive_player, cooldown_i_meme_hyperdrive_player_2, player_pos, player_pos_2
@@ -307,7 +340,7 @@ utilisé_i_meme_nope_player_2 = False
 cooldown_i_meme_nope_player = 1200
 cooldown_i_meme_nope_player_2 = 1200
 
-def i_meme_nope(pressed_keys, i_meme_sélectionné_player, i_meme_sélectionné_player_2, cooldown_i_meme_nope_player, cooldown_i_meme_nope_player_2, utilisé_i_meme_nope_player, utilisé_i_meme_nope_player_2, executing_i_meme_red_bull_player, executing_i_meme_red_bull_player_2, executing_i_meme_disparition_player, executing_i_meme_disparition_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, executing_i_meme_c_est_quoi_ce_monde_player, executing_i_meme_c_est_quoi_ce_monde_player_2, executing_i_meme_virtual_insanity_player, executing_i_meme_virtual_insanity_player_2) :
+def i_meme_nope(pressed_keys, nope_son, i_meme_sélectionné_player, i_meme_sélectionné_player_2, cooldown_i_meme_nope_player, cooldown_i_meme_nope_player_2, utilisé_i_meme_nope_player, utilisé_i_meme_nope_player_2, executing_i_meme_red_bull_player, executing_i_meme_red_bull_player_2, executing_i_meme_disparition_player, executing_i_meme_disparition_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, executing_i_meme_c_est_quoi_ce_monde_player, executing_i_meme_c_est_quoi_ce_monde_player_2, executing_i_meme_virtual_insanity_player, executing_i_meme_virtual_insanity_player_2) :
     if i_meme_sélectionné_player == 6 :
         if cooldown_i_meme_nope_player > 0 :
             cooldown_i_meme_nope_player -= 1
@@ -315,6 +348,8 @@ def i_meme_nope(pressed_keys, i_meme_sélectionné_player, i_meme_sélectionné_
         if cooldown_i_meme_nope_player == 0 :
             if pressed_keys[K_LSHIFT] :
                 if utilisé_i_meme_nope_player == False :
+                    pygame.mixer.music.load(nope_son)
+                    pygame.mixer.music.play(0)
                     if executing_i_meme_red_bull_player_2 :
                         executing_i_meme_red_bull_player_2 = False
                     if executing_i_meme_disparition_player_2 :
@@ -335,6 +370,8 @@ def i_meme_nope(pressed_keys, i_meme_sélectionné_player, i_meme_sélectionné_
         if cooldown_i_meme_nope_player_2 == 0 :
             if pressed_keys[K_RSHIFT] :
                 if utilisé_i_meme_nope_player_2 == False :
+                    pygame.mixer.music.load(nope_son)
+                    pygame.mixer.music.play(0)
                     if executing_i_meme_red_bull_player :
                         executing_i_meme_red_bull_player = False
                     if executing_i_meme_disparition_player :
@@ -464,13 +501,15 @@ gandalf_murs_finaux_petit_2_down = []
 gandalf_murs_finaux_petit_2_down_pos = []
 gandalf_murs_finaux_petit_2_down_size = []
 
-def i_meme_gandalf(pressed_keys, player_pos, player_pos_2, executing_lightcycle_movement_q, executing_lightcycle_movement_d, executing_lightcycle_movement_z, executing_lightcycle_movement_s, executing_lightcycle_movement_left, executing_lightcycle_movement_right, executing_lightcycle_movement_up, executing_lightcycle_movement_down, i_meme_sélectionné_player, i_meme_sélectionné_player_2, gandalf_murs_petit_1, gandalf_murs_grand, gandalf_murs_petit_2, cooldown_i_meme_gandalf_player, cooldown_i_meme_gandalf_player_2, gandalf_murs_finaux_petit_1_q, gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size, gandalf_murs_finaux_grand_q, gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size, gandalf_murs_finaux_petit_2_q, gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size, gandalf_murs_finaux_petit_1_d, gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size, gandalf_murs_finaux_grand_d, gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size, gandalf_murs_finaux_petit_2_d, gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size, gandalf_murs_finaux_petit_1_z, gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size, gandalf_murs_finaux_grand_z, gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size, gandalf_murs_finaux_petit_2_z, gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size, gandalf_murs_finaux_petit_1_s, gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size, gandalf_murs_finaux_grand_s, gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size, gandalf_murs_finaux_petit_2_s, gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size, gandalf_murs_finaux_petit_1_left, gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size, gandalf_murs_finaux_grand_left, gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size, gandalf_murs_finaux_petit_2_left, gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size, gandalf_murs_finaux_petit_1_right, gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size, gandalf_murs_finaux_grand_right, gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size, gandalf_murs_finaux_petit_2_right, gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size, gandalf_murs_finaux_petit_1_up, gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size, gandalf_murs_finaux_grand_up,gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size, gandalf_murs_finaux_petit_2_up, gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size, gandalf_murs_finaux_petit_1_down, gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size, gandalf_murs_finaux_grand_down, gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size, gandalf_murs_finaux_petit_2_down, gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size) :
+def i_meme_gandalf(pressed_keys, gandalf_son, player_pos, player_pos_2, executing_lightcycle_movement_q, executing_lightcycle_movement_d, executing_lightcycle_movement_z, executing_lightcycle_movement_s, executing_lightcycle_movement_left, executing_lightcycle_movement_right, executing_lightcycle_movement_up, executing_lightcycle_movement_down, i_meme_sélectionné_player, i_meme_sélectionné_player_2, gandalf_murs_petit_1, gandalf_murs_grand, gandalf_murs_petit_2, cooldown_i_meme_gandalf_player, cooldown_i_meme_gandalf_player_2, gandalf_murs_finaux_petit_1_q, gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size, gandalf_murs_finaux_grand_q, gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size, gandalf_murs_finaux_petit_2_q, gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size, gandalf_murs_finaux_petit_1_d, gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size, gandalf_murs_finaux_grand_d, gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size, gandalf_murs_finaux_petit_2_d, gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size, gandalf_murs_finaux_petit_1_z, gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size, gandalf_murs_finaux_grand_z, gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size, gandalf_murs_finaux_petit_2_z, gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size, gandalf_murs_finaux_petit_1_s, gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size, gandalf_murs_finaux_grand_s, gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size, gandalf_murs_finaux_petit_2_s, gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size, gandalf_murs_finaux_petit_1_left, gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size, gandalf_murs_finaux_grand_left, gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size, gandalf_murs_finaux_petit_2_left, gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size, gandalf_murs_finaux_petit_1_right, gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size, gandalf_murs_finaux_grand_right, gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size, gandalf_murs_finaux_petit_2_right, gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size, gandalf_murs_finaux_petit_1_up, gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size, gandalf_murs_finaux_grand_up,gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size, gandalf_murs_finaux_petit_2_up, gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size, gandalf_murs_finaux_petit_1_down, gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size, gandalf_murs_finaux_grand_down, gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size, gandalf_murs_finaux_petit_2_down, gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size) :
     if i_meme_sélectionné_player == 7 :
         if cooldown_i_meme_gandalf_player > 0 :
             cooldown_i_meme_gandalf_player -= 1
 
         if cooldown_i_meme_gandalf_player == 0 :
             if pressed_keys[K_LSHIFT] :
+                pygame.mixer.music.load(gandalf_son)
+                pygame.mixer.music.play(0)
                 if executing_lightcycle_movement_left :
                     m1 = None
                     m1_pos = [5, 5]
@@ -771,6 +810,8 @@ def i_meme_gandalf(pressed_keys, player_pos, player_pos_2, executing_lightcycle_
 
         if cooldown_i_meme_gandalf_player_2 == 0 :
             if pressed_keys[K_RSHIFT] :
+                pygame.mixer.music.load(gandalf_son)
+                pygame.mixer.music.play(0)
                 if executing_lightcycle_movement_q :
                     m1 = None
                     m1_pos = [5, 5]
@@ -1067,7 +1108,7 @@ def i_meme_gandalf(pressed_keys, player_pos, player_pos_2, executing_lightcycle_
 
     return cooldown_i_meme_gandalf_player, cooldown_i_meme_gandalf_player_2, gandalf_murs_finaux_petit_1_q, gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size, gandalf_murs_finaux_grand_q, gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size, gandalf_murs_finaux_petit_2_q, gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size, gandalf_murs_finaux_petit_1_d, gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size, gandalf_murs_finaux_grand_d, gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size, gandalf_murs_finaux_petit_2_d, gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size, gandalf_murs_finaux_petit_1_z, gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size, gandalf_murs_finaux_grand_z, gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size, gandalf_murs_finaux_petit_2_z, gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size, gandalf_murs_finaux_petit_1_s, gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size, gandalf_murs_finaux_grand_s, gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size, gandalf_murs_finaux_petit_2_s, gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size, gandalf_murs_finaux_petit_1_left, gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size, gandalf_murs_finaux_grand_left, gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size, gandalf_murs_finaux_petit_2_left, gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size, gandalf_murs_finaux_petit_1_right, gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size, gandalf_murs_finaux_grand_right, gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size, gandalf_murs_finaux_petit_2_right, gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size, gandalf_murs_finaux_petit_1_up, gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size, gandalf_murs_finaux_grand_up,gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size, gandalf_murs_finaux_petit_2_up, gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size, gandalf_murs_finaux_petit_1_down, gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size, gandalf_murs_finaux_grand_down, gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size, gandalf_murs_finaux_petit_2_down, gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size
 
-def collision_gandalf_murs() :
+def collision_gandalf_murs(mode_actuel, executing_i_meme_disparition_player, executing_i_meme_disparition_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, player_pos, player_pos_2, executing_lightcycle_movement_q, executing_lightcycle_movement_d, executing_lightcycle_movement_z, executing_lightcycle_movement_s, executing_lightcycle_movement_left, executing_lightcycle_movement_right, executing_lightcycle_movement_up, executing_lightcycle_movement_down, i_meme_sélectionné_player, i_meme_sélectionné_player_2, gandalf_murs_petit_1, gandalf_murs_grand, gandalf_murs_petit_2, cooldown_i_meme_gandalf_player, cooldown_i_meme_gandalf_player_2, gandalf_murs_finaux_petit_1_q, gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size, gandalf_murs_finaux_grand_q, gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size, gandalf_murs_finaux_petit_2_q, gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size, gandalf_murs_finaux_petit_1_d, gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size, gandalf_murs_finaux_grand_d, gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size, gandalf_murs_finaux_petit_2_d, gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size, gandalf_murs_finaux_petit_1_z, gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size, gandalf_murs_finaux_grand_z, gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size, gandalf_murs_finaux_petit_2_z, gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size, gandalf_murs_finaux_petit_1_s, gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size, gandalf_murs_finaux_grand_s, gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size, gandalf_murs_finaux_petit_2_s, gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size, gandalf_murs_finaux_petit_1_left, gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size, gandalf_murs_finaux_grand_left, gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size, gandalf_murs_finaux_petit_2_left, gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size, gandalf_murs_finaux_petit_1_right, gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size, gandalf_murs_finaux_grand_right, gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size, gandalf_murs_finaux_petit_2_right, gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size, gandalf_murs_finaux_petit_1_up, gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size, gandalf_murs_finaux_grand_up,gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size, gandalf_murs_finaux_petit_2_up, gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size, gandalf_murs_finaux_petit_1_down, gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size, gandalf_murs_finaux_grand_down, gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size, gandalf_murs_finaux_petit_2_down, gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size) :
     if executing_lightcycle_movement_q :
         for i, j in zip(gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size) :
             if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
@@ -2197,6 +2238,8 @@ def collision_gandalf_murs() :
                 if invulnérabilité_temporaire_player_2 == False :
                     mode_actuel = MODE_WIN1_LOSE2
 
+    return mode_actuel
+
 
 
 
@@ -3083,254 +3126,199 @@ while running :
         
         #-------------------------------------------------------------------------------Q---------------------------------------------------------------------------
 
-        if executing_lightcycle_movement_q :
-            for i, j in zip(traînées_finales_pos_z, traînées_finales_size_z) :
-                if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-            
-            for i, j in zip(traînées_finales_pos_s, traînées_finales_size_s) :
-                if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+        if executing_i_meme_disparition_player == False :
+            if executing_lightcycle_movement_q :
+                for i, j in zip(traînées_finales_pos_z, traînées_finales_size_z) :
+                    if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
+                
+                for i, j in zip(traînées_finales_pos_s, traînées_finales_size_s) :
+                    if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
-            for i, j in zip(traînées_finales_pos_up, traînées_finales_size_up) :
-                if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+                for i, j in zip(traînées_finales_pos_up, traînées_finales_size_up) :
+                    if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
-            for i, j in zip(traînées_finales_pos_down, traînées_finales_size_down) :
-                if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+                for i, j in zip(traînées_finales_pos_down, traînées_finales_size_down) :
+                    if player_pos[0] <= i[0] + 5 and player_pos[0] >= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
         #-------------------------------------------------------------------------------D---------------------------------------------------------------------------
 
-        if executing_lightcycle_movement_d :
-            for i, j in zip(traînées_finales_pos_z, traînées_finales_size_z) :
-                if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+        if executing_i_meme_disparition_player == False :
+            if executing_lightcycle_movement_d :
+                for i, j in zip(traînées_finales_pos_z, traînées_finales_size_z) :
+                    if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
-            for i, j in zip(traînées_finales_pos_s, traînées_finales_size_s) :
-                if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+                for i, j in zip(traînées_finales_pos_s, traînées_finales_size_s) :
+                    if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
-            for i, j in zip(traînées_finales_pos_up, traînées_finales_size_up) :
-                if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+                for i, j in zip(traînées_finales_pos_up, traînées_finales_size_up) :
+                    if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
-            for i, j in zip(traînées_finales_pos_down, traînées_finales_size_down) :
-                if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+                for i, j in zip(traînées_finales_pos_down, traînées_finales_size_down) :
+                    if player_pos[0] + 25 >= i[0] and player_pos[0] + 20 <= i[0] and player_pos[1] + 24 >= i[1] and player_pos[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
         #-------------------------------------------------------------------------------Z---------------------------------------------------------------------------
 
-        if executing_lightcycle_movement_z :
-            for i, j in zip(traînées_finales_pos_q, traînées_finales_size_q) :
-                if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+        if executing_i_meme_disparition_player == False :
+            if executing_lightcycle_movement_z :
+                for i, j in zip(traînées_finales_pos_q, traînées_finales_size_q) :
+                    if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
-            for i, j in zip(traînées_finales_pos_d, traînées_finales_size_d) :
-                if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+                for i, j in zip(traînées_finales_pos_d, traînées_finales_size_d) :
+                    if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
-            for i, j in zip(traînées_finales_pos_left, traînées_finales_size_left) :
-                if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+                for i, j in zip(traînées_finales_pos_left, traînées_finales_size_left) :
+                    if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
-            for i, j in zip(traînées_finales_pos_right, traînées_finales_size_right) :
-                if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+                for i, j in zip(traînées_finales_pos_right, traînées_finales_size_right) :
+                    if player_pos[1] <= i[1] + 5 and player_pos[1] >= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
         #-------------------------------------------------------------------------------S---------------------------------------------------------------------------
 
-        if executing_lightcycle_movement_s :
-            for i, j in zip(traînées_finales_pos_q, traînées_finales_size_q) :
-                if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+        if executing_i_meme_disparition_player == False :
+            if executing_lightcycle_movement_s :
+                for i, j in zip(traînées_finales_pos_q, traînées_finales_size_q) :
+                    if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
-            for i, j in zip(traînées_finales_pos_d, traînées_finales_size_d) :
-                if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+                for i, j in zip(traînées_finales_pos_d, traînées_finales_size_d) :
+                    if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
-            for i, j in zip(traînées_finales_pos_left, traînées_finales_size_left) :
-                if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+                for i, j in zip(traînées_finales_pos_left, traînées_finales_size_left) :
+                    if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
-            for i, j in zip(traînées_finales_pos_right, traînées_finales_size_right) :
-                if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
-                    if invulnérabilité_temporaire_player == False :
-                        mode_actuel = MODE_WIN2_LOSE1
+                for i, j in zip(traînées_finales_pos_right, traînées_finales_size_right) :
+                    if player_pos[1] + 25 >= i[1] and player_pos[1] + 20 <= i[1] and player_pos[0] + 24 >= i[0] and player_pos[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player == False :
+                            mode_actuel = MODE_WIN2_LOSE1
 
 
         #---------------------------------------------------------------------------Joueur 2------------------------------------------------------------------------
 
         #-----------------------------------------------------------------------------LEFT--------------------------------------------------------------------------
 
-        if executing_lightcycle_movement_left :
-            for i, j in zip(traînées_finales_pos_z, traînées_finales_size_z) :
-                if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+        if executing_i_meme_disparition_player_2 == False :
+            if executing_lightcycle_movement_left :
+                for i, j in zip(traînées_finales_pos_z, traînées_finales_size_z) :
+                    if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
 
-            for i, j in zip(traînées_finales_pos_s, traînées_finales_size_s) :
-                if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+                for i, j in zip(traînées_finales_pos_s, traînées_finales_size_s) :
+                    if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
 
-            for i, j in zip(traînées_finales_pos_up, traînées_finales_size_up) :
-                if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+                for i, j in zip(traînées_finales_pos_up, traînées_finales_size_up) :
+                    if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
 
-            for i, j in zip(traînées_finales_pos_down, traînées_finales_size_down) :
-                if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+                for i, j in zip(traînées_finales_pos_down, traînées_finales_size_down) :
+                    if player_pos_2[0] <= i[0] + 5 and player_pos_2[0] >= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
 
         #-----------------------------------------------------------------------------RIGHT-------------------------------------------------------------------------
 
-        if executing_lightcycle_movement_right :
-            for i, j in zip(traînées_finales_pos_z, traînées_finales_size_z) :
-                if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+        if executing_i_meme_disparition_player_2 == False :
+            if executing_lightcycle_movement_right :
+                for i, j in zip(traînées_finales_pos_z, traînées_finales_size_z) :
+                    if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
 
-            for i, j in zip(traînées_finales_pos_s, traînées_finales_size_s) :
-                if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
 
-            for i, j in zip(traînées_finales_pos_up, traînées_finales_size_up) :
-                if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+                for i, j in zip(traînées_finales_pos_s, traînées_finales_size_s) :
+                    if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
 
-            for i, j in zip(traînées_finales_pos_down, traînées_finales_size_down) :
-                if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+                for i, j in zip(traînées_finales_pos_up, traînées_finales_size_up) :
+                    if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
+
+                for i, j in zip(traînées_finales_pos_down, traînées_finales_size_down) :
+                    if player_pos_2[0] + 25 >= i[0] and player_pos_2[0] + 20 <= i[0] and player_pos_2[1] + 24 >= i[1] and player_pos_2[1] - 1 <= i[1] + j[1] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
 
         #------------------------------------------------------------------------------UP---------------------------------------------------------------------------
 
-        if executing_lightcycle_movement_up :
-            for i, j in zip(traînées_finales_pos_q, traînées_finales_size_q) :
-                if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+        if executing_i_meme_disparition_player_2 == False :
+            if executing_lightcycle_movement_up :
+                for i, j in zip(traînées_finales_pos_q, traînées_finales_size_q) :
+                    if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
 
-            for i, j in zip(traînées_finales_pos_d, traînées_finales_size_d) :
-                if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+                for i, j in zip(traînées_finales_pos_d, traînées_finales_size_d) :
+                    if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
 
-            for i, j in zip(traînées_finales_pos_left, traînées_finales_size_left) :
-                if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+                for i, j in zip(traînées_finales_pos_left, traînées_finales_size_left) :
+                    if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
 
-            for i, j in zip(traînées_finales_pos_right, traînées_finales_size_right) :
-                if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+                for i, j in zip(traînées_finales_pos_right, traînées_finales_size_right) :
+                    if player_pos_2[1] <= i[1] + 5 and player_pos_2[1] >= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
 
         #-----------------------------------------------------------------------------DOWN--------------------------------------------------------------------------
-        
-        if executing_lightcycle_movement_down :
-            for i, j in zip(traînées_finales_pos_q, traînées_finales_size_q) :
-                if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
 
-            for i, j in zip(traînées_finales_pos_d, traînées_finales_size_d) :
-                if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+        if executing_i_meme_disparition_player_2 == False :
+            if executing_lightcycle_movement_down :
+                for i, j in zip(traînées_finales_pos_q, traînées_finales_size_q) :
+                    if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
 
-            for i, j in zip(traînées_finales_pos_left, traînées_finales_size_left) :
-                if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+                for i, j in zip(traînées_finales_pos_d, traînées_finales_size_d) :
+                    if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
 
-            for i, j in zip(traînées_finales_pos_right, traînées_finales_size_right) :
-                if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
-                    if executing_i_meme_disparition_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
-                    if invulnérabilité_temporaire_player_2 == False :
-                        mode_actuel = MODE_WIN1_LOSE2
+                for i, j in zip(traînées_finales_pos_left, traînées_finales_size_left) :
+                    if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
+
+                for i, j in zip(traînées_finales_pos_right, traînées_finales_size_right) :
+                    if player_pos_2[1] + 25 >= i[1] and player_pos_2[1] + 20 <= i[1] and player_pos_2[0] + 24 >= i[0] and player_pos_2[0] - 1 <= i[0] + j[0] :
+                        if invulnérabilité_temporaire_player_2 == False :
+                            mode_actuel = MODE_WIN1_LOSE2
 
         
         for i, j in zip(traînées_finales_q, traînées_finales_pos_q) :
@@ -3373,8 +3361,109 @@ while running :
             screen.blit(player_2, player_pos_2)
 
 
-        cooldown_i_meme_red_bull_player, cooldown_i_meme_red_bull_player_2, executing_i_meme_red_bull_player, executing_i_meme_red_bull_player_2, executing_time_i_meme_red_bull_player, executing_time_i_meme_red_bull_player_2 = i_meme_red_bull(pressed_keys, cooldown_i_meme_red_bull_player, cooldown_i_meme_red_bull_player_2, i_meme_sélectionné_player, i_meme_sélectionné_player_2, executing_i_meme_red_bull_player, executing_i_meme_red_bull_player_2, executing_time_i_meme_red_bull_player, executing_time_i_meme_red_bull_player_2)
-        cooldown_i_meme_disparition_player, cooldown_i_meme_disparition_player_2, executing_i_meme_disparition_player, executing_i_meme_disparition_player_2, executing_time_i_meme_disparition_player, executing_time_i_meme_disparition_player_2 = i_meme_disparition(pressed_keys, i_meme_sélectionné_player, i_meme_sélectionné_player_2, cooldown_i_meme_disparition_player, cooldown_i_meme_disparition_player_2, executing_i_meme_disparition_player, executing_i_meme_disparition_player_2, executing_time_i_meme_disparition_player, executing_time_i_meme_disparition_player_2)
+        cooldown_i_meme_red_bull_player, cooldown_i_meme_red_bull_player_2, executing_i_meme_red_bull_player, executing_i_meme_red_bull_player_2, executing_time_i_meme_red_bull_player, executing_time_i_meme_red_bull_player_2 = i_meme_red_bull(pressed_keys, red_bull_son, cooldown_i_meme_red_bull_player, cooldown_i_meme_red_bull_player_2, i_meme_sélectionné_player, i_meme_sélectionné_player_2, executing_i_meme_red_bull_player, executing_i_meme_red_bull_player_2, executing_time_i_meme_red_bull_player, executing_time_i_meme_red_bull_player_2)
+        cooldown_i_meme_disparition_player, cooldown_i_meme_disparition_player_2, executing_i_meme_disparition_player, executing_i_meme_disparition_player_2, executing_time_i_meme_disparition_player, executing_time_i_meme_disparition_player_2 = i_meme_disparition(pressed_keys, disparition_son, i_meme_sélectionné_player, i_meme_sélectionné_player_2, cooldown_i_meme_disparition_player, cooldown_i_meme_disparition_player_2, executing_i_meme_disparition_player, executing_i_meme_disparition_player_2, executing_time_i_meme_disparition_player, executing_time_i_meme_disparition_player_2)
+        cooldown_i_meme_hyperdrive_player, cooldown_i_meme_hyperdrive_player_2, player_pos, player_pos_2 = i_meme_hyperdrive(pressed_keys, hyperdrive_son, i_meme_sélectionné_player, i_meme_sélectionné_player_2, cooldown_i_meme_hyperdrive_player, cooldown_i_meme_hyperdrive_player_2, player_pos, player_pos_2, player_size, player_size_2, grid_pos, grid_size, executing_lightcycle_movement_q, executing_lightcycle_movement_d, executing_lightcycle_movement_z, executing_lightcycle_movement_s, executing_lightcycle_movement_left, executing_lightcycle_movement_right, executing_lightcycle_movement_up, executing_lightcycle_movement_down)
+
+        cooldown_i_meme_gandalf_player, cooldown_i_meme_gandalf_player_2, gandalf_murs_finaux_petit_1_q, gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size, gandalf_murs_finaux_grand_q, gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size, gandalf_murs_finaux_petit_2_q, gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size, gandalf_murs_finaux_petit_1_d, gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size, gandalf_murs_finaux_grand_d, gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size, gandalf_murs_finaux_petit_2_d, gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size, gandalf_murs_finaux_petit_1_z, gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size, gandalf_murs_finaux_grand_z, gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size, gandalf_murs_finaux_petit_2_z, gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size, gandalf_murs_finaux_petit_1_s, gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size, gandalf_murs_finaux_grand_s, gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size, gandalf_murs_finaux_petit_2_s, gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size, gandalf_murs_finaux_petit_1_left, gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size, gandalf_murs_finaux_grand_left, gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size, gandalf_murs_finaux_petit_2_left, gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size, gandalf_murs_finaux_petit_1_right, gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size, gandalf_murs_finaux_grand_right, gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size, gandalf_murs_finaux_petit_2_right, gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size, gandalf_murs_finaux_petit_1_up, gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size, gandalf_murs_finaux_grand_up,gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size, gandalf_murs_finaux_petit_2_up, gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size, gandalf_murs_finaux_petit_1_down, gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size, gandalf_murs_finaux_grand_down, gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size, gandalf_murs_finaux_petit_2_down, gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size = i_meme_gandalf(pressed_keys, gandalf_son, player_pos, player_pos_2, executing_lightcycle_movement_q, executing_lightcycle_movement_d, executing_lightcycle_movement_z, executing_lightcycle_movement_s, executing_lightcycle_movement_left, executing_lightcycle_movement_right, executing_lightcycle_movement_up, executing_lightcycle_movement_down, i_meme_sélectionné_player, i_meme_sélectionné_player_2, gandalf_murs_petit_1, gandalf_murs_grand, gandalf_murs_petit_2, cooldown_i_meme_gandalf_player, cooldown_i_meme_gandalf_player_2, gandalf_murs_finaux_petit_1_q, gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size, gandalf_murs_finaux_grand_q, gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size, gandalf_murs_finaux_petit_2_q, gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size, gandalf_murs_finaux_petit_1_d, gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size, gandalf_murs_finaux_grand_d, gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size, gandalf_murs_finaux_petit_2_d, gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size, gandalf_murs_finaux_petit_1_z, gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size, gandalf_murs_finaux_grand_z, gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size, gandalf_murs_finaux_petit_2_z, gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size, gandalf_murs_finaux_petit_1_s, gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size, gandalf_murs_finaux_grand_s, gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size, gandalf_murs_finaux_petit_2_s, gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size, gandalf_murs_finaux_petit_1_left, gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size, gandalf_murs_finaux_grand_left, gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size, gandalf_murs_finaux_petit_2_left, gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size, gandalf_murs_finaux_petit_1_right, gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size, gandalf_murs_finaux_grand_right, gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size, gandalf_murs_finaux_petit_2_right, gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size, gandalf_murs_finaux_petit_1_up, gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size, gandalf_murs_finaux_grand_up,gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size, gandalf_murs_finaux_petit_2_up, gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size, gandalf_murs_finaux_petit_1_down, gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size, gandalf_murs_finaux_grand_down, gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size, gandalf_murs_finaux_petit_2_down, gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size)
+        mode_actuel = collision_gandalf_murs(mode_actuel, executing_i_meme_disparition_player, executing_i_meme_disparition_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, player_pos, player_pos_2, executing_lightcycle_movement_q, executing_lightcycle_movement_d, executing_lightcycle_movement_z, executing_lightcycle_movement_s, executing_lightcycle_movement_left, executing_lightcycle_movement_right, executing_lightcycle_movement_up, executing_lightcycle_movement_down, i_meme_sélectionné_player, i_meme_sélectionné_player_2, gandalf_murs_petit_1, gandalf_murs_grand, gandalf_murs_petit_2, cooldown_i_meme_gandalf_player, cooldown_i_meme_gandalf_player_2, gandalf_murs_finaux_petit_1_q, gandalf_murs_finaux_petit_1_q_pos, gandalf_murs_finaux_petit_1_q_size, gandalf_murs_finaux_grand_q, gandalf_murs_finaux_grand_q_pos, gandalf_murs_finaux_grand_q_size, gandalf_murs_finaux_petit_2_q, gandalf_murs_finaux_petit_2_q_pos, gandalf_murs_finaux_petit_2_q_size, gandalf_murs_finaux_petit_1_d, gandalf_murs_finaux_petit_1_d_pos, gandalf_murs_finaux_petit_1_d_size, gandalf_murs_finaux_grand_d, gandalf_murs_finaux_grand_d_pos, gandalf_murs_finaux_grand_d_size, gandalf_murs_finaux_petit_2_d, gandalf_murs_finaux_petit_2_d_pos, gandalf_murs_finaux_petit_2_d_size, gandalf_murs_finaux_petit_1_z, gandalf_murs_finaux_petit_1_z_pos, gandalf_murs_finaux_petit_1_z_size, gandalf_murs_finaux_grand_z, gandalf_murs_finaux_grand_z_pos, gandalf_murs_finaux_grand_z_size, gandalf_murs_finaux_petit_2_z, gandalf_murs_finaux_petit_2_z_pos, gandalf_murs_finaux_petit_2_z_size, gandalf_murs_finaux_petit_1_s, gandalf_murs_finaux_petit_1_s_pos, gandalf_murs_finaux_petit_1_s_size, gandalf_murs_finaux_grand_s, gandalf_murs_finaux_grand_s_pos, gandalf_murs_finaux_grand_s_size, gandalf_murs_finaux_petit_2_s, gandalf_murs_finaux_petit_2_s_pos, gandalf_murs_finaux_petit_2_s_size, gandalf_murs_finaux_petit_1_left, gandalf_murs_finaux_petit_1_left_pos, gandalf_murs_finaux_petit_1_left_size, gandalf_murs_finaux_grand_left, gandalf_murs_finaux_grand_left_pos, gandalf_murs_finaux_grand_left_size, gandalf_murs_finaux_petit_2_left, gandalf_murs_finaux_petit_2_left_pos, gandalf_murs_finaux_petit_2_left_size, gandalf_murs_finaux_petit_1_right, gandalf_murs_finaux_petit_1_right_pos, gandalf_murs_finaux_petit_1_right_size, gandalf_murs_finaux_grand_right, gandalf_murs_finaux_grand_right_pos, gandalf_murs_finaux_grand_right_size, gandalf_murs_finaux_petit_2_right, gandalf_murs_finaux_petit_2_right_pos, gandalf_murs_finaux_petit_2_right_size, gandalf_murs_finaux_petit_1_up, gandalf_murs_finaux_petit_1_up_pos, gandalf_murs_finaux_petit_1_up_size, gandalf_murs_finaux_grand_up,gandalf_murs_finaux_grand_up_pos, gandalf_murs_finaux_grand_up_size, gandalf_murs_finaux_petit_2_up, gandalf_murs_finaux_petit_2_up_pos, gandalf_murs_finaux_petit_2_up_size, gandalf_murs_finaux_petit_1_down, gandalf_murs_finaux_petit_1_down_pos, gandalf_murs_finaux_petit_1_down_size, gandalf_murs_finaux_grand_down, gandalf_murs_finaux_grand_down_pos, gandalf_murs_finaux_grand_down_size, gandalf_murs_finaux_petit_2_down, gandalf_murs_finaux_petit_2_down_pos, gandalf_murs_finaux_petit_2_down_size)
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_q, gandalf_murs_finaux_petit_1_q_pos) :
+            i.fill(gandalf_murs_petit_1["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_grand_q, gandalf_murs_finaux_grand_q_pos) :
+            i.fill(gandalf_murs_grand["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_q, gandalf_murs_finaux_petit_2_q_pos) :
+            i.fill(gandalf_murs_petit_2["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_d, gandalf_murs_finaux_petit_1_d_pos) :
+            i.fill(gandalf_murs_petit_1["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_grand_d, gandalf_murs_finaux_grand_d_pos) :
+            i.fill(gandalf_murs_grand["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_d, gandalf_murs_finaux_petit_2_d_pos) :
+            i.fill(gandalf_murs_petit_2["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_z, gandalf_murs_finaux_petit_1_z_pos) :
+            i.fill(gandalf_murs_petit_1["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_grand_z, gandalf_murs_finaux_grand_z_pos) :
+            i.fill(gandalf_murs_grand["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_z, gandalf_murs_finaux_petit_2_z_pos) :
+            i.fill(gandalf_murs_petit_2["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_s, gandalf_murs_finaux_petit_1_s_pos) :
+            i.fill(gandalf_murs_petit_1["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_grand_s, gandalf_murs_finaux_grand_s_pos) :
+            i.fill(gandalf_murs_grand["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_s, gandalf_murs_finaux_petit_2_s_pos) :
+            i.fill(gandalf_murs_petit_2["color"])
+            screen.blit(i, j)
+
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_left, gandalf_murs_finaux_petit_1_left_pos) :
+            i.fill(gandalf_murs_petit_1["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_grand_left, gandalf_murs_finaux_grand_left_pos) :
+            i.fill(gandalf_murs_grand["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_left, gandalf_murs_finaux_petit_2_left_pos) :
+            i.fill(gandalf_murs_petit_2["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_right, gandalf_murs_finaux_petit_1_right_pos) :
+            i.fill(gandalf_murs_petit_1["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_grand_right, gandalf_murs_finaux_grand_right_pos) :
+            i.fill(gandalf_murs_grand["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_right, gandalf_murs_finaux_petit_2_right_pos) :
+            i.fill(gandalf_murs_petit_2["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_up, gandalf_murs_finaux_petit_1_up_pos) :
+            i.fill(gandalf_murs_petit_1["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_grand_up, gandalf_murs_finaux_grand_up_pos) :
+            i.fill(gandalf_murs_grand["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_up, gandalf_murs_finaux_petit_2_up_pos) :
+            i.fill(gandalf_murs_petit_2["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_petit_1_down, gandalf_murs_finaux_petit_1_down_pos) :
+            i.fill(gandalf_murs_petit_1["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_grand_down, gandalf_murs_finaux_grand_down_pos) :
+            i.fill(gandalf_murs_grand["color"])
+            screen.blit(i, j)
+
+        for i, j in zip(gandalf_murs_finaux_petit_2_down, gandalf_murs_finaux_petit_2_down_pos) :
+            i.fill(gandalf_murs_petit_2["color"])
+            screen.blit(i, j)
 
         #-----------------------------------------------------------------------------------------------------------------------------------------------------------
         #------------------------------------------------------------------------STATISTIQUES-----------------------------------------------------------------------
@@ -3499,8 +3588,8 @@ while running :
         #------------------------------------------------------------------CALCULS DE FIN DE PARTIE-----------------------------------------------------------------
         #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2 = i_meme_devil_never_cry(i_meme_sélectionné_player, i_meme_sélectionné_player_2, mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2)
-        score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2 = i_meme_jackpot(i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2)
+        mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2 = i_meme_devil_never_cry(devil_never_cry_son, i_meme_sélectionné_player, i_meme_sélectionné_player_2, mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2)
+        score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2 = i_meme_jackpot(jackpot_son, i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2)
 
         temps_total = heures * 3600 + minutes * 60 + secondes
 
@@ -3665,8 +3754,8 @@ while running :
         #------------------------------------------------------------------CALCULS DE FIN DE PARTIE-----------------------------------------------------------------
         #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2 = i_meme_devil_never_cry(i_meme_sélectionné_player, i_meme_sélectionné_player_2, mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2)
-        score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2 = i_meme_jackpot(i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2)
+        mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2 = i_meme_devil_never_cry(devil_never_cry_son, i_meme_sélectionné_player, i_meme_sélectionné_player_2, mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2)
+        score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2 = i_meme_jackpot(jackpot_son, i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2)
 
         temps_total = heures * 3600 + minutes * 60 + secondes
 
@@ -3831,8 +3920,8 @@ while running :
         #------------------------------------------------------------------CALCULS DE FIN DE PARTIE-----------------------------------------------------------------
         #-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2 = i_meme_devil_never_cry(i_meme_sélectionné_player, i_meme_sélectionné_player_2, mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2)
-        score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2 = i_meme_jackpot(i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2)
+        mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2, invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2 = i_meme_devil_never_cry(devil_never_cry_son, i_meme_sélectionné_player, i_meme_sélectionné_player_2, mode_actuel, utilisé_i_meme_devil_never_cry_player, utilisé_i_meme_devil_never_cry_player_2,invulnérabilité_temporaire_player, invulnérabilité_temporaire_player_2, time_invulnérabilité_temporaire_player, time_invulnérabilité_temporaire_player_2)
+        score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2 = i_meme_jackpot(jackpot_son, i_meme_sélectionné_player, i_meme_sélectionné_player_2, score_player, score_player_2, utilisé_i_meme_jackpot_player, utilisé_i_meme_jackpot_player_2)
 
         temps_total = heures * 3600 + minutes * 60 + secondes
 
