@@ -45,6 +45,18 @@ chemin_fond = os.path.join(dossier_script, "assets", "img", "Grid View.jpg")
 fond_brut = pygame.image.load(chemin_fond)
 fond = pygame.transform.scale(fond_brut, (resolution.current_w, resolution.current_h))
 
+chemin_player_q_img = os.path.join(dossier_script, "assets", "img", "Lightcycle-D___LEFT.jpg")
+chemin_player_d_img = os.path.join(dossier_script, "assets", "img", "Lightcycle-D___RIGHT.jpg")
+chemin_player_z_img = os.path.join(dossier_script, "assets", "img", "Lightcycle-D___UP.jpg")
+chemin_player_s_img = os.path.join(dossier_script, "assets", "img", "Lightcycle-D___DOWN.jpg")
+
+chemin_player2_left_img = os.path.join(dossier_script, "assets", "img", "Lightcycle-V___LEFT.jpg")
+chemin_player2_right_img = os.path.join(dossier_script, "assets", "img", "Lightcycle-V___RIGHT.jpg")
+chemin_player2_up_img = os.path.join(dossier_script, "assets", "img", "Lightcycle-V___UP.jpg")
+chemin_player2_down_img = os.path.join(dossier_script, "assets", "img", "Lightcycle-V___DOWN.jpg")
+
+
+
 
 
 clock = pygame.time.Clock()
@@ -4175,9 +4187,23 @@ while running :
 
 
         if executing_i_meme_disparition_player == False :
-            screen.blit(player, player_pos)
+            if executing_lightcycle_movement_q :
+                screen.blit(player_q_img, player_pos)
+            if executing_lightcycle_movement_d :
+                screen.blit(player_d_img, player_pos)
+            if executing_lightcycle_movement_z :
+                screen.blit(player_z_img, player_pos)
+            if executing_lightcycle_movement_s :
+                screen.blit(player_s_img, player_pos)
         if executing_i_meme_disparition_player_2 == False :
-            screen.blit(player_2, player_pos_2)
+            if executing_lightcycle_movement_left :
+                screen.blit(player2_left_img, player_pos_2)
+            if executing_lightcycle_movement_right :
+                screen.blit(player2_right_img, player_pos_2)
+            if executing_lightcycle_movement_up :
+                screen.blit(player2_up_img, player_pos_2)
+            if executing_lightcycle_movement_down :
+                screen.blit(player2_down_img, player_pos_2)
 
 
         cooldown_i_meme_red_bull_player, cooldown_i_meme_red_bull_player_2, executing_i_meme_red_bull_player, executing_i_meme_red_bull_player_2, executing_time_i_meme_red_bull_player, executing_time_i_meme_red_bull_player_2 = i_meme_red_bull(pressed_keys, red_bull_son, cooldown_i_meme_red_bull_player, cooldown_i_meme_red_bull_player_2, i_meme_sélectionné_player, i_meme_sélectionné_player_2, executing_i_meme_red_bull_player, executing_i_meme_red_bull_player_2, executing_time_i_meme_red_bull_player, executing_time_i_meme_red_bull_player_2)
