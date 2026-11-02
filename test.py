@@ -4153,36 +4153,36 @@ while running :
 
         
         for i, j in zip(traînées_finales_q, traînées_finales_pos_q) :
-            i.fill(traînées["color"])
+            i.fill("#CF2F11")
             screen.blit(i, j)
 
         for i, j in zip(traînées_finales_d, traînées_finales_pos_d) :
-            i.fill(traînées["color"])
+            i.fill("#CF2F11")
             screen.blit(i, j)
 
         for i, j in zip(traînées_finales_z, traînées_finales_pos_z) :
-            i.fill(traînées["color"])
+            i.fill("#CF2F11")
             screen.blit(i, j)
 
         for i, j in zip(traînées_finales_s, traînées_finales_pos_s) :
-            i.fill(traînées["color"])
+            i.fill("#CF2F11")
             screen.blit(i, j)
 
 
         for i, j in zip(traînées_finales_left, traînées_finales_pos_left) :
-            i.fill(traînées["color"])
+            i.fill("#0000FF")
             screen.blit(i, j)
 
         for i, j in zip(traînées_finales_right, traînées_finales_pos_right) :
-            i.fill(traînées["color"])
+            i.fill("#0000FF")
             screen.blit(i, j)
 
         for i, j in zip(traînées_finales_up, traînées_finales_pos_up) :
-            i.fill(traînées["color"])
+            i.fill("#0000FF")
             screen.blit(i, j)
 
         for i, j in zip(traînées_finales_down, traînées_finales_pos_down) :
-            i.fill(traînées["color"])
+            i.fill("#0000FF")
             screen.blit(i, j)
 
 
