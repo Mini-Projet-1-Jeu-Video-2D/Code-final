@@ -4187,23 +4187,9 @@ while running :
 
 
         if executing_i_meme_disparition_player == False :
-            if executing_lightcycle_movement_q :
-                screen.blit(player_q_img, player_pos)
-            if executing_lightcycle_movement_d :
-                screen.blit(player_d_img, player_pos)
-            if executing_lightcycle_movement_z :
-                screen.blit(player_z_img, player_pos)
-            if executing_lightcycle_movement_s :
-                screen.blit(player_s_img, player_pos)
+            screen.blit(player, player_pos)
         if executing_i_meme_disparition_player_2 == False :
-            if executing_lightcycle_movement_left :
-                screen.blit(player2_left_img, player_pos_2)
-            if executing_lightcycle_movement_right :
-                screen.blit(player2_right_img, player_pos_2)
-            if executing_lightcycle_movement_up :
-                screen.blit(player2_up_img, player_pos_2)
-            if executing_lightcycle_movement_down :
-                screen.blit(player2_down_img, player_pos_2)
+            screen.blit(player_2, player_pos_2)
 
 
         cooldown_i_meme_red_bull_player, cooldown_i_meme_red_bull_player_2, executing_i_meme_red_bull_player, executing_i_meme_red_bull_player_2, executing_time_i_meme_red_bull_player, executing_time_i_meme_red_bull_player_2 = i_meme_red_bull(pressed_keys, red_bull_son, cooldown_i_meme_red_bull_player, cooldown_i_meme_red_bull_player_2, i_meme_sélectionné_player, i_meme_sélectionné_player_2, executing_i_meme_red_bull_player, executing_i_meme_red_bull_player_2, executing_time_i_meme_red_bull_player, executing_time_i_meme_red_bull_player_2)
@@ -4426,7 +4412,7 @@ while running :
         cooldown_i_meme_player_fond_size = [104, 19]
         cooldown_i_meme_player_fond_pos = [grid_pos[0] + (Score_player_pos[0] - grid_pos[0]) / 2 - cooldown_i_meme_player_fond_size[0] / 2, grid_pos[1] / 2]
 
-
+        screen.blit(cooldown_i_meme_player_fond, cooldown_i_meme_player_fond_pos)
 
         if cooldown_i_meme_sélectionné_player == cooldown_i_meme_rare_sélectionné_player :
             avancement_cooldown_player = (100 - (cooldown_i_meme_sélectionné_player * 0.16666))
@@ -4439,7 +4425,7 @@ while running :
         cooldown_i_meme_player_size = [round(avancement_cooldown_player), 15]
         cooldown_i_meme_player_pos = [cooldown_i_meme_player_fond_pos[0] + 2, cooldown_i_meme_player_fond_pos[1] + 2]
 
-
+        screen.blit(cooldown_i_meme_player, cooldown_i_meme_player_pos)
 
 
         cooldown_i_meme_player_2_fond = pygame.Surface ((104, 19))
@@ -4447,7 +4433,7 @@ while running :
         cooldown_i_meme_player_2_fond_size = [104, 19]
         cooldown_i_meme_player_2_fond_pos = [((grid_pos[0] + grid_size[0]) - (((grid_pos[0] + grid_size[0]) - (Score_player_2_pos[0] + Score_player_2_dimensions[0])) / 2)) - cooldown_i_meme_player_fond_size[0] / 2, grid_pos[1] / 2]
 
-
+        screen.blit(cooldown_i_meme_player_2_fond, cooldown_i_meme_player_2_fond_pos)
 
         if cooldown_i_meme_sélectionné_player_2 == cooldown_i_meme_rare_sélectionné_player_2 :
             avancement_cooldown_player_2 = (100 - (cooldown_i_meme_sélectionné_player_2 * 0.16666))
@@ -4460,7 +4446,7 @@ while running :
         cooldown_i_meme_player_2_size = [round(avancement_cooldown_player_2), 15]
         cooldown_i_meme_player_2_pos = [cooldown_i_meme_player_2_fond_pos[0] + 2, cooldown_i_meme_player_2_fond_pos[1] + 2]
 
-
+        screen.blit(cooldown_i_meme_player_2, cooldown_i_meme_player_2_pos)
         
         score_player, collectibles_player, collectibles_pos = réapparition_collectibles(executing_lightcycle_movement_q, executing_lightcycle_movement_d , executing_lightcycle_movement_z, executing_lightcycle_movement_s, grid_pos, grid_size, player_pos, player_size, collectibles_pos, collectibles_size, collectibles_player, score_player)
         score_player_2, collectibles_player_2, collectibles_pos = réapparition_collectibles(executing_lightcycle_movement_left, executing_lightcycle_movement_right, executing_lightcycle_movement_up, executing_lightcycle_movement_down, grid_pos, grid_size, player_pos_2, player_size_2, collectibles_pos, collectibles_size, collectibles_player_2, score_player_2)
